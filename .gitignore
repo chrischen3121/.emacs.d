@@ -9,3 +9,13 @@
 
 # Undo-tree save-files
 *.~undo-tree
+
+# Others
+.last-package-update-day
+custom.el
+auto-save-list/
+savefile/
+transient/
+projectile-bookmarks.eld
+elpa/
+recentf
