@@ -1,4 +1,4 @@
-;;; cc-prog.el
+;;; cc-better-defaults.el
 
 ;; Author: chrischen
 ;; Maintainer: chrischen
@@ -20,17 +20,22 @@
 
 ;;; Code:
 
-(use-package magit
-  :bind ("C-x g" . magit-status))
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+(add-to-list 'default-frame-alist '(font . "Source Code Pro-10"))
+(set-fontset-font t 'han "WenQuanYi Micro Hei Mono-11")
 
-(use-package projectile
-  :delight
-  :config
-  (projectile-mode 1))
+(use-package
+  spacemacs-theme
+  :no-require t
+  :init
+  (load-theme 'spacemacs-light t)
+  ;; (load-theme 'spacemacs-dark t)
+  )
 
-;; (use-package company-mode
-;;   :no-require t
-;;   )
+(tool-bar-mode -1)
+(menu-bar-mode -1)
 
-(provide 'cc-prog)
-;;; cc-prog.el ends here
+(provide 'cc-better-defaults)
+
+;;; cc-better-defaults.el ends here

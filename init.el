@@ -27,6 +27,7 @@
 
 (defvar core-dir (expand-file-name "core" user-emacs-directory))
 (defvar modules-dir (expand-file-name "modules" user-emacs-directory))
+(defvar languages-dir (expand-file-name "languages" user-emacs-directory))
 (defvar savefile-dir (expand-file-name "savefile" user-emacs-directory))
 (customize-set-variable 'custom-file (expand-file-name "custom.el" user-emacs-directory))
 
@@ -36,10 +37,15 @@
 (add-to-list 'load-path core-dir)
 (message "Loading core modules...")
 (require 'cc-core)
+(require 'cc-better-defaults)
 (require 'cc-ivy)
 (require 'cc-packages)
 (require 'cc-prog)
 (require 'cc-global-bindings)
+
+(add-to-list 'load-path languages-dir)
+(message "Loading language modules...")
+(require 'cc-elisp)
 
 (add-to-list 'load-path modules-dir)
 

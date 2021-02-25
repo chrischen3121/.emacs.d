@@ -34,7 +34,10 @@
 	 ("C-h f" . counsel-describe-function)
 	 ("C-h v" . counsel-describe-variable)
 	 ("C-x b" . ivy-switch-buffer)
-	 ))
+	 :map ivy-mode-map
+	 ("C-l" . ivy-backward-delete-char)
+	 )
+  :diminish)
 
 (use-package which-key
   :config
@@ -45,7 +48,8 @@
   (which-key-add-key-based-replacements "C-x @" "event-apply")
   (which-key-add-key-based-replacements "C-x a" "abbrev")
   (which-key-add-key-based-replacements "C-x n" "narrow")
-  (which-key-add-key-based-replacements "C-x r" "register"))
+  (which-key-add-key-based-replacements "C-x r" "register")
+  :diminish)
 
 (provide 'cc-ivy)
 

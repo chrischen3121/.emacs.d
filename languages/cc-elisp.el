@@ -1,4 +1,4 @@
-;;; cc-prog.el
+;;; cc-elisp.el
 
 ;; Author: chrischen
 ;; Maintainer: chrischen
@@ -20,17 +20,7 @@
 
 ;;; Code:
 
-(use-package magit
-  :bind ("C-x g" . magit-status))
 
-(use-package projectile
-  :delight
-  :config
-  (projectile-mode 1))
+(provide 'cc-elisp)
 
-;; (use-package company-mode
-;;   :no-require t
-;;   )
-
-(provide 'cc-prog)
-;;; cc-prog.el ends here
+;;; cc-elisp.el ends here

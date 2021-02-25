@@ -40,6 +40,9 @@
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
 
+(use-package diminish
+  :defer t)
+
 ;; keep package updated
 (use-package auto-package-update
   :config
