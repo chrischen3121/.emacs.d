@@ -20,6 +20,8 @@
 
 ;;; Code:
 
+(delight 'emacs-lisp-mode "ELisp"
+	 :major)
 
 (provide 'cc-elisp)
 

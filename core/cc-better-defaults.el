@@ -28,13 +28,14 @@
 (use-package
   spacemacs-theme
   :no-require t
-  :init
-  (load-theme 'spacemacs-light t)
+  :init (load-theme 'spacemacs-light t)
   ;; (load-theme 'spacemacs-dark t)
   )
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)
+
+(add-hook 'before-save-hook #'whitespace-cleanup)
 
 (provide 'cc-better-defaults)
 

@@ -20,12 +20,11 @@
 
 ;;; Code:
 
-(use-package ivy
+(use-package
+  ivy
   :ensure counsel
-  :config
-  (ivy-mode 1)
-  :custom
-  (ivy-use-virtual-buffers t)
+  :config (ivy-mode 1)
+  :custom (ivy-use-virtual-buffers t)
   (ivy-count-format "(%d/%d) ")
   :bind (("C-s" . swiper-isearch)
 	 ("M-x" . counsel-M-x)
@@ -33,15 +32,15 @@
 	 ("M-y" . counsel-yank-pop)
 	 ("C-h f" . counsel-describe-function)
 	 ("C-h v" . counsel-describe-variable)
+	 ("C-h l" . counsel-find-library)
 	 ("C-x b" . ivy-switch-buffer)
 	 :map ivy-mode-map
-	 ("C-l" . ivy-backward-delete-char)
-	 )
-  :diminish)
+	 ("C-l" . ivy-backward-delete-char))
+  :delight)
 
-(use-package which-key
-  :config
-  (which-key-mode 1)
+(use-package
+  which-key
+  :config (which-key-mode 1)
   (which-key-add-key-based-replacements "C-x ESC" "repeat-command")
   (which-key-add-key-based-replacements "C-x RET" "coding-system")
   (which-key-add-key-based-replacements "C-x 8" "strange-chars")
@@ -49,7 +48,7 @@
   (which-key-add-key-based-replacements "C-x a" "abbrev")
   (which-key-add-key-based-replacements "C-x n" "narrow")
   (which-key-add-key-based-replacements "C-x r" "register")
-  :diminish)
+  :delight)
 
 (provide 'cc-ivy)
 

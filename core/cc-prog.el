@@ -20,13 +20,29 @@
 
 ;;; Code:
 
-(use-package magit
+(use-package
+  magit
   :bind ("C-x g" . magit-status))
 
-(use-package projectile
-  :delight
-  :config
-  (projectile-mode 1))
+(use-package
+  projectile
+  :defer nil
+  :delight '(:eval (concat " Proj[" (projectile-project-name) "]"))
+  :bind ("C-c p" . projectile-command-map)
+  :config (projectile-mode 1)
+  (which-key-add-key-based-replacements "C-c p" "projectile"))
+
+(use-package
+  which-func
+  :config (which-function-mode 1)
+  (setq which-func-unknown "n/a"))
+
+(use-package
+  elisp-format
+  :no-require t
+  :bind (:map emacs-lisp-mode-map
+	      ("C-c f" . elisp-format-buffer)))
+(require 'elisp-format)
 
 ;; (use-package company-mode
 ;;   :no-require t

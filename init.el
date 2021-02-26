@@ -23,7 +23,8 @@
 (defvar username (getenv (if (equal system-type 'windows-nt) "USERNAME" "USER")))
 
 (when (version< emacs-version "25.3")
-  (error "requires GNUEmacs 25.3 or newer"))
+  (error
+   "requires GNUEmacs 25.3 or newer"))
 
 (defvar core-dir (expand-file-name "core" user-emacs-directory))
 (defvar modules-dir (expand-file-name "modules" user-emacs-directory))
@@ -39,7 +40,6 @@
 (require 'cc-core)
 (require 'cc-better-defaults)
 (require 'cc-ivy)
-(require 'cc-packages)
 (require 'cc-prog)
 (require 'cc-global-bindings)
 
@@ -52,4 +52,3 @@
 (message "Happy Hacking!🌅🚣🏝️")
 
 ;;; init.el ends here
-
