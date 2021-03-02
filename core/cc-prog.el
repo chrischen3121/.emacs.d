@@ -32,19 +32,17 @@
   :config (projectile-mode +1)
   (add-to-list 'projectile-globally-ignored-directories "elpa")
   (add-to-list 'projectile-globally-ignored-directories "savefile")
-  (add-to-list 'projectile-globally-ignored-directories ".mypy_cache")
-  (which-key-add-key-based-replacements "C-c p" "projectile"))
-
+  (add-to-list 'projectile-globally-ignored-directories ".mypy_cache"))
+(which-key-add-key-based-replacements "C-c p" "projectile")
 
 (use-package
   whole-line-or-region
   :config (whole-line-or-region-global-mode +1)
-  (add-hook 'prog-mode-hook (lambda ()
-			      (delight 'whole-line-or-region-local-mode))))
+  :delight whole-line-or-region-local-mode)
 
 (use-package
   which-func
-  :config (which-func-mode +1)
+  :config (which-function-mode +1)
   (setq which-func-unknown "n/a"))
 
 (use-package
@@ -58,12 +56,54 @@
 
 (use-package
   company
-  ;; :delight
+  :delight
   :config (global-company-mode +1))
 
 (use-package
   eldoc
   :delight)
+
+(use-package
+  autorevert
+  :config (global-auto-revert-mode +1)
+  :delight auto-revert-mode)
+
+(use-package
+  smartparens-config
+  :ensure smartparens)
+
+(use-package
+  paren
+  :defer nil
+  :custom-face
+  :config (show-paren-mode +1))
+
+(use-package
+  rainbow-mode
+  :delight
+  :hook prog-mode)
+
+(use-package
+  flyspell
+  :init (setq ispell-extra-args '("--sug-mode=ultra"))
+  :delight
+  :bind (:map flyspell-mode-map
+	      ("C-c $" . nil)
+	      ("C-c ! s" . flyspell-buffer))
+  :hook ((prog-mode . flyspell-prog-mode)
+	 (test-mode . flyspell-mode)))
+
+(use-package
+  flycheck
+  :hook (prog-mode . flycheck-mode)
+  :custom (flycheck-emacs-lisp-load-path 'inherit))
+
+(which-key-add-key-based-replacements "C-c !" "fly")
+
+(use-package
+  ace-jump-mode
+  :bind (("C-c j" . ace-jump-word-mode)
+	 ("C-c l" . ace-jump-line-mode)))
 
 (provide 'cc-prog)
 ;;; cc-prog.el ends here

@@ -24,7 +24,7 @@
 
 (when (version< emacs-version "25.3")
   (error
-   "requires GNUEmacs 25.3 or newer"))
+   "Requires GNUEmacs 25.3 or newer"))
 
 (defvar core-dir (expand-file-name "core" user-emacs-directory))
 (defvar modules-dir (expand-file-name "modules" user-emacs-directory))
@@ -37,6 +37,7 @@
 
 (add-to-list 'load-path core-dir)
 (message "Loading core modules...")
+
 (require 'cc-core)
 (require 'cc-better-defaults)
 (require 'cc-ivy)
@@ -46,6 +47,7 @@
 (add-to-list 'load-path languages-dir)
 (message "Loading language modules...")
 (require 'cc-elisp)
+(require 'cc-python)
 
 (add-to-list 'load-path modules-dir)
 

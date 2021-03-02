@@ -1,4 +1,4 @@
-;;; cc-elisp.el
+;;; cc-yaml.el
 
 ;; Author: chrischen
 ;; Maintainer: chrischen
@@ -20,11 +20,6 @@
 
 ;;; Code:
 
-(delight 'emacs-lisp-mode "ELisp"
-	 :major)
+(provide 'cc-yaml)
 
-(add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
-
-(provide 'cc-elisp)
-
-;;; cc-elisp.el ends here
+;;; cc-yaml.el ends here

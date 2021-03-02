@@ -21,5 +21,6 @@
 ;;; Code:
 
 (global-set-key (kbd "S-SPC") #'set-mark-command)
+
 (provide 'cc-global-bindings)
 ;;; cc-global-bindinds.el ends here

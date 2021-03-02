@@ -20,11 +20,6 @@
 
 ;;; Code:
 
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-(add-to-list 'default-frame-alist '(font . "Source Code Pro-10"))
-(set-fontset-font t 'han "WenQuanYi Micro Hei Mono-11")
-
 (use-package
   spacemacs-theme
   :no-require t
@@ -32,11 +27,22 @@
   ;; (load-theme 'spacemacs-dark t)
   )
 
+;; (toggle-frame-fullscreen)
+(toggle-frame-maximized)
+(setq inhibit-startup-screen t)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (delete-selection-mode +1)
+(toggle-scroll-bar -1)
+(fset 'yes-or-no-p 'y-or-n-p)
 
-(add-hook 'before-save-hook #'whitespace-cleanup)
+(add-to-list 'default-frame-alist '(font . "Source Code Pro-10"))
+(set-fontset-font t 'han "WenQuanYi Micro Hei Mono-11")
+
+(use-package
+  ace-window
+  :bind (([remap other-window] . ace-window)
+	 ("C-x w" . ace-swap-window)))
 
 (provide 'cc-better-defaults)
 

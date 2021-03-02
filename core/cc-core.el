@@ -20,6 +20,7 @@
 
 ;;; Code:
 (require 'cl-lib)
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://mirrors.cloud.tencent.com/elpa/melpa/"))
 (add-to-list 'package-archives '("melpa-stable" .
@@ -35,11 +36,11 @@
   (require 'use-package))
 
 ;; globally ensure package installation
-(require 'use-package-ensure)
 (setq use-package-always-ensure t)
+(setq use-package-verbose t)
 
-(use-package
-  use-package-ensure-system-package)
+;; (use-package
+;;   use-package-ensure-system-package)
 
 (use-package
   delight
@@ -51,6 +52,8 @@
   :config (setq auto-package-update-delete-old-versions t)
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
+
+(prefer-coding-system 'utf-8)
 
 (provide 'cc-core)
 

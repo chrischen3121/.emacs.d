@@ -1,4 +1,4 @@
-;;; cc-elisp.el
+;;; cc-python.el
 
 ;; Author: chrischen
 ;; Maintainer: chrischen
@@ -20,11 +20,6 @@
 
 ;;; Code:
 
-(delight 'emacs-lisp-mode "ELisp"
-	 :major)
+(provide 'cc-python)
 
-(add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
-
-(provide 'cc-elisp)
-
-;;; cc-elisp.el ends here
+;;; cc-python.el ends here
