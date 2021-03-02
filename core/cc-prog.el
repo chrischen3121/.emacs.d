@@ -32,7 +32,9 @@
   :config (projectile-mode +1)
   (add-to-list 'projectile-globally-ignored-directories "elpa")
   (add-to-list 'projectile-globally-ignored-directories "savefile")
-  (add-to-list 'projectile-globally-ignored-directories ".mypy_cache"))
+  (add-to-list 'projectile-globally-ignored-directories ".mypy_cache")
+  (which-key-add-key-based-replacements "C-c p" "projectile"))
+
 
 (use-package
   whole-line-or-region

@@ -36,6 +36,8 @@
 (menu-bar-mode -1)
 (delete-selection-mode +1)
 
+(add-hook 'before-save-hook #'whitespace-cleanup)
+
 (provide 'cc-better-defaults)
 
 ;;; cc-better-defaults.el ends here
