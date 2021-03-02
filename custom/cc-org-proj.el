@@ -1,4 +1,4 @@
-;;; cc-elisp.el
+;;; cc-org-proj.el
 
 ;; Author: chrischen
 ;; Maintainer: chrischen
@@ -20,13 +20,6 @@
 
 ;;; Code:
 
-(delight 'emacs-lisp-mode "ELisp"
-	 :major)
+(provide 'cc-org-proj)
 
-(add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
-
-
-
-(provide 'cc-elisp)
-
-;;; cc-elisp.el ends here
+;;; cc-org-proj.el ends here

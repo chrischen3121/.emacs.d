@@ -98,12 +98,36 @@
   :hook (prog-mode . flycheck-mode)
   :custom (flycheck-emacs-lisp-load-path 'inherit))
 
+;; flycheck & flyspell
 (which-key-add-key-based-replacements "C-c !" "fly")
 
 (use-package
   ace-jump-mode
   :bind (("C-c j" . ace-jump-word-mode)
 	 ("C-c l" . ace-jump-line-mode)))
+
+(use-package
+  yasnippet
+  :hook ((prog-mode . yas-minor-mode-on)
+	 (org-mode . yas-minor-mode-on))
+  :bind (:map yas-minor-mode-map
+	      ("C-c &" . nil)
+	      ("C-c y n" . yas-new-snippet)
+	      ("C-c y r" . yas-reload-all)
+	      ("C-c y v" . yas-visit-snippet-file)
+	      ("M-/" . yas-expand-from-trigger-key))
+  :config (which-key-add-key-based-replacements "C-c y" "yas"))
+
+(use-package
+  hideshow
+  :hook (prog-mode . hs-minor-mode)
+  :bind (:map hs-minor-mode-map
+	      ("C-c @" . nil)
+	      ("C-c h h" . hs-hide-all)
+	      ("C-c h s" . hs-show-all)
+	      ("C-c h l" . hs-toggle-hiding))
+  :config (which-key-add-key-based-replacements "C-c h" "hideshow"))
+
 
 (provide 'cc-prog)
 ;;; cc-prog.el ends here

@@ -44,6 +44,9 @@
   :bind (([remap other-window] . ace-window)
 	 ("C-x w" . ace-swap-window)))
 
+(use-package
+  crux)
+
 (provide 'cc-better-defaults)
 
 ;;; cc-better-defaults.el ends here

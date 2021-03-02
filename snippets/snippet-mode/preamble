@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: snippet header
+# contributor: chrischen
+# key: !
+# --
+# -*- mode: $1 -*-
+# name: $2
+# contributor: ${3:`user-full-name`} (${4:`user-mail-address`})
+# key: ${5:trigger-key}
+# --
+$0
