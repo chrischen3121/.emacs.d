@@ -28,13 +28,13 @@
 (use-package
   spacemacs-theme
   :no-require t
-  :init
-  (load-theme 'spacemacs-light t)
+  :init (load-theme 'spacemacs-light t)
   ;; (load-theme 'spacemacs-dark t)
   )
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)
+(delete-selection-mode +1)
 
 (provide 'cc-better-defaults)
 

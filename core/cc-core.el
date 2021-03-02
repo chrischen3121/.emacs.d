@@ -22,10 +22,10 @@
 (require 'cl-lib)
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://mirrors.cloud.tencent.com/elpa/melpa/"))
-(add-to-list 'package-archives '("melpa-stable" . "http://mirrors.cloud.tencent.com/elpa/melpa-stable/"))
+(add-to-list 'package-archives '("melpa-stable" .
+				 "http://mirrors.cloud.tencent.com/elpa/melpa-stable/"))
 (package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
+(unless package-archive-contents (package-refresh-contents))
 
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
@@ -33,25 +33,25 @@
 ;; futher reduce load time
 (eval-when-compile
   (require 'use-package))
-;; (require 'diminish)
-;; (require 'bind-key)
 
 ;; globally ensure package installation
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
 
-(use-package diminish
+(use-package
+  use-package-ensure-system-package)
+
+(use-package
+  delight
   :defer t)
 
 ;; keep package updated
-(use-package auto-package-update
-  :config
-  (setq auto-package-update-delete-old-versions t)
+(use-package
+  auto-package-update
+  :config (setq auto-package-update-delete-old-versions t)
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
-;; (use-package which-key)
-				 
 (provide 'cc-core)
 
 ;;; cc-core.el ends here

@@ -20,7 +20,6 @@
 
 ;;; Code:
 
-
 (provide 'cc-elisp)
 
 ;;; cc-elisp.el ends here

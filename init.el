@@ -22,8 +22,9 @@
 
 (defvar username (getenv (if (equal system-type 'windows-nt) "USERNAME" "USER")))
 
-(when (version< emacs-version "25.3")
-  (error "requires GNUEmacs 25.3 or newer"))
+(when (version< emacs-version "25.3") 
+  (error 
+   "requires GNUEmacs 25.3 or newer"))
 
 (defvar core-dir (expand-file-name "core" user-emacs-directory))
 (defvar modules-dir (expand-file-name "modules" user-emacs-directory))
@@ -31,7 +32,7 @@
 (defvar savefile-dir (expand-file-name "savefile" user-emacs-directory))
 (customize-set-variable 'custom-file (expand-file-name "custom.el" user-emacs-directory))
 
-(unless (file-exists-p savefile-dir)
+(unless (file-exists-p savefile-dir) 
   (make-directory savefile-dir))
 
 (add-to-list 'load-path core-dir)
@@ -39,7 +40,6 @@
 (require 'cc-core)
 (require 'cc-better-defaults)
 (require 'cc-ivy)
-(require 'cc-packages)
 (require 'cc-prog)
 (require 'cc-global-bindings)
 
@@ -52,4 +52,3 @@
 (message "Happy Hacking!🌅🚣🏝️")
 
 ;;; init.el ends here
-
