@@ -20,6 +20,7 @@
 
 ;;; Code:
 
+
 (use-package
   magit
   :bind ("C-x g" . magit-status))
@@ -116,6 +117,7 @@
 
 (use-package
   yasnippet
+  :delight yas-minor-mode
   :hook ((prog-mode . yas-minor-mode-on)
 	 (org-mode . yas-minor-mode-on)
 	 (hippie-expand-try-functions-list . yas-hippie-try-expand))
@@ -130,7 +132,7 @@
 (use-package
   company-yasnippet
   :ensure company
-  :requires yasnippet
+  :after yasnippet
   :init (add-to-list 'company-backends 'company-yasnippet))
 
 (use-package
@@ -141,7 +143,7 @@
 	      ("C-c h h" . hs-hide-all)
 	      ("C-c h s" . hs-show-all)
 	      ("C-c h l" . hs-toggle-hiding))
-  :config (which-key-add-key-based-replacements "C-c h" "hideshow"))
+  :config (which-key-add-key-based-replacements "C-c h" "hs"))
 
 (use-package
   linum
@@ -151,6 +153,12 @@
   git-gutter+
   :delight " git+"
   :config (global-git-gutter+-mode))
+
+(use-package
+  mwim
+  :bind (:map prog-mode-map
+	      ("C-a" . mwim-beginning-of-code-or-line)
+	      ("C-e" . mwim-end-of-code-or-line)))
 
 (provide 'cc-prog)
 ;;; cc-prog.el ends here

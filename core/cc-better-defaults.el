@@ -46,6 +46,9 @@
 	 ("C-x w" . ace-swap-window)))
 
 (use-package
+  all-the-icons)
+
+(use-package
   crux)
 
 (use-package
@@ -65,6 +68,11 @@
   nyan-mode
   :hook (prog-mode text-mode))
 
+(use-package
+  smart-tab
+  :delight
+  :hook ((prog-mode . smart-tab-mode)
+	 (text-mode . smart-tab-mode)))
 
 (provide 'cc-better-defaults)
 
