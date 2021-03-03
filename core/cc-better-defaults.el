@@ -50,6 +50,7 @@
 
 (use-package
   undo-tree
+  :delight
   :custom (undo-tree-visualizer-timestamps t)
   (undo-tree-visualizer-diff t)
   :config (global-undo-tree-mode +1))
@@ -59,6 +60,11 @@
   neotree
   :custom (neo-smart-open t)
   :bind ("C-c n" . neotree-toggle))
+
+(use-package
+  nyan-mode
+  :hook (prog-mode text-mode))
+
 
 (provide 'cc-better-defaults)
 

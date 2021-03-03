@@ -56,6 +56,7 @@
 
 (use-package
   company
+
   :delight
   :config (global-company-mode +1))
 
@@ -80,11 +81,13 @@
 
 (use-package
   rainbow-mode
+
   :delight
   :hook prog-mode)
 
 (use-package
   rainbow-delimiters
+
   :delight
   :hook (prog-mode . rainbow-delimiters-mode))
 
@@ -114,14 +117,21 @@
 (use-package
   yasnippet
   :hook ((prog-mode . yas-minor-mode-on)
-	 (org-mode . yas-minor-mode-on))
+	 (org-mode . yas-minor-mode-on)
+	 (hippie-expand-try-functions-list . yas-hippie-try-expand))
   :bind (:map yas-minor-mode-map
 	      ("C-c &" . nil)
 	      ("C-c y n" . yas-new-snippet)
 	      ("C-c y r" . yas-reload-all)
 	      ("C-c y v" . yas-visit-snippet-file)
-	      ("M-/" . yas-expand-from-trigger-key))
+	      ("M-/" . yas-expand))
   :config (which-key-add-key-based-replacements "C-c y" "yas"))
+
+(use-package
+  company-yasnippet
+  :ensure company
+  :requires yasnippet
+  :init (add-to-list 'company-backends 'company-yasnippet))
 
 (use-package
   hideshow
@@ -139,6 +149,7 @@
 
 (use-package
   git-gutter+
+  :delight " git+"
   :config (global-git-gutter+-mode))
 
 (provide 'cc-prog)
