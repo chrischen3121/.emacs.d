@@ -84,6 +84,11 @@
   :hook prog-mode)
 
 (use-package
+  rainbow-delimiters
+  :delight
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+(use-package
   flyspell
   :init (setq ispell-extra-args '("--sug-mode=ultra"))
   :delight
@@ -128,6 +133,13 @@
 	      ("C-c h l" . hs-toggle-hiding))
   :config (which-key-add-key-based-replacements "C-c h" "hideshow"))
 
+(use-package
+  linum
+  :hook (prog-mode . linum-mode))
+
+(use-package
+  git-gutter+
+  :config (global-git-gutter+-mode))
 
 (provide 'cc-prog)
 ;;; cc-prog.el ends here

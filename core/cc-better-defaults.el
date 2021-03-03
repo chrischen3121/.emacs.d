@@ -35,6 +35,7 @@
 (delete-selection-mode +1)
 (toggle-scroll-bar -1)
 (fset 'yes-or-no-p 'y-or-n-p)
+(display-battery-mode +1)
 
 (add-to-list 'default-frame-alist '(font . "Source Code Pro-10"))
 (set-fontset-font t 'han "WenQuanYi Micro Hei Mono-11")
@@ -46,6 +47,18 @@
 
 (use-package
   crux)
+
+(use-package
+  undo-tree
+  :custom (undo-tree-visualizer-timestamps t)
+  (undo-tree-visualizer-diff t)
+  :config (global-undo-tree-mode +1))
+
+;; modern sidebar
+(use-package
+  neotree
+  :custom (neo-smart-open t)
+  :bind ("C-c n" . neotree-toggle))
 
 (provide 'cc-better-defaults)
 
