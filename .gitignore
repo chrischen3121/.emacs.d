@@ -11,6 +11,7 @@
 *.~undo-tree
 
 # Others
+.cache/
 .last-package-update-day
 custom.el
 auto-save-list/

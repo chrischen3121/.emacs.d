@@ -27,6 +27,9 @@
   ;; (load-theme 'spacemacs-dark t)
   )
 
+(use-package
+  all-the-icons)
+
 ;; (toggle-frame-fullscreen)
 (toggle-frame-maximized)
 (setq inhibit-startup-screen t)
@@ -40,13 +43,28 @@
 (add-to-list 'default-frame-alist '(font . "Source Code Pro-10"))
 (set-fontset-font t 'han "WenQuanYi Micro Hei Mono-11")
 
+;; (use-pack ibuffer ibuffer-projectile)
+
 (use-package
   ace-window
   :bind (([remap other-window] . ace-window)
 	 ("C-x w" . ace-swap-window)))
 
+
 (use-package
-  all-the-icons)
+  all-the-icons-dired
+  :after all-the-icons
+  :hook (dired-mode . all-the-icons-dired-mode))
+
+(use-package
+  ivy-rich
+  :init (ivy-rich-mode +1))
+
+(use-package
+  all-the-icons-ivy-rich
+  :after (all-the-icons ivy-rich)
+  :init (all-the-icons-ivy-rich-mode +1))
+
 
 (use-package
   crux)
@@ -59,10 +77,13 @@
   :config (global-undo-tree-mode +1))
 
 ;; modern sidebar
-(use-package
-  neotree
-  :custom (neo-smart-open t)
-  :bind ("C-c n" . neotree-toggle))
+;; (use-package
+;;   neotree
+;;   :custom (neo-smart-open t)
+;;   (neo-theme (if (display-graphic-p) 'icons 'arrow))
+;;   :bind ("C-c n" . neotree-toggle))
+(require 'cc-treemacs)
+
 
 (use-package
   nyan-mode

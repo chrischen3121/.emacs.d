@@ -57,7 +57,6 @@
 
 (use-package
   company
-
   :delight
   :config (global-company-mode +1))
 
@@ -82,13 +81,11 @@
 
 (use-package
   rainbow-mode
-
   :delight
   :hook prog-mode)
 
 (use-package
   rainbow-delimiters
-
   :delight
   :hook (prog-mode . rainbow-delimiters-mode))
 
@@ -133,7 +130,7 @@
   company-yasnippet
   :ensure company
   :after yasnippet
-  :init (add-to-list 'company-backends 'company-yasnippet))
+  :defer t)
 
 (use-package
   hideshow
