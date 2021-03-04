@@ -56,34 +56,23 @@
   :after all-the-icons
   :hook (dired-mode . all-the-icons-dired-mode))
 
-;; (use-package
-;;   ivy-rich
-;;   :init (ivy-rich-mode +1))
-
 (use-package
   all-the-icons-ivy-rich
   :after (all-the-icons ivy-rich)
   :init (all-the-icons-ivy-rich-mode +1)
   (ivy-rich-mode +1))
 
-
 (use-package
   crux)
 
 (use-package
   undo-tree
+
   :delight
   :custom (undo-tree-visualizer-timestamps t)
   (undo-tree-visualizer-diff t)
   :config (global-undo-tree-mode +1))
 
-;; modern sidebar
-;; (use-package
-;;   neotree
-;;   :custom (neo-smart-open t)
-;;   (neo-theme (if (display-graphic-p) 'icons 'arrow))
-;;   :bind ("C-c n" . neotree-toggle))
-(require 'cc-treemacs)
 
 
 (use-package
@@ -92,9 +81,12 @@
 
 (use-package
   smart-tab
+
   :delight
   :hook ((prog-mode . smart-tab-mode)
 	 (text-mode . smart-tab-mode)))
+
+(require 'cc-treemacs)
 
 (provide 'cc-better-defaults)
 

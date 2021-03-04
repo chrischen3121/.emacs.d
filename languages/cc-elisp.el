@@ -26,7 +26,7 @@
 (add-hook 'emacs-lisp-mode-hook (lambda ()
 				  (smartparens-mode +1)
 				  (set (make-local-variable 'company-backends)
-				       '((company-capf company-yasnippet)))))
+				       '((company-elisp company-yasnippet)))))
 
 (provide 'cc-elisp)
 

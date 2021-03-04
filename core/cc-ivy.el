@@ -29,6 +29,7 @@
   :bind (("C-s" . swiper-isearch)
 	 ("M-x" . counsel-M-x)
 	 ("C-x C-f" . counsel-find-file)
+	 ("C-x f" . counsel-recentf)
 	 ("M-y" . counsel-yank-pop)
 	 ("C-h f" . counsel-describe-function)
 	 ("C-h v" . counsel-describe-variable)
