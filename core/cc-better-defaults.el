@@ -56,14 +56,15 @@
   :after all-the-icons
   :hook (dired-mode . all-the-icons-dired-mode))
 
-(use-package
-  ivy-rich
-  :init (ivy-rich-mode +1))
+;; (use-package
+;;   ivy-rich
+;;   :init (ivy-rich-mode +1))
 
 (use-package
   all-the-icons-ivy-rich
   :after (all-the-icons ivy-rich)
-  :init (all-the-icons-ivy-rich-mode +1))
+  :init (all-the-icons-ivy-rich-mode +1)
+  (ivy-rich-mode +1))
 
 
 (use-package
