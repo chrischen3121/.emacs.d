@@ -91,6 +91,11 @@
 	      ("C-c f" .  cc-python/py-format-buffer)
 	      ("C-c ?" .  anaconda-mode-show-doc)))
 
+(add-hook 'python-mode-hook (lambda ()
+			      (smartparens-mode +1)
+			      ;; (set (make-local-variable 'company-backends)
+			      ;;	   '((company-anaconda company-yasnippet)))
+			      ))
 
 ;; TODO: ein for notebook
 ;; TODO: pytest

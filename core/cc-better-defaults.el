@@ -32,7 +32,12 @@
 
 ;; (toggle-frame-fullscreen)
 (toggle-frame-maximized)
-(setq inhibit-startup-screen t)
+(setq inhibit-startup-screen t
+      make-backup-files nil
+      tab-width 4
+      indent-tabs-mode nil
+      auto-save-default nil
+      create-lockfiles nil)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (delete-selection-mode +1)
