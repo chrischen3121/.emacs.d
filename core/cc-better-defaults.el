@@ -46,6 +46,18 @@
 ;; (use-pack ibuffer ibuffer-projectile)
 
 (use-package
+  ibuffer
+  :bind ("C-x C-b" . ibuffer))
+
+(use-package
+  ibuffer-projectile
+  :after ibuffer
+  :config (add-hook 'ibuffer-hook (lambda ()
+				    (ibuffer-projectile-set-filter-groups)
+				    (unless (eq ibuffer-sorting-mode 'alphabetic)
+				      (ibuffer-do-sort-by-alphabetic)))))
+
+(use-package
   ace-window
   :bind (([remap other-window] . ace-window)
 	 ("C-x w" . ace-swap-window)))
@@ -67,7 +79,6 @@
 
 (use-package
   undo-tree
-
   :delight
   :custom (undo-tree-visualizer-timestamps t)
   (undo-tree-visualizer-diff t)
@@ -81,7 +92,6 @@
 
 (use-package
   smart-tab
-
   :delight
   :hook ((prog-mode . smart-tab-mode)
 	 (text-mode . smart-tab-mode)))

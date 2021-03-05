@@ -20,5 +20,6 @@ transient/
 projectile-bookmarks.eld
 elpa/
 url/
+anaconda-mode/
 recentf
 tramp
