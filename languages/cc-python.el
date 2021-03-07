@@ -32,7 +32,6 @@
 (defun cc-python/pyenv-mode-set-local-version ()
   "Set pyenv version from \".python-version\" by looking in parent directories."
   (interactive)
-  (message "trying set pyenv")
   (let ((root-path (locate-dominating-file default-directory ".python-version")))
     (message root-path)
     (if root-path (let* ((file-path (expand-file-name ".python-version" root-path))
@@ -76,6 +75,7 @@
 
 (use-package
   sphinx-doc
+
   :delight
   :hook (python-mode . sphinx-doc-mode)
   :bind (:map python-mode-map

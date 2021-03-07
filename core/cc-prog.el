@@ -57,6 +57,7 @@
 
 (use-package
   company
+
   :delight
   :config (global-company-mode +1))
 
@@ -81,11 +82,13 @@
 
 (use-package
   rainbow-mode
+
   :delight
   :hook prog-mode)
 
 (use-package
   rainbow-delimiters
+
   :delight
   :hook (prog-mode . rainbow-delimiters-mode))
 
@@ -150,6 +153,7 @@
 
 (use-package
   git-gutter+
+
   :delight
   :config (global-git-gutter+-mode))
 
@@ -158,6 +162,16 @@
   :bind (:map prog-mode-map
 	      ("C-a" . mwim-beginning-of-code-or-line)
 	      ("C-e" . mwim-end-of-code-or-line)))
+
+;; using :mode for lazy evaluation
+(use-package
+  json-mode
+  :mode
+  "\\(?:\\(?:\\(?:\\.\\(?:b\\(?:\\(?:abel\\|ower\\)rc\\)\\|json\\(?:ld\\)?\\)\\|composer\\.lock\\)\\)\\'\\)")
+
+(use-package
+  yaml-mode
+  :mode "\\.\\(e?ya?\\|ra\\)ml\\'")
 
 (provide 'cc-prog)
 ;;; cc-prog.el ends here

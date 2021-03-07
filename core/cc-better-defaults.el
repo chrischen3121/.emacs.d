@@ -34,7 +34,7 @@
 (setq inhibit-startup-screen t make-backup-files nil tab-width 4 indent-tabs-mode nil
       auto-save-default nil create-lockfiles nil
       ;; split window vertically
-      split-height-threshold nil split-width-threshold 0)
+      split-height-threshold nil split-width-threshold 80)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (delete-selection-mode +1)
@@ -45,8 +45,6 @@
 (add-to-list 'default-frame-alist '(font . "Source Code Pro-10"))
 (set-fontset-font t 'han "WenQuanYi Micro Hei Mono-11")
 
-;; (use-pack ibuffer ibuffer-projectile)
-
 (use-package
   ibuffer
   :bind ("C-x C-b" . ibuffer))
@@ -55,14 +53,14 @@
   ibuffer-projectile
   :after ibuffer
   :config (add-hook 'ibuffer-hook (lambda ()
-				    (ibuffer-projectile-set-filter-groups)
-				    (unless (eq ibuffer-sorting-mode 'alphabetic)
-				      (ibuffer-do-sort-by-alphabetic)))))
+                                    (ibuffer-projectile-set-filter-groups)
+                                    (unless (eq ibuffer-sorting-mode 'alphabetic)
+                                      (ibuffer-do-sort-by-alphabetic)))))
 
 (use-package
   ace-window
   :bind (([remap other-window] . ace-window)
-	 ("C-x w" . ace-swap-window)))
+         ("C-x w" . ace-swap-window)))
 
 
 (use-package
@@ -79,6 +77,7 @@
 
 (use-package
   undo-tree
+
   :delight
   :custom (undo-tree-visualizer-timestamps t)
   (undo-tree-visualizer-diff t)
@@ -92,9 +91,10 @@
 
 (use-package
   smart-tab
+
   :delight
   :hook ((prog-mode . smart-tab-mode)
-	 (text-mode . smart-tab-mode)))
+         (text-mode . smart-tab-mode)))
 
 (require 'cc-treemacs)
 
