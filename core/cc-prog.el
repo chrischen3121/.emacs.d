@@ -29,7 +29,7 @@
   projectile
   :init (require 'subr-x)
   :bind-keymap ("C-c p" . projectile-command-map)
-  :delight '(:eval (concat " [" (projectile-project-name) "]"))
+  :delight '(:eval (concat " proj:" (projectile-project-name)))
   :config (projectile-mode +1)
   (add-to-list 'projectile-globally-ignored-directories "elpa")
   (add-to-list 'projectile-globally-ignored-directories "savefile")
@@ -137,9 +137,11 @@
   :hook (prog-mode . hs-minor-mode)
   :bind (:map hs-minor-mode-map
 	      ("C-c @" . nil)
-	      ("C-c h h" . hs-hide-all)
-	      ("C-c h s" . hs-show-all)
-	      ("C-c h l" . hs-toggle-hiding))
+	      ("C-c h H" . hs-hide-all)
+	      ("C-c h S" . hs-show-all)
+	      ("C-c h h" . hs-hide-block)
+	      ("C-c h s" . hs-show-block)
+	      ("C-c h t" . hs-toggle-hiding))
   :config (which-key-add-key-based-replacements "C-c h" "hs"))
 
 (use-package
@@ -148,7 +150,7 @@
 
 (use-package
   git-gutter+
-  :delight " git+"
+  :delight
   :config (global-git-gutter+-mode))
 
 (use-package

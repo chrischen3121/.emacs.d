@@ -1,5 +1,4 @@
 ;;; cc-better-defaults.el
-
 ;; Author: chrischen
 ;; Maintainer: chrischen
 
@@ -32,12 +31,10 @@
 
 ;; (toggle-frame-fullscreen)
 (toggle-frame-maximized)
-(setq inhibit-startup-screen t
-      make-backup-files nil
-      tab-width 4
-      indent-tabs-mode nil
-      auto-save-default nil
-      create-lockfiles nil)
+(setq inhibit-startup-screen t make-backup-files nil tab-width 4 indent-tabs-mode nil
+      auto-save-default nil create-lockfiles nil
+      ;; split window vertically
+      split-height-threshold nil split-width-threshold 0)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (delete-selection-mode +1)
@@ -73,11 +70,17 @@
   :after all-the-icons
   :hook (dired-mode . all-the-icons-dired-mode))
 
+()
+
 (use-package
   all-the-icons-ivy-rich
   :after (all-the-icons ivy-rich)
   :init (all-the-icons-ivy-rich-mode +1)
   (ivy-rich-mode +1))
+
+(use-package
+  all-the-icons-ibuffer
+  :init (all-the-icons-ibuffer-mode +1))
 
 (use-package
   crux)

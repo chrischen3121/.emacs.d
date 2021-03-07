@@ -22,6 +22,7 @@
 
 (use-package
   ivy
+  :defer nil
   :ensure counsel
   :config (ivy-mode 1)
   :custom (ivy-use-virtual-buffers t)
@@ -45,6 +46,7 @@
   which-key
   :config (which-key-mode 1)
   (which-key-add-key-based-replacements "C-x ESC" "repeat-command")
+  (which-key-add-key-based-replacements "C-c ESC" "n/a")
   (which-key-add-key-based-replacements "C-x RET" "coding-system")
   (which-key-add-key-based-replacements "C-x 8" "strange-chars")
   (which-key-add-key-based-replacements "C-x @" "event-apply")
