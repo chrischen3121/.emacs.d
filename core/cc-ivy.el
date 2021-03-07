@@ -43,6 +43,15 @@
   :delight)
 
 (use-package
+  ivy-rich
+  :init (ivy-rich-mode +1))
+
+(use-package
+  all-the-icons-ivy-rich
+  :after (all-the-icons ivy-rich)
+  :init (all-the-icons-ivy-rich-mode +1))
+
+(use-package
   which-key
   :config (which-key-mode 1)
   (which-key-add-key-based-replacements "C-x ESC" "repeat-command")
