@@ -57,9 +57,11 @@
 
 (use-package
   company
-
   :delight
-  :config (global-company-mode +1))
+  :config (global-company-mode +1)
+  (add-to-list 'company-backends 'company-ispell))
+
+
 
 (use-package
   eldoc
@@ -82,13 +84,11 @@
 
 (use-package
   rainbow-mode
-
   :delight
   :hook prog-mode)
 
 (use-package
   rainbow-delimiters
-
   :delight
   :hook (prog-mode . rainbow-delimiters-mode))
 
@@ -153,7 +153,6 @@
 
 (use-package
   git-gutter+
-
   :delight
   :config (global-git-gutter+-mode))
 
