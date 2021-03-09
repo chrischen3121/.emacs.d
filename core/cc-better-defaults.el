@@ -34,7 +34,7 @@
 (setq inhibit-startup-screen t make-backup-files nil tab-width 4 indent-tabs-mode nil
       auto-save-default nil create-lockfiles nil
       ;; split window vertically
-      split-height-threshold nil split-width-threshold 80)
+      split-height-threshold nil split-width-threshold 160)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (delete-selection-mode +1)
@@ -53,14 +53,14 @@
   ibuffer-projectile
   :after ibuffer
   :config (add-hook 'ibuffer-hook (lambda ()
-                                    (ibuffer-projectile-set-filter-groups)
-                                    (unless (eq ibuffer-sorting-mode 'alphabetic)
-                                      (ibuffer-do-sort-by-alphabetic)))))
+				    (ibuffer-projectile-set-filter-groups)
+				    (unless (eq ibuffer-sorting-mode 'alphabetic)
+				      (ibuffer-do-sort-by-alphabetic)))))
 
 (use-package
   ace-window
   :bind (([remap other-window] . ace-window)
-         ("C-x w" . ace-swap-window)))
+	 ("C-x w" . ace-swap-window)))
 
 
 (use-package
@@ -94,7 +94,7 @@
 
   :delight
   :hook ((prog-mode . smart-tab-mode)
-         (text-mode . smart-tab-mode)))
+	 (text-mode . smart-tab-mode)))
 
 (require 'cc-treemacs)
 

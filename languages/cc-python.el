@@ -66,12 +66,13 @@
   :delight " Ana"
   :hook (python-mode . anaconda-mode)
   (python-mode . anaconda-eldoc-mode))
+
 (use-package
   company-anaconda
   :after (company anaconda-mode)
-  :delight
-  :config (set (make-local-variable 'company-backends)
-	       '((company-anaconda company-yasnippet))))
+  :delight)
+
+
 
 (use-package
   sphinx-doc
@@ -103,12 +104,17 @@
   (flycheck-disable-checker 'python-pycompile)
   (flycheck-select-checker 'python-flake8))
 
+(defun cc-python/set-company-backends ()
+  (set (make-local-variable 'company-backends)
+       '((company-anaconda company-yasnippet))))
+
 (use-package
   python
   :hook (python-mode . smartparens-mode)
   (python-mode . cc-python/set-flycheck-checkers)
+  (python-mode . cc-python/set-company-backends)
   :bind (:map python-mode-map
-	      ("C-c f" .  cc-python/py-format-buffer)
+	      ("C-c f" .  cc-python/format-buffer)
 	      ("C-c d" .  anaconda-mode-show-doc)
 	      ("C-c C-t" . nil)))
 
