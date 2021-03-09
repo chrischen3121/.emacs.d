@@ -51,7 +51,6 @@
 (require 'cc-elisp)
 (require 'cc-python)
 (require 'cc-cpp)
-(require 'cc-yaml)
 
 (add-to-list 'load-path custom-dir)
 (require 'cc-org-proj)

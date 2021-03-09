@@ -21,5 +21,25 @@
 ;;; Code:
 
 (provide 'cc-cpp)
+(use-package
+  ggtags
+  :hook ((c-mode c++-mode asm-mode) . ggtags-mode)
+  :bind (:map ggtags-mode-map
+	      ("C-c g s" . ggtags-find-other-symbol)
+	      ("C-c g h" . ggtags-view-tag-history)
+	      ("C-c g r" . ggtags-find-reference)
+	      ("C-c g f" . ggtags-find-file)
+	      ("C-c g c" . ggtags-create-tags)
+	      ("C-c g u" . ggtags-update-tags)
+	      ("C-c g p" . pop-tag-mark)))
+;; TODO: ivy-gtags
+
+
+(add-hook 'c++-mode-hook (lambda ()
+			   (set (make-local-variable 'company-backends)
+				'((company-cmake company-yasnippet)
+				  (company-clang company-yasnippet)
+				  (company-gtags company-yasnippet)))))
+
 
 ;;; cc-cpp.el ends here
