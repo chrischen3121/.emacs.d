@@ -162,19 +162,25 @@
 	      ("C-a" . mwim-beginning-of-code-or-line)
 	      ("C-e" . mwim-end-of-code-or-line)))
 
-;; using :mode for lazy evaluation
 (use-package
   json-mode
-  :mode
-  "\\(?:\\(?:\\(?:\\.\\(?:b\\(?:\\(?:abel\\|ower\\)rc\\)\\|json\\(?:ld\\)?\\)\\|composer\\.lock\\)\\)\\'\\)")
+  :defer t)
 
 (use-package
   yaml-mode
-  :mode "\\.\\(e?ya?\\|ra\\)ml\\'")
+  :defer t)
 
 (use-package
   markdown-mode
-  :mode "\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'")
+  :defer t)
+
+(use-package
+  dockerfile-mode
+  :defer t)
+
+(use-package
+  protobuf-mode
+  :defer t)
 
 (provide 'cc-prog)
 ;;; cc-prog.el ends here

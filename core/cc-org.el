@@ -20,6 +20,39 @@
 
 ;;; Code:
 
+(setq org-todo-keywords '((sequence "TODO(t)" "INPROGRESS(i)" "WAITING(w)" "REVIEW(r)" "|" "DONE(d)"
+				    "CANCELED(c)")))
+
+(setq org-todo-keyword-faces '(("TODO" . org-warning)
+			       ("INPROGRESS" . "yellow")
+			       ("WAITING" . "purple")
+			       ("REVIEW" . "orange")
+			       ("DONE" . "green")
+			       ("CANCELED" .  "red")))
+
+(use-package
+  graphviz-dot-mode
+  :defer t)
+
+(use-package
+  plantuml-mode
+  :custom (plantuml-executable-path "plantuml")
+  (plantuml-default-exec-mode 'executable))
+
+(use-package
+  htmlize
+  :defer t)
+
+(use-package
+  org-bullets
+  :custom (org-bullets-bullet-list '("☯" "✿" "✚" "◉" "❀"))
+  :hook (org-mode . org-bullets-mode))
+
+(use-package
+  org-alert
+  :defer t
+  :custom (alert-default-style 'libnotify))
+
 (provide 'cc-org)
 
 ;;; cc-org.el ends here

@@ -5,3 +5,4 @@ my emacs configuration
 
   - cc-org
   - cc-cpp
+  - terminal config
