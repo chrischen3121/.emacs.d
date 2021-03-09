@@ -172,5 +172,9 @@
   yaml-mode
   :mode "\\.\\(e?ya?\\|ra\\)ml\\'")
 
+(use-package
+  markdown-mode
+  :mode "\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'")
+
 (provide 'cc-prog)
 ;;; cc-prog.el ends here
