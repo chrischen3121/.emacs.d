@@ -45,13 +45,19 @@
 
 (use-package
   org-bullets
-  :custom (org-bullets-bullet-list '("☯" "✿" "✚" "◉" "❀"))
   :hook (org-mode . org-bullets-mode))
 
 (use-package
   org-alert
   :defer t
   :custom (alert-default-style 'libnotify))
+
+(require 'ox-md)
+
+(use-package
+  org
+  :hook (org-mode . flyspell-mode)
+  (org-mode . smartparens-mode))
 
 (provide 'cc-org)
 

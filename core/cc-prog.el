@@ -38,13 +38,14 @@
 
 (use-package
   whole-line-or-region
+  :defer nil
   :config (whole-line-or-region-global-mode +1)
   :delight whole-line-or-region-local-mode)
 
 (use-package
   which-func
-  :config (which-function-mode +1)
-  (setq which-func-unknown "n/a"))
+  :custom (which-func-unknown "n/a")
+  :hook (prog-mode . which-function-mode))
 
 (use-package
   elisp-format
@@ -154,13 +155,23 @@
 (use-package
   git-gutter+
   :delight
-  :config (global-git-gutter+-mode))
+  :config (global-git-gutter+-mode +1))
 
 (use-package
   mwim
   :bind (:map prog-mode-map
 	      ("C-a" . mwim-beginning-of-code-or-line)
 	      ("C-e" . mwim-end-of-code-or-line)))
+
+(use-package
+  auto-highlight-symbol
+
+  :delight
+  :hook (prog-mode . auto-highlight-symbol-mode))
+
+(use-package
+  hl-todo
+  :config (global-hl-todo-mode +1))
 
 (use-package
   json-mode
