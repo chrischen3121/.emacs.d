@@ -32,32 +32,101 @@
 
 (use-package
   graphviz-dot-mode
-  :defer t)
+  :defer t
+  )
 
 (use-package
   plantuml-mode
   :custom (plantuml-executable-path "plantuml")
-  (plantuml-default-exec-mode 'executable))
+  (plantuml-default-exec-mode 'executable)
+  )
 
 (use-package
   htmlize
-  :defer t)
+  :defer t
+  )
 
 (use-package
   org-bullets
-  :hook (org-mode . org-bullets-mode))
+  :hook (org-mode . org-bullets-mode)
+  )
 
 (use-package
   org-alert
   :defer t
-  :custom (alert-default-style 'libnotify))
+  :custom (alert-default-style 'libnotify)
+  )
 
 (require 'ox-md)
 
 (use-package
   org
   :hook (org-mode . flyspell-mode)
-  (org-mode . smartparens-mode))
+  (org-mode . smartparens-mode)
+  )
+
+(add-hook 'org-mode-hook
+	  (lambda ()
+	    (setq org-plantuml-jar-path "/usr/share/plantuml/plantuml.jar")
+	    (setq org-html-mathjax-options
+		  '((path
+		     "https://cdn.bootcdn.net/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML")
+		    (scale "100")
+		    (align "left")
+		    (font "TeX")
+		    (linebreaks "false")
+		    (autonumber "AMS")
+		    (indent "2em")
+		    (multlinewidth "85%")
+		    (tagindent ".8em")
+		    (tagside "left")))
+	    (setq org-publish-project-alist
+		  '(("orgfiles"
+		     :base-directory "~/notes/org"
+		     :base-extension "org"
+		     :publishing-directory "~/notes/docs"
+		     :recursive t
+		     :publishing-function org-html-publish-to-html
+		     :headline-levels 3
+		     :section-numbers nil
+		     :with-toc t
+		     :html-head-include-scripts nil
+		     :with-title t
+		     :html-html5-fancy t
+		     :auto-index nil
+		     :auto-sitemap t
+		     :style nil
+		     :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"https://gongzhitaao.org/orgcss/org.css\">"
+		     :html-preamble nil
+		     :html-postamble nil
+		     :sitemap-title "chrischen's notes"
+		     :sitemap-filename "sitemap.org"
+		     :exclude "sitemap.org")
+		    ("resources"
+		     :base-directory "~/notes/org/resources"
+		     :publishing-directory "~/notes/docs/resources"
+		     :recursive t
+		     :base-extension "png\\|jpg\\|gif\\|pdf\\|mp3\\|swf\\|zip\\|gz\\|txt"
+		     :publishing-function org-publish-attachment)
+		    ("style"
+		     :base-directory "~/notes/style"
+		     :publishing-directory "~/notes/docs/style"
+		     :base-extension "css\\|js\\|el"
+		     :publishing-function org-publish-attachment)
+		    ("fonts"
+		     :base-directory "~/notes/fonts"
+		     :publishing-directory "~/notes/docs/fonts"
+		     :base-extension "eot\\|woff2\\|woff\\|ttf\\|svg"
+		     :publishing-function org-publish-attachment)
+		    ("all"
+		     :components ("orgfiles" "resources" "style" "fonts")
+		     :author "Chris Chen"
+		     :email "chrischen3121@gmail.com")))))
+
+;; TODO: set fonts style
+;; (setq org-html-head (@-load-file-contents (expand-file-name "~/.emacs.d/template.html")))
+;; (setq org-html-preamble t)
+;; (setq org-html-postamble (@-load-file-contents (expand-file-name "~/.emacs.d/footer.html")))
 
 (provide 'cc-org)
 

@@ -76,7 +76,6 @@
 
 (use-package
   sphinx-doc
-
   :delight
   :hook (python-mode . sphinx-doc-mode)
   :bind (:map python-mode-map
@@ -110,6 +109,7 @@
 
 (use-package
   python
+  :custom (python-indent-guess-indent-offset nil)
   :hook (python-mode . smartparens-mode)
   (python-mode . cc-python/set-flycheck-checkers)
   (python-mode . cc-python/set-company-backends)
