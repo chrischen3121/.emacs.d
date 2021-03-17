@@ -110,6 +110,7 @@
 (use-package
   python
   :custom (python-indent-guess-indent-offset nil)
+  (python-shell-interpreter "ipython")
   :hook (python-mode . smartparens-mode)
   (python-mode . cc-python/set-flycheck-checkers)
   (python-mode . cc-python/set-company-backends)
@@ -118,10 +119,11 @@
 	      ("C-c d" .  anaconda-mode-show-doc)
 	      ("C-c C-t" . nil)))
 
+;; TODO: ipython intergration
 ;; TODO: ein for notebook
+;; (use-package ein)
 ;; TODO: pytest
 ;; TODO: pipel?
-
 
 (provide 'cc-python)
 

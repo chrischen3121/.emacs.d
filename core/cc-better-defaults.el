@@ -45,6 +45,8 @@
 (add-to-list 'default-frame-alist '(font . "Source Code Pro-10"))
 (set-fontset-font t 'han "WenQuanYi Micro Hei Mono-11")
 
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+
 (use-package
   ibuffer
   :bind ("C-x C-b" . ibuffer))
@@ -77,7 +79,6 @@
 
 (use-package
   undo-tree
-
   :delight
   :custom (undo-tree-visualizer-timestamps t)
   (undo-tree-visualizer-diff t)
@@ -91,7 +92,6 @@
 
 (use-package
   smart-tab
-
   :delight
   :hook ((prog-mode . smart-tab-mode)
 	 (text-mode . smart-tab-mode)))

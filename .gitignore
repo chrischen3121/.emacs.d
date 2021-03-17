@@ -23,3 +23,5 @@ url/
 anaconda-mode/
 recentf
 tramp
+projectile.cache
+request/
