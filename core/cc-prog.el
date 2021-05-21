@@ -145,6 +145,7 @@
 	      ("C-c h S" . hs-show-all)
 	      ("C-c h h" . hs-hide-block)
 	      ("C-c h s" . hs-show-block)
+	      ("C-c h l" . hs-hide-level)
 	      ("C-c h t" . hs-toggle-hiding))
   :config (which-key-add-key-based-replacements "C-c h" "hs"))
 
