@@ -23,9 +23,11 @@
 (use-package
   org-roam
   :ensure t
-  ;; :delight
+  :delight
   :hook (after-init . org-roam-mode)
   :custom (org-roam-directory "~/Dropbox/personal/roam")
+  :config
+  (setq org-roam-completion-system 'ivy)
   :bind (:map org-roam-mode-map
 	      (("C-c n l" . org-roam)
 	       ("C-c n s" . org-roam-server-mode)
@@ -37,6 +39,25 @@
 	      (("C-c n i" . org-roam-insert))
 	      (("C-c n I" . org-roam-insert-immediate))))
 (which-key-add-key-based-replacements "C-c n" "org-roam")
+
+;; full-text search
+(use-package deft
+  :after org
+  :bind (:map org-mode-map
+	      ("C-c n d" . deft))
+  :custom
+  (deft-recursive t)
+  (deft-use-filter-string-for-filename t)
+  (deft-default-extension "org")
+  (deft-directory "~/Dropbox/personal/roam"))
+
+;; download screenshot ;TODO: specify directories
+(use-package org-download
+  :after org
+  :bind
+  (:map org-mode-map
+	(("C-c d s" . org-download-screenshot)
+	 ("C-c d y" . org-download-yank))))
 
 (use-package org-roam-server
   :ensure t
