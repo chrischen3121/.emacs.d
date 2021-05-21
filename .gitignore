@@ -26,3 +26,6 @@ tramp
 projectile.cache
 request/
 session.*
+org-roam.db
+bookmarks
+.org-id-locations
