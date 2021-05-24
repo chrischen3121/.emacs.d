@@ -34,12 +34,14 @@
 	      ("C-c g p" . pop-tag-mark)))
 ;; TODO: ivy-gtags
 
+(defun cc-c++/set-company-backends ()
+  (set (make-local-variable 'company-backends)
+       '((company-cmake company-yasnippet)
+	 (company-clang company-yasnippet)
+	 (company-gtags company-yasnippet))))
 
-(add-hook 'c++-mode-hook (lambda ()
-			   (set (make-local-variable 'company-backends)
-				'((company-cmake company-yasnippet)
-				  (company-clang company-yasnippet)
-				  (company-gtags company-yasnippet)))))
+
+(add-hook 'c++-mode-hook #'cc-c++/set-company-backends)
 
 
 ;;; cc-cpp.el ends here

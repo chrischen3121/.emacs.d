@@ -105,7 +105,7 @@
 
 (defun cc-python/set-company-backends ()
   (set (make-local-variable 'company-backends)
-       '((company-anaconda company-yasnippet))))
+       '((company-anaconda company-yasnippet)))) ;TODO: may enable company-spell when writing comments.
 
 (use-package
   python

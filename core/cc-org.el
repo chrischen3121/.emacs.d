@@ -20,6 +20,10 @@
 
 ;;; Code:
 
+(defun cc-org-roam/set-company-backends ()
+  (set (make-local-variable 'company-backends)
+       '(company-capf company-ispell)))
+
 (use-package
   org-roam
   :ensure t
@@ -29,16 +33,19 @@
   :config
   (setq org-roam-completion-system 'ivy)
   :bind (:map org-roam-mode-map
-	      (("C-c n l" . org-roam)
+	      (("C-c n r" . org-roam)
 	       ("C-c n s" . org-roam-server-mode)
-	       ("C-c n /" . completion-at-point) ;TODO: to integrate with company-mode
-	       ("C-c n c" . org-roam-capture)
+	       ("C-c n /" . completion-at-point)
 	       ("C-c n f" . org-roam-find-file)
 	       ("C-c n g" . org-roam-graph))
 	      :map org-mode-map
 	      (("C-c n i" . org-roam-insert))
-	      (("C-c n I" . org-roam-insert-immediate))))
+	      (("C-c n I" . org-roam-insert-immediate)) ;TODO: confirm to remove
+	      )
+  :hook (org-mode . cc-org-roam/set-company-backends))
 (which-key-add-key-based-replacements "C-c n" "org-roam")
+
+
 
 ;; full-text search
 (use-package deft
@@ -60,6 +67,7 @@
 	 ("C-c d y" . org-download-yank))))
 
 (use-package org-roam-server
+  :after org-roam
   :ensure t
   :config
   (require 'org-roam-protocol)
