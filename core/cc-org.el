@@ -26,23 +26,26 @@
 
 (use-package
   org-roam
-  :ensure t
   :delight
   :hook (after-init . org-roam-mode)
+  (org-mode . cc-org-roam/set-company-backends)
   :custom (org-roam-directory "~/Dropbox/personal/roam")
   :config
+  (require 'org-roam-protocol)
   (setq org-roam-completion-system 'ivy)
   :bind (:map org-roam-mode-map
 	      (("C-c n r" . org-roam)
 	       ("C-c n s" . org-roam-server-mode)
+	       ("C-c n a" . org-roam-alias-add)
 	       ("C-c n /" . completion-at-point)
 	       ("C-c n f" . org-roam-find-file)
+	       ("C-c n o" . org-open-at-point)
+	       ("C-c n c" . org-roam-capture) ; not like org-roam-find-file, will return to the original buffer
 	       ("C-c n g" . org-roam-graph))
 	      :map org-mode-map
 	      (("C-c n i" . org-roam-insert))
-	      (("C-c n I" . org-roam-insert-immediate)) ;TODO: confirm to remove
-	      )
-  :hook (org-mode . cc-org-roam/set-company-backends))
+	      (("C-c n I" . org-roam-insert-immediate))
+	      ))
 (which-key-add-key-based-replacements "C-c n" "org-roam")
 
 
@@ -70,7 +73,6 @@
   :after org-roam
   :ensure t
   :config
-  (require 'org-roam-protocol)
   (setq org-roam-server-host "127.0.0.1"
 	org-roam-server-port 8080
 	org-roam-server-authenticate nil
