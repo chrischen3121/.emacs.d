@@ -30,6 +30,16 @@
   (set (make-local-variable 'company-backends)
        '(company-capf company-ispell)))
 
+(defun cc-org/start-org-roam-server ()
+  "start emacs-server and org-roam-server"
+  (interactive)
+  (require 'server)
+  (unless (server-running-p)
+    (server-start)
+    (org-roam-server-mode)
+    (message "org roam server started."))
+  )
+
 (use-package
   org-roam
   :delight
@@ -41,12 +51,13 @@
   (setq org-roam-completion-system 'ivy)
   :bind (:map org-roam-mode-map
 	      (("C-c n r" . org-roam)
-	       ("C-c n s" . org-roam-server-mode)
+	       ("C-c n s" . cc-org/start-org-roam-server)
 	       ("C-c n a" . org-roam-alias-add)
+	       ("C-c n t" . org-roam-tag-add)
 	       ("C-c n /" . completion-at-point)
 	       ("C-c n f" . org-roam-find-file)
 	       ("C-c n o" . org-open-at-point)
-	       ("C-c n c" . org-roam-capture) ; not like org-roam-find-file, will return to the original buffer
+	       ("C-c n c" . org-roam-capture) ; can use templates
 	       ("C-c n g" . org-roam-graph))
 	      :map org-mode-map
 	      (("C-c n i" . org-roam-insert))
