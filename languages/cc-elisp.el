@@ -23,10 +23,15 @@
 (delight 'emacs-lisp-mode "ELisp"
 	 :major)
 
-(add-hook 'emacs-lisp-mode-hook (lambda ()
-				  (smartparens-mode +1)
-				  (set (make-local-variable 'company-backends)
-				       '((company-elisp company-yasnippet)))))
+(defun cc-elisp/set-company-backends ()
+  (set (make-local-variable 'company-backends)
+       '((company-elisp company-yasnippet))))
+
+(use-package
+  elisp-mode
+  :ensure nil
+  :hook (emacs-lisp-mode . smartparens-mode)
+  (emacs-lisp-mode . cc-elisp/set-company-backends))
 
 (provide 'cc-elisp)
 
