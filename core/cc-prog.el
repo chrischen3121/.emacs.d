@@ -25,6 +25,11 @@
   magit
   :bind ("C-x g" . magit-status))
 
+;; (use-package
+;;   tldr
+;;   :commands tldr
+;;   :bind ("C-c t" . tldr))
+
 (use-package
   projectile
   :init (require 'subr-x)

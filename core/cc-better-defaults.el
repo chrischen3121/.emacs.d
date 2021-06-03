@@ -22,7 +22,11 @@
 (use-package
   spacemacs-theme
   :no-require t
-  :init (load-theme 'spacemacs-light t)
+  :init (if (daemonp)
+	    (add-hook 'after-make-frame-functions (lambda (frame)
+						    (select-frame frame)
+						    (load-theme 'spacemacs-light t)))
+	  (load-theme 'spacemacs-light t))
   ;; (load-theme 'spacemacs-dark t)
   )
 

@@ -20,7 +20,13 @@
 
 ;;; Code:
 
-(defun cc-org-roam/set-company-backends ()
+(defcustom cc-org/org-roam-directory "~/Dropbox/personal/roam"
+  "org roam home directory")
+
+(defcustom cc-org/notes-directory "~/notes"
+  "home directory for notes")
+
+(defun cc-org/set-company-backends ()
   (set (make-local-variable 'company-backends)
        '(company-capf company-ispell)))
 
@@ -28,8 +34,8 @@
   org-roam
   :delight
   :hook (after-init . org-roam-mode)
-  (org-mode . cc-org-roam/set-company-backends)
-  :custom (org-roam-directory "~/Dropbox/personal/roam")
+  (org-mode . cc-org/set-company-backends)
+  :custom (org-roam-directory cc-org/org-roam-directory)
   :config
   (require 'org-roam-protocol)
   (setq org-roam-completion-system 'ivy)
@@ -48,7 +54,21 @@
 	      ))
 (which-key-add-key-based-replacements "C-c n" "org-roam")
 
-
+(use-package org-roam-server
+  :after org-roam
+  :ensure t
+  :config
+  (setq org-roam-server-host "127.0.0.1"
+	org-roam-server-port 8090
+	org-roam-server-authenticate nil
+	org-roam-server-export-inline-images t
+	;; org-roam-server-serve-files nil
+	;; org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
+	org-roam-server-network-poll t
+	org-roam-server-network-arrows nil
+	org-roam-server-network-label-truncate t
+	org-roam-server-network-label-truncate-length 60
+	org-roam-server-network-label-wrap-length 20))
 
 ;; full-text search
 (use-package deft
@@ -59,7 +79,7 @@
   (deft-recursive t)
   (deft-use-filter-string-for-filename t)
   (deft-default-extension "org")
-  (deft-directory "~/Dropbox/personal/roam"))
+  (deft-directory cc-org/org-roam-directory))
 
 ;; download screenshot ;TODO: specify directories
 (use-package org-download
@@ -68,22 +88,6 @@
   (:map org-mode-map
 	(("C-c d s" . org-download-screenshot)
 	 ("C-c d y" . org-download-yank))))
-
-(use-package org-roam-server
-  :after org-roam
-  :ensure t
-  :config
-  (setq org-roam-server-host "127.0.0.1"
-	org-roam-server-port 8080
-	org-roam-server-authenticate nil
-	org-roam-server-export-inline-images t
-	org-roam-server-serve-files nil
-	org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
-	org-roam-server-network-poll t
-	org-roam-server-network-arrows nil
-	org-roam-server-network-label-truncate t
-	org-roam-server-network-label-truncate-length 60
-	org-roam-server-network-label-wrap-length 20))
 
 (setq org-todo-keywords '((sequence "TODO(t)" "INPROGRESS(i)" "WAITING(w)" "REVIEW(r)" "|" "DONE(d)"
 				    "CANCELED(c)")))
@@ -146,10 +150,10 @@
 		    (tagindent ".8em")
 		    (tagside "left")))
 	    (setq org-publish-project-alist
-		  '(("orgfiles"
-		     :base-directory "~/notes/org"
+		  `(("orgfiles"
+		     :base-directory ,(concat (file-name-as-directory cc-org/notes-directory) "org")
 		     :base-extension "org"
-		     :publishing-directory "~/notes/docs"
+		     :publishing-directory ,(concat (file-name-as-directory cc-org/notes-directory) "docs")
 		     :recursive t
 		     :publishing-function org-html-publish-to-html
 		     :headline-levels 3
@@ -168,19 +172,19 @@
 		     :sitemap-filename "sitemap.org"
 		     :exclude "sitemap.org")
 		    ("resources"
-		     :base-directory "~/notes/org/resources"
-		     :publishing-directory "~/notes/docs/resources"
+		     :base-directory  ,(concat (file-name-as-directory cc-org/notes-directory) "org/resources")
+		     :publishing-directory ,(concat (file-name-as-directory cc-org/notes-directory) "docs/resources")
 		     :recursive t
 		     :base-extension "png\\|jpg\\|gif\\|pdf\\|mp3\\|swf\\|zip\\|gz\\|txt"
 		     :publishing-function org-publish-attachment)
 		    ("style"
-		     :base-directory "~/notes/style"
-		     :publishing-directory "~/notes/docs/style"
+		     :base-directory ,(concat (file-name-as-directory cc-org/notes-directory) "style")
+		     :publishing-directory ,(concat (file-name-as-directory cc-org/notes-directory) "docs/style")
 		     :base-extension "css\\|js\\|el"
 		     :publishing-function org-publish-attachment)
 		    ("fonts"
-		     :base-directory "~/notes/fonts"
-		     :publishing-directory "~/notes/docs/fonts"
+		     :base-directory ,(concat (file-name-as-directory cc-org/notes-directory) "fonts")
+		     :publishing-directory ,(concat (file-name-as-directory cc-org/notes-directory) "docs/fonts")
 		     :base-extension "eot\\|woff2\\|woff\\|ttf\\|svg"
 		     :publishing-function org-publish-attachment)
 		    ("all"
