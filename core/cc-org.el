@@ -48,7 +48,7 @@
   :custom (org-roam-directory cc-org/org-roam-directory)
   :config
   (require 'org-roam-protocol)
-  (setq org-roam-completion-system 'ivy)
+  ;; (setq org-roam-completion-system 'ivy)
   :bind (:map org-roam-mode-map
 	      (("C-c n r" . org-roam)
 	       ("C-c n s" . cc-org/start-org-roam-server)
@@ -143,6 +143,7 @@
   org
   :hook (org-mode . flyspell-mode)
   (org-mode . smartparens-mode)
+  :init (require 'org-tempo)
   )
 
 (add-hook 'org-mode-hook
