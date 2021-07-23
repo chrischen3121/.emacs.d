@@ -53,6 +53,8 @@
 (require 'cc-cpp)
 (require 'cc-scheme)
 
+;TODO: if secret package existed, then require 'secret
+
 (add-to-list 'load-path custom-dir)
 (require 'cc-org-proj)
 
