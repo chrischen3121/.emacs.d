@@ -30,56 +30,61 @@
   (set (make-local-variable 'company-backends)
        '(company-capf company-ispell)))
 
-(defun cc-org/start-org-roam-server ()
-  "start emacs-server and org-roam-server"
-  (interactive)
-  (require 'server)
-  (unless (server-running-p)
-    (server-start)
-    (org-roam-server-mode)
-    (message "org roam server started."))
-  )
+;; (defun cc-org/start-org-roam-server ()
+;;   "start emacs-server and org-roam-server"
+;;   (interactive)
+;;   (require 'server)
+;;   (unless (server-running-p)
+;;     (server-start)
+;;     (org-roam-server-mode)
+;;     (message "org roam server started."))
+;;   )
 
 (use-package
   org-roam
   :delight
-  :hook (after-init . org-roam-mode)
-  (org-mode . cc-org/set-company-backends)
   :custom (org-roam-directory cc-org/org-roam-directory)
   :config
+  (org-roam-setup)
   (require 'org-roam-protocol)
   ;; (setq org-roam-completion-system 'ivy)
-  :bind (:map org-roam-mode-map
-	      (("C-c n r" . org-roam)
-	       ("C-c n s" . cc-org/start-org-roam-server)
-	       ("C-c n a" . org-roam-alias-add)
-	       ("C-c n t" . org-roam-tag-add)
-	       ("C-c n /" . completion-at-point)
-	       ("C-c n f" . org-roam-find-file)
-	       ("C-c n o" . org-open-at-point)
-	       ("C-c n c" . org-roam-capture) ; can use templates
-	       ("C-c n g" . org-roam-graph))
-	      :map org-mode-map
-	      (("C-c n i" . org-roam-insert))
-	      (("C-c n I" . org-roam-insert-immediate))
-	      ))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+	 ("C-c n f" . org-roam-node-find)
+	 ("C-c n g" . org-roam-graph)
+	 ("C-c n i" . org-roam-node-insert)
+	 ("C-c n c" . org-roam-capture))
+  ;; :bind (:map org-roam-mode-map
+  ;;	      (("C-c n r" . org-roam)
+  ;;	       ("C-c n s" . cc-org/start-org-roam-server)
+  ;;	       ("C-c n a" . org-roam-alias-add)
+  ;;	       ("C-c n t" . org-roam-tag-add)
+  ;;	       ("C-c n /" . completion-at-point)
+  ;;	       ("C-c n f" . org-roam-find-file)
+  ;;	       ("C-c n o" . org-open-at-point)
+  ;;	       ("C-c n c" . org-roam-capture) ; can use templates
+  ;;	       ("C-c n g" . org-roam-graph))
+  ;;	      :map org-mode-map
+  ;;	      (("C-c n i" . org-roam-insert))
+  ;;	      (("C-c n I" . org-roam-insert-immediate))
+  ;;	      )
+  )
 (which-key-add-key-based-replacements "C-c n" "org-roam")
 
-(use-package org-roam-server
-  :after org-roam
-  :ensure t
-  :config
-  (setq org-roam-server-host "127.0.0.1"
-	org-roam-server-port 8090
-	org-roam-server-authenticate nil
-	org-roam-server-export-inline-images t
-	;; org-roam-server-serve-files nil
-	;; org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
-	org-roam-server-network-poll t
-	org-roam-server-network-arrows nil
-	org-roam-server-network-label-truncate t
-	org-roam-server-network-label-truncate-length 60
-	org-roam-server-network-label-wrap-length 20))
+;; (use-package org-roam-server
+;;   :after org-roam
+;;   :ensure t
+;;   :config
+;;   (setq org-roam-server-host "127.0.0.1"
+;;	org-roam-server-port 8090
+;;	org-roam-server-authenticate nil
+;;	org-roam-server-export-inline-images t
+;;	;; org-roam-server-serve-files nil
+;;	;; org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
+;;	org-roam-server-network-poll t
+;;	org-roam-server-network-arrows nil
+;;	org-roam-server-network-label-truncate t
+;;	org-roam-server-network-label-truncate-length 60
+;;	org-roam-server-network-label-wrap-length 20))
 
 ;; full-text search
 (use-package deft
@@ -143,6 +148,7 @@
   org
   :hook (org-mode . flyspell-mode)
   (org-mode . smartparens-mode)
+  (org-mode . cc-org/set-company-backends)
   :init (require 'org-tempo)
   )
 
