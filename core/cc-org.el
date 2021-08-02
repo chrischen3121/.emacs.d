@@ -20,12 +20,6 @@
 
 ;;; Code:
 
-(defcustom cc-org/org-roam-directory "~/Dropbox/personal/roam"
-  "org roam home directory")
-
-(defcustom cc-org/notes-directory "~/notes"
-  "home directory for notes")
-
 (defun cc-org/set-company-backends ()
   (set (make-local-variable 'company-backends)
        '(company-capf company-ispell)))
@@ -40,35 +34,7 @@
 ;;     (message "org roam server started."))
 ;;   )
 
-(use-package
-  org-roam
-  :delight
-  :custom (org-roam-directory cc-org/org-roam-directory)
-  :config
-  (org-roam-setup)
-  (require 'org-roam-protocol)
-  ;; (setq org-roam-completion-system 'ivy)
-  :bind (("C-c n l" . org-roam-buffer-toggle)
-	 ("C-c n f" . org-roam-node-find)
-	 ("C-c n g" . org-roam-graph)
-	 ("C-c n i" . org-roam-node-insert)
-	 ("C-c n c" . org-roam-capture))
-  ;; :bind (:map org-roam-mode-map
-  ;;	      (("C-c n r" . org-roam)
-  ;;	       ("C-c n s" . cc-org/start-org-roam-server)
-  ;;	       ("C-c n a" . org-roam-alias-add)
-  ;;	       ("C-c n t" . org-roam-tag-add)
-  ;;	       ("C-c n /" . completion-at-point)
-  ;;	       ("C-c n f" . org-roam-find-file)
-  ;;	       ("C-c n o" . org-open-at-point)
-  ;;	       ("C-c n c" . org-roam-capture) ; can use templates
-  ;;	       ("C-c n g" . org-roam-graph))
-  ;;	      :map org-mode-map
-  ;;	      (("C-c n i" . org-roam-insert))
-  ;;	      (("C-c n I" . org-roam-insert-immediate))
-  ;;	      )
-  )
-(which-key-add-key-based-replacements "C-c n" "org-roam")
+
 
 ;; (use-package org-roam-server
 ;;   :after org-roam
@@ -154,7 +120,7 @@
 
 (add-hook 'org-mode-hook
 	  (lambda ()
-	    (setq org-plantuml-jar-path "/usr/share/plantuml/plantuml.jar")
+	    (setq org-plantuml-jar-path cc-custom/org-plantuml-jar-path)
 	    (setq org-html-mathjax-options
 		  '((path
 		     "https://cdn.bootcdn.net/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML")
@@ -169,9 +135,9 @@
 		    (tagside "left")))
 	    (setq org-publish-project-alist
 		  `(("orgfiles"
-		     :base-directory ,(concat (file-name-as-directory cc-org/notes-directory) "org")
+		     :base-directory ,(concat (file-name-as-directory cc-custom/org-notes-directory) "org")
 		     :base-extension "org"
-		     :publishing-directory ,(concat (file-name-as-directory cc-org/notes-directory) "docs")
+		     :publishing-directory ,(concat (file-name-as-directory cc-custom/org-notes-directory) "docs")
 		     :recursive t
 		     :publishing-function org-html-publish-to-html
 		     :headline-levels 3
@@ -190,30 +156,25 @@
 		     :sitemap-filename "sitemap.org"
 		     :exclude "sitemap.org")
 		    ("resources"
-		     :base-directory  ,(concat (file-name-as-directory cc-org/notes-directory) "org/resources")
-		     :publishing-directory ,(concat (file-name-as-directory cc-org/notes-directory) "docs/resources")
+		     :base-directory  ,(concat (file-name-as-directory cc-custom/org-notes-directory) "org/resources")
+		     :publishing-directory ,(concat (file-name-as-directory cc-custom/org-notes-directory) "docs/resources")
 		     :recursive t
 		     :base-extension "png\\|jpg\\|gif\\|pdf\\|mp3\\|swf\\|zip\\|gz\\|txt"
 		     :publishing-function org-publish-attachment)
 		    ("style"
-		     :base-directory ,(concat (file-name-as-directory cc-org/notes-directory) "style")
-		     :publishing-directory ,(concat (file-name-as-directory cc-org/notes-directory) "docs/style")
+		     :base-directory ,(concat (file-name-as-directory cc-custom/org-notes-directory) "style")
+		     :publishing-directory ,(concat (file-name-as-directory cc-custom/org-notes-directory) "docs/style")
 		     :base-extension "css\\|js\\|el"
 		     :publishing-function org-publish-attachment)
 		    ("fonts"
-		     :base-directory ,(concat (file-name-as-directory cc-org/notes-directory) "fonts")
-		     :publishing-directory ,(concat (file-name-as-directory cc-org/notes-directory) "docs/fonts")
+		     :base-directory ,(concat (file-name-as-directory cc-custom/org-notes-directory) "fonts")
+		     :publishing-directory ,(concat (file-name-as-directory cc-custom/org-notes-directory) "docs/fonts")
 		     :base-extension "eot\\|woff2\\|woff\\|ttf\\|svg"
 		     :publishing-function org-publish-attachment)
 		    ("all"
 		     :components ("orgfiles" "resources" "style" "fonts")
 		     :author "Chris Chen"
 		     :email "chrischen3121@gmail.com")))))
-
-;; TODO: set fonts style
-;; (setq org-html-head (@-load-file-contents (expand-file-name "~/.emacs.d/template.html")))
-;; (setq org-html-preamble t)
-;; (setq org-html-postamble (@-load-file-contents (expand-file-name "~/.emacs.d/footer.html")))
 
 (provide 'cc-org)
 

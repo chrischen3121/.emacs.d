@@ -29,21 +29,23 @@
 (defvar core-dir (expand-file-name "core" user-emacs-directory))
 (defvar languages-dir (expand-file-name "languages" user-emacs-directory))
 (defvar custom-dir (expand-file-name "custom" user-emacs-directory))
-
 (defvar savefile-dir (expand-file-name "savefile" user-emacs-directory))
 (customize-set-variable 'custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 (unless (file-exists-p savefile-dir)
   (make-directory savefile-dir))
 
-(add-to-list 'load-path core-dir)
-(message "Loading core modules...")
+(add-to-list 'load-path custom-dir)
+(require 'cc-custom)
 
+(message "Loading core modules...")
+(add-to-list 'load-path core-dir)
 (require 'cc-core)
 (require 'cc-better-defaults)
 (require 'cc-ivy)
 (require 'cc-prog)
 (require 'cc-org)
+(require 'cc-org-roam)
 (require 'cc-global-bindings)
 
 (add-to-list 'load-path languages-dir)
@@ -53,10 +55,8 @@
 (require 'cc-cpp)
 (require 'cc-scheme)
 
-;TODO: if secret package existed, then require 'secret
+					;TODO: if secret package existed, then require 'secret
 
-(add-to-list 'load-path custom-dir)
-(require 'cc-org-proj)
 
 (message "Happy Hacking!🌅🚣🏝️")
 

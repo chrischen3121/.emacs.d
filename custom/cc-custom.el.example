@@ -1,4 +1,4 @@
-;;; cc-org-proj.el
+;;; cc-custom
 
 ;; Author: chrischen
 ;; Maintainer: chrischen
@@ -20,6 +20,14 @@
 
 ;;; Code:
 
-(provide 'cc-org-proj)
+(defcustom cc-custom/org-roam-directory "customize-your-roam-directory"
+  "org roam home directory")
 
-;;; cc-org-proj.el ends here
+(defcustom cc-custom/org-notes-directory "customize-your-note-directory"
+  "home directory for notes")
+
+(defcustom cc-custom/org-plantuml-jar-path "/usr/share/plantuml/plantuml.jar")
+
+(provide 'cc-custom)
+
+;;; cc-custom.el ends here

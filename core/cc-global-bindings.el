@@ -22,5 +22,11 @@
 
 (global-set-key (kbd "S-SPC") #'set-mark-command)
 
+(global-set-key (kbd "C-x p i") #'package-install)
+(global-set-key (kbd "C-x p l") #'list-packages)
+(global-set-key (kbd "C-x p r") #'package-refresh-contents)
+(which-key-add-key-based-replacements "C-x p" "packages")
+
+
 (provide 'cc-global-bindings)
 ;;; cc-global-bindinds.el ends here

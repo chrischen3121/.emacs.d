@@ -22,9 +22,12 @@
 (require 'cl-lib)
 
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://mirrors.cloud.tencent.com/elpa/melpa/"))
+(add-to-list 'package-archives '("melpa" . "http://mirrors.cloud.tencent.com/elpa/melpa/") t)
 ;; (add-to-list 'package-archives '("melpa-stable" .
-;;				 "http://mirrors.cloud.tencent.com/elpa/melpa-stable/"))
+;;				 "http://mirrors.cloud.tencent.com/elpa/melpa-stable/") t)
+(add-to-list 'package-archives '("org" . "http://mirrors.cloud.tencent.com/elpa/org/") t)
+
+
 (package-initialize)
 (unless package-archive-contents (package-refresh-contents))
 
