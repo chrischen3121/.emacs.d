@@ -116,6 +116,8 @@
   (org-mode . smartparens-mode)
   (org-mode . cc-org/set-company-backends)
   :init (require 'org-tempo)
+  :bind (:map org-mode-map
+	      (("C-c i" . org-id-get-create)))
   )
 
 (add-hook 'org-mode-hook
