@@ -36,6 +36,7 @@
   (make-directory savefile-dir))
 
 (add-to-list 'load-path custom-dir)
+(require 'cc-custom)
 
 (message "Loading core modules...")
 (add-to-list 'load-path core-dir)

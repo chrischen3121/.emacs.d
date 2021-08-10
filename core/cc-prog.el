@@ -85,7 +85,6 @@
 (use-package
   paren
   :defer nil
-  :custom-face
   :config (show-paren-mode +1))
 
 (use-package

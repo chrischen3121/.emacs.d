@@ -61,7 +61,7 @@
   (deft-recursive t)
   (deft-use-filter-string-for-filename t)
   (deft-default-extension "org")
-  (deft-directory cc-org/org-roam-directory))
+  (deft-directory cc-custom/org-roam-directory))
 
 ;; download screenshot ;TODO: specify directories
 (use-package org-download

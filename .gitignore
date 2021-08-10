@@ -13,7 +13,7 @@
 # Others
 .cache/
 .last-package-update-day
-cc-custom.el
+custom/cc-custom.el
 custom.el
 auto-save-list/
 savefile/
