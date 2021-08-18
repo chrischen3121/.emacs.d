@@ -29,7 +29,9 @@
   :config (org-roam-setup)
   (require 'org-roam-protocol)
   ;; (setq org-roam-completion-system 'ivy)
-  :bind (("C-c n c" . org-roam-capture)
+  :bind (("C-c n a" . org-roam-dailies-capture-today)
+	 ("C-c n d" . org-roam-dailies-find-directory)
+	 ("C-c n c" . org-roam-capture)
 	 ("C-c n f" . org-roam-node-find)
 	 ("C-c n g" . org-roam-graph)
 	 ("C-c n i" . org-roam-node-insert)
@@ -37,22 +39,23 @@
 	 ("C-c n b" . org-roam-buffer-toggle)
 	 :map org-mode-map ("C-c n a" . org-roam-alias-add)
 	 ("C-c n t" . org-roam-tag-add)
-	 ("C-c n r" . org-roam-ref-add))
-  ;; :bind (:map org-roam-mode-map
-  ;;	      (("C-c n r" . org-roam)
-  ;;	       ("C-c n s" . cc-org/start-org-roam-server)
-  ;;	       ("C-c n a" . org-roam-alias-add)
-  ;;	       ("C-c n t" . org-roam-tag-add)
-  ;;	       ("C-c n /" . completion-at-point)
-  ;;	       ("C-c n f" . org-roam-find-file)
-  ;;	       ("C-c n o" . org-open-at-point)
-  ;;	       ("C-c n c" . org-roam-capture) ; can use templates
-  ;;	       ("C-c n g" . org-roam-graph))
-  ;;	      :map org-mode-map
-  ;;	      (("C-c n i" . org-roam-insert))
-  ;;	      (("C-c n I" . org-roam-insert-immediate))
-  ;;	      )
-  )
+	 ("C-c n r" . org-roam-ref-add)))
+
+;; (use-package
+;;   org-roam-server
+;;   :ensure t
+;;   :custom (org-roam-server-host "127.0.0.1")
+;;   (org-roam-server-port 8080)
+;;   (org-roam-server-authenticate nil)
+;;   (org-roam-server-export-inline-images t)
+;;   (org-roam-server-serve-files nil)
+;;   (org-roam-server-served-file-extensions '("pdf" "mp4" "ogv"))
+;;   (org-roam-server-network-poll t)
+;;   (org-roam-server-network-arrows nil)
+;;   (org-roam-server-network-label-truncate t)
+;;   (org-roam-server-network-label-truncate-length 60)
+;;   (org-roam-server-network-label-wrap-length 20))
+
 (which-key-add-key-based-replacements "C-c n" "org-roam")
 
 (provide 'cc-org-roam)
