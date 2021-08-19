@@ -20,13 +20,16 @@
 
 ;;; Code:
 
-(defcustom cc-custom/org-roam-directory "~/org/roam"
-  "org roam home directory")
+(defcustom cc-custom/org-roam-directory "~/roam-notes/permanent"
+  "org roam permanent directory")
 
-(defcustom cc-custom/org-roam-dailies-directory "~/org/roam/dailies"
+(defcustom cc-custom/org-roam-dailies-directory "~/roam-notes/fleeting"
+  "org roam daily fleeting directory")
+
+(defcustom cc-custom/org-roam-db-location "~/roam-notes/org-roam.db"
   "org roam dailies directory")
 
-(defcustom cc-custom/org-notes-directory "~/org/notes"
+(defcustom cc-custom/org-notes-directory "~/notes"
   "home directory for notes")
 
 (defcustom cc-custom/org-plantuml-jar-path "/usr/share/plantuml/plantuml.jar"

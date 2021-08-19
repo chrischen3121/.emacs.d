@@ -24,6 +24,7 @@
   :init (setq org-roam-v2-ack t)
   :delight
   :custom (org-roam-directory cc-custom/org-roam-directory)
+  (org-roam-db-location cc-custom/org-roam-db-location)
   (org-roam-graph-viewer cc-custom/org-roam-graph-viewer)
   (org-roam-dailies-directory cc-custom/org-roam-dailies-directory)
   :config (org-roam-setup)
