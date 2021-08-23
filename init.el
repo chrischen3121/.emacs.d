@@ -46,6 +46,7 @@
 (require 'cc-prog)
 (require 'cc-org)
 (require 'cc-org-roam)
+(require 'cc-org-project)
 (require 'cc-global-bindings)
 
 (add-to-list 'load-path languages-dir)
