@@ -55,9 +55,7 @@
 (require 'cc-python)
 (require 'cc-cpp)
 (require 'cc-scheme)
-
-					;TODO: if secret package existed, then require 'secret
-
+(require 'cc-json)
 
 (message "Happy Hacking!🌅🚣🏝️")
 
