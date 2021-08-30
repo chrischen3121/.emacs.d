@@ -1,7 +1,11 @@
-;;; cc-lsp.el
+# -*- mode: snippet -*-
+# name: filecomment
+# key: !
+# --
+;;; ${1:`(file-name-base (buffer-file-name))`}.el
 
-;; Author: chrischen
-;; Maintainer: chrischen
+;; Author: ${2:auther}
+;; Maintainer: $2
 
 ;; This file is not part of GNU Emacs
 
@@ -20,9 +24,8 @@
 
 ;;; Code:
 
-;; (use-package
-;;   lsp-mode
-;;   :hook (python-mode . lsp))
+$0
 
-(provide 'cc-lsp)
-;;; cc-lsp.el ends here
+(provide '$1)
+
+;;; $1.el ends here

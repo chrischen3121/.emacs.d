@@ -1,7 +1,7 @@
 ;;; cc-prog.el
 
-;; Author: chrischen
-;; Maintainer: chrischen
+;; Author: Chris Chen
+;; Maintainer: Chris Chen
 
 ;; This file is not part of GNU Emacs
 
@@ -23,6 +23,7 @@
 
 (use-package
   magit
+  :custom (magit-clone-set-remote.pushDefault t)
   :bind ("C-x g" . magit-status))
 
 ;; (use-package
@@ -63,6 +64,7 @@
 
 (use-package
   company
+
   :delight
   :config (global-company-mode +1)
   (add-to-list 'company-backends 'company-ispell))
@@ -89,11 +91,13 @@
 
 (use-package
   rainbow-mode
+
   :delight
   :hook prog-mode)
 
 (use-package
   rainbow-delimiters
+
   :delight
   :hook (prog-mode . rainbow-delimiters-mode))
 
@@ -159,6 +163,7 @@
 
 (use-package
   git-gutter+
+
   :delight
   :config (global-git-gutter+-mode +1))
 
@@ -170,7 +175,6 @@
 
 (use-package
   auto-highlight-symbol
-
   :delight
   :hook (prog-mode . auto-highlight-symbol-mode))
 

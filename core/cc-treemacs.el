@@ -1,7 +1,7 @@
 ;;; cc-treemacs.el
 
-;; Author: chrischen
-;; Maintainer: chrischen
+;; Author: Chris Chen
+;; Maintainer: Chris Chen
 
 ;; This file is not part of GNU Emacs
 

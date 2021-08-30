@@ -1,7 +1,7 @@
 ;;; cc-org-roam.el
 
-;; Author: chrischen
-;; Maintainer: chrischen
+;; Author: Chris Chen
+;; Maintainer: Chris Chen
 
 ;; This file is not part of GNU Emacs
 
@@ -42,20 +42,14 @@
 	 ("C-c n t" . org-roam-tag-add)
 	 ("C-c n r" . org-roam-ref-add)))
 
-;; TODO: use straight.el or wait for melpa version of org-roam-ui
-;; (use-package
-;;   org-roam-ui
-;;   :straight (:host github
-;;		   :repo "org-roam/org-roam-ui"
-;;		   :branch "main"
-;;		   :files ("*.el" "out"))
-;;   :after org-roam
-;;   ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
-;;   ;;         a hookable mode anymore, you're advised to pick something yourself
-;;   ;;         if you don't care about startup time, use
-;;   ;;  :hook (after-init . org-roam-ui-mode)
-;;   :config (setq org-roam-ui-sync-theme t org-roam-ui-follow t org-roam-ui-update-on-save t
-;;		org-roam-ui-open-on-start t))
+;; org-roam-ui
+;; TODO: use blocking clone
+;; (defvar org-roam-ui-dir (expand-file-name "org-roam-ui" private-dir))
+;; (when (not (file-exists-p org-roam-ui-dir))
+;;   (magit-clone-shallow "https://github.com/org-roam/org-roam-ui.git" private-dir '() 1))
+;; (add-to-list 'load-path org-roam-ui-dir)
+;; (load-library "org-roam-ui")
+;; (global-set-key (kbd "C-c n s") org-roam-ui-mode)
 
 (which-key-add-key-based-replacements "C-c n" "org-roam")
 

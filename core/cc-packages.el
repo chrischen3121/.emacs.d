@@ -1,7 +1,7 @@
-;;; cc-elisp.el
+;;; cc-packages.el
 
-;; Author: Chris Chen
-;; Maintainer: Chris Chen
+;; Author: chrischen
+;; Maintainer: chrischen
 
 ;; This file is not part of GNU Emacs
 
@@ -20,19 +20,14 @@
 
 ;;; Code:
 
-(delight 'emacs-lisp-mode "ELisp"
-	 :major)
+(require 'package)
+(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+			 ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+			 ("org" . "http://mirrors.cloud.tencent.com/elpa/org/")))
 
-(defun cc-elisp/set-company-backends ()
-  (set (make-local-variable 'company-backends)
-       '((company-elisp company-yasnippet))))
+(package-initialize)
+(unless package-archive-contents (package-refresh-contents))
 
-(use-package
-  elisp-mode
-  :ensure nil
-  :hook (emacs-lisp-mode . smartparens-mode)
-  (emacs-lisp-mode . cc-elisp/set-company-backends))
+(provide 'cc-packages)
 
-(provide 'cc-elisp)
-
-;;; cc-elisp.el ends here
+;;; cc-packages.el ends here
