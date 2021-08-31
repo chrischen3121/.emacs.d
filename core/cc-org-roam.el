@@ -43,14 +43,22 @@
 	 ("C-c n r" . org-roam-ref-add)))
 
 ;; org-roam-ui
-;; TODO: use blocking clone
-;; (defvar org-roam-ui-dir (expand-file-name "org-roam-ui" private-dir))
-;; (when (not (file-exists-p org-roam-ui-dir))
-;;   (magit-clone-shallow "https://github.com/org-roam/org-roam-ui.git" private-dir '() 1))
-;; (add-to-list 'load-path org-roam-ui-dir)
-;; (load-library "org-roam-ui")
-;; (global-set-key (kbd "C-c n s") org-roam-ui-mode)
+(use-package
+  simple-httpd)
 
+(use-package
+  websocket
+  :after org-roam)
+
+(defvar org-roam-ui-dir (expand-file-name "org-roam-ui" private-dir))
+;; TODO: use blocking clone
+(when (not (file-exists-p org-roam-ui-dir))
+  (magit-clone-shallow "https://github.com/org-roam/org-roam-ui.git" private-dir '() 1))
+(add-to-list 'load-path org-roam-ui-dir)
+(load-library "org-roam-ui")
+(global-set-key (kbd "C-c n s") 'org-roam-ui-mode)
+
+;; which-key
 (which-key-add-key-based-replacements "C-c n" "org-roam")
 
 (provide 'cc-org-roam)

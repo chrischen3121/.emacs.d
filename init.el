@@ -22,9 +22,9 @@
 
 (defvar username (getenv (if (equal system-type 'windows-nt) "USERNAME" "USER")))
 
-(when (version< emacs-version "25.3")
+(when (version< emacs-version "27.2")
   (error
-   "Requires GNUEmacs 25.3 or newer"))
+   "Requires GNUEmacs 27.2 or newer"))
 
 (defvar core-dir (expand-file-name "core" user-emacs-directory))
 (defvar languages-dir (expand-file-name "languages" user-emacs-directory))
