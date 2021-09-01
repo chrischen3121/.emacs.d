@@ -27,7 +27,7 @@
   "org roam daily fleeting directory")
 
 (defcustom cc-custom/org-roam-db-location "~/roam-notes/org-roam.db"
-  "org roam dailies directory")
+  "org roam db directory")
 
 (defcustom cc-custom/org-notes-directory "~/notes"
   "home directory for notes")
