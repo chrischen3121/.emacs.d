@@ -1,7 +1,7 @@
 ;;; init.el
 
-;; Author: chrischen
-;; Maintainer: chrischen
+;; Author: Chris Chen
+;; Maintainer: Chris Chen
 
 ;; This file is not part of GNU Emacs
 
@@ -22,14 +22,15 @@
 
 (defvar username (getenv (if (equal system-type 'windows-nt) "USERNAME" "USER")))
 
-(when (version< emacs-version "25.3")
+(when (version< emacs-version "27.2")
   (error
-   "Requires GNUEmacs 25.3 or newer"))
+   "Requires GNUEmacs 27.2 or newer"))
 
 (defvar core-dir (expand-file-name "core" user-emacs-directory))
 (defvar languages-dir (expand-file-name "languages" user-emacs-directory))
 (defvar custom-dir (expand-file-name "custom" user-emacs-directory))
 (defvar savefile-dir (expand-file-name "savefile" user-emacs-directory))
+(defvar private-dir (expand-file-name "private" user-emacs-directory))
 (customize-set-variable 'custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 (unless (file-exists-p savefile-dir)

@@ -1,7 +1,7 @@
 ;;; cc-core.el
 
-;; Author: chrischen
-;; Maintainer: chrischen
+;; Author: Chris Chen
+;; Maintainer: Chris Chen
 
 ;; This file is not part of GNU Emacs
 
@@ -21,14 +21,9 @@
 ;;; Code:
 (require 'cl-lib)
 
-(require 'package)
-(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-			 ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-			 ("org" . "http://mirrors.cloud.tencent.com/elpa/org/")))
+(require 'cc-packages)
 
-(package-initialize)
-(unless package-archive-contents (package-refresh-contents))
-
+;; use-package
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 

@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: snippet header
-# contributor: chrischen
+# contributor: Chris Chen
 # key: !
 # --
 # -*- mode: $1 -*-

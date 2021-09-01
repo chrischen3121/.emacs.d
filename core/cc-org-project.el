@@ -1,7 +1,7 @@
 ;;; cc-org-project.el
 
-;; Author: chrischen
-;; Maintainer: chrischen
+;; Author: Chris Chen
+;; Maintainer: Chris Chen
 
 ;; This file is not part of GNU Emacs
 
@@ -53,7 +53,7 @@
 		     :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"https://gongzhitaao.org/orgcss/org.css\">"
 		     :html-preamble nil
 		     :html-postamble nil
-		     :sitemap-title "chrischen's notes"
+		     :sitemap-title "Chris Chen's notes"
 		     :sitemap-filename "sitemap.org"
 		     :exclude "sitemap.org")
 		    ("resources"

@@ -2,4 +2,4 @@
 # name: xxx
 # key: x
 # --
-`comment-start`XXX: $0`comment-end`
+`comment-start` XXX: $0`comment-end`

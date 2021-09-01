@@ -21,6 +21,7 @@ transient/
 projectile-bookmarks.eld
 elpa/
 url/
+private/*
 anaconda-mode/
 recentf
 tramp
