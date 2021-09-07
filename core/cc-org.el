@@ -29,7 +29,8 @@
   anki-editor
   :after org
   :bind (:map org-mode-map
-	      ("C-c n e" . anki-editor-push-notes))
+	      ("C-c a e" . anki-editor-push-notes)
+	      ("C-c a i" . anki-editor-insert-note))
   :custom (anki-editor-create-decks t))
 
 ;; full-text search
@@ -96,6 +97,9 @@
   :init (require 'org-tempo)
   :bind (:map org-mode-map
 	      ("C-c i" . org-id-get-create)))
+
+;; which-key
+(which-key-add-key-based-replacements "C-c a" "org-anki")
 
 (provide 'cc-org)
 
