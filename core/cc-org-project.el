@@ -56,24 +56,8 @@
 		     :sitemap-title "Chris Chen's notes"
 		     :sitemap-filename "sitemap.org"
 		     :exclude "sitemap.org")
-		    ("resources"
-		     :base-directory  ,(concat (file-name-as-directory cc-custom/org-notes-directory) "org/resources")
-		     :publishing-directory ,(concat (file-name-as-directory cc-custom/org-notes-directory) "docs/resources")
-		     :recursive t
-		     :base-extension "png\\|jpg\\|gif\\|pdf\\|mp3\\|swf\\|zip\\|gz\\|txt"
-		     :publishing-function org-publish-attachment)
-		    ("style"
-		     :base-directory ,(concat (file-name-as-directory cc-custom/org-notes-directory) "style")
-		     :publishing-directory ,(concat (file-name-as-directory cc-custom/org-notes-directory) "docs/style")
-		     :base-extension "css\\|js\\|el"
-		     :publishing-function org-publish-attachment)
-		    ("fonts"
-		     :base-directory ,(concat (file-name-as-directory cc-custom/org-notes-directory) "fonts")
-		     :publishing-directory ,(concat (file-name-as-directory cc-custom/org-notes-directory) "docs/fonts")
-		     :base-extension "eot\\|woff2\\|woff\\|ttf\\|svg"
-		     :publishing-function org-publish-attachment)
 		    ("all"
-		     :components ("orgfiles" "resources" "style" "fonts")
+		     :components ("orgfiles")
 		     :author "Chris Chen"
 		     :email "chrischen3121@gmail.com")))))
 
