@@ -22,15 +22,16 @@
 (use-package
   org-roam
   :init (setq org-roam-v2-ack t)
+  :ensure t
   :delight
   :custom (org-roam-directory cc-custom/org-roam-directory)
   (org-roam-db-location cc-custom/org-roam-db-location)
   (org-roam-graph-viewer cc-custom/org-roam-graph-viewer)
   (org-roam-dailies-directory cc-custom/org-roam-dailies-directory)
-  :config (org-roam-setup)
+  :config (org-roam-db-autosync-mode)
   (require 'org-roam-protocol)
   ;; (setq org-roam-completion-system 'ivy)
-  :bind (("C-c n a" . org-roam-dailies-capture-today)
+  :bind (("C-c n j" . org-roam-dailies-capture-today)
 	 ("C-c n d" . org-roam-dailies-find-directory)
 	 ("C-c n c" . org-roam-capture)
 	 ("C-c n f" . org-roam-node-find)

@@ -30,7 +30,8 @@
   :after org
   :bind (:map org-mode-map
 	      ("C-c a e" . anki-editor-push-notes)
-	      ("C-c a i" . anki-editor-insert-note))
+	      ("C-c a i" . anki-editor-insert-note)
+	      ("C-c a c" . anki-editor-cloze-dwim))
   :custom (anki-editor-create-decks t))
 
 ;; full-text search
@@ -88,13 +89,13 @@
   :custom (alert-default-style 'libnotify))
 
 (require 'ox-md)
-
 (use-package
   org
   :hook (org-mode . flyspell-mode)
   (org-mode . smartparens-mode)
   (org-mode . cc-org/set-company-backends)
   :init (require 'org-tempo)
+  :custom (org-format-latex-options (plist-put org-format-latex-options :scale 5.0))
   :bind (:map org-mode-map
 	      ("C-c i" . org-id-get-create)))
 
