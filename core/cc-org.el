@@ -29,9 +29,9 @@
   anki-editor
   :after org
   :bind (:map org-mode-map
-	      ("C-c a e" . anki-editor-push-notes)
-	      ("C-c a i" . anki-editor-insert-note)
-	      ("C-c a c" . anki-editor-cloze-dwim))
+	      ("C-c k p" . anki-editor-push-notes)
+	      ("C-c k i" . anki-editor-insert-note)
+	      ("C-c k c" . anki-editor-cloze-dwim))
   :custom (anki-editor-create-decks t))
 
 ;; full-text search
@@ -45,22 +45,23 @@
   (deft-default-extension "org")
   (deft-directory cc-custom/org-roam-directory))
 
-;; download screenshot ;TODO: specify directories
+;; download screenshot
 (use-package
   org-download
   :after org
   :config (which-key-add-key-based-replacements "C-c d" "org-download")
+  :custom (org-download-image-dir "~/Pictures/org")
   :bind (:map org-mode-map
 	      ("C-c d s" . org-download-screenshot)
 	      ("C-c d y" . org-download-yank)))
 
 
 
-(setq org-todo-keywords '((sequence "TODO(t)" "INPROGRESS(i)" "WAITING(w)" "REVIEW(r)" "|" "DONE(d)"
+(setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "REVIEW(r)" "|" "DONE(d)"
 				    "CANCELED(c)")))
 
 (setq org-todo-keyword-faces '(("TODO" . org-warning)
-			       ("INPROGRESS" . "yellow")
+			       ("NEXT" . "blue")
 			       ("WAITING" . "purple")
 			       ("REVIEW" . "orange")
 			       ("DONE" . "green")
@@ -95,12 +96,15 @@
   (org-mode . smartparens-mode)
   (org-mode . cc-org/set-company-backends)
   :init (require 'org-tempo)
-  :custom (org-format-latex-options (plist-put org-format-latex-options :scale 5.0))
-  :bind (:map org-mode-map
-	      ("C-c i" . org-id-get-create)))
+  :custom (org-format-latex-options (plist-put org-format-latex-options
+					       :scale 5.0))
+  :bind (("C-c a" . org-agenda)
+	 ("C-c l" . org-store-link)
+	 ("C-c b" . org-switchb)
+	 :map org-mode-map ("C-c i" . org-id-get-create)))
 
 ;; which-key
-(which-key-add-key-based-replacements "C-c a" "org-anki")
+(which-key-add-key-based-replacements "C-c k" "org-anki")
 
 (provide 'cc-org)
 
