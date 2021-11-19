@@ -112,6 +112,8 @@
   :custom (python-indent-guess-indent-offset nil)
   (python-shell-interpreter "ipython")
   (python-shell-interpreter-args "--simple-prompt -i")
+  (indent-tabs-mode nil)
+  (tab-width 4)
   :hook (python-mode . smartparens-mode)
   (python-mode . cc-python/set-flycheck-checkers)
   (python-mode . cc-python/set-company-backends)

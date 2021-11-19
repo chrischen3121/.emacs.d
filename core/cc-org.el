@@ -29,9 +29,9 @@
   anki-editor
   :after org
   :bind (:map org-mode-map
-	      ("C-c k p" . anki-editor-push-notes)
-	      ("C-c k i" . anki-editor-insert-note)
-	      ("C-c k c" . anki-editor-cloze-dwim))
+              ("C-c k p" . anki-editor-push-notes)
+              ("C-c k i" . anki-editor-insert-note)
+              ("C-c k c" . anki-editor-cloze-dwim))
   :custom (anki-editor-create-decks t))
 
 ;; full-text search
@@ -39,7 +39,7 @@
   deft
   :after org
   :bind (:map org-mode-map
-	      ("C-c n d" . deft))
+              ("C-c n d" . deft))
   :custom (deft-recursive t)
   (deft-use-filter-string-for-filename t)
   (deft-default-extension "org")
@@ -52,20 +52,20 @@
   :config (which-key-add-key-based-replacements "C-c d" "org-download")
   :custom (org-download-image-dir "~/Pictures/org")
   :bind (:map org-mode-map
-	      ("C-c d s" . org-download-screenshot)
-	      ("C-c d y" . org-download-yank)))
+              ("C-c d s" . org-download-screenshot)
+              ("C-c d y" . org-download-yank)))
 
 
 
 (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "REVIEW(r)" "|" "DONE(d)"
-				    "CANCELED(c)")))
+                                    "CANCELED(c)")))
 
 (setq org-todo-keyword-faces '(("TODO" . org-warning)
-			       ("NEXT" . "blue")
-			       ("WAITING" . "purple")
-			       ("REVIEW" . "orange")
-			       ("DONE" . "green")
-			       ("CANCELED" .  "red")))
+                               ("NEXT" . "blue")
+                               ("WAITING" . "purple")
+                               ("REVIEW" . "orange")
+                               ("DONE" . "green")
+                               ("CANCELED" .  "red")))
 
 (use-package
   graphviz-dot-mode
@@ -97,11 +97,25 @@
   (org-mode . cc-org/set-company-backends)
   :init (require 'org-tempo)
   :custom (org-format-latex-options (plist-put org-format-latex-options
-					       :scale 5.0))
+                                               :scale 5.0))
+  (indent-tabs-mode nil)
+  (tab-width 8)
   :bind (("C-c a" . org-agenda)
-	 ("C-c l" . org-store-link)
-	 ("C-c b" . org-switchb)
-	 :map org-mode-map ("C-c i" . org-id-get-create)))
+         ("C-c l" . org-store-link)
+         ("C-c b" . org-switchb)
+         :map org-mode-map ("C-c i" . org-id-get-create)))
+
+(use-package
+  org-tree-slide
+  :custom (org-tree-slide-skip-outline-level 3)
+  (org-tree-slide-skip-done nil)
+  :bind (:map org-mode-map
+              ("<f8>" . org-tree-slide-mode)
+              ("S-<f8>" . org-tree-slide-skip-done-toggle)
+              :map org-tree-slide-mode-map
+              ("<f9>" . org-tree-slide-move-previous-tree)
+              ("<f10>" . org-tree-slide-move-next-tree)
+              ("<f11>" . org-tree-slide-content)))
 
 ;; which-key
 (which-key-add-key-based-replacements "C-c k" "org-anki")
