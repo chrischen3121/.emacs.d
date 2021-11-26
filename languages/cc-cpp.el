@@ -20,28 +20,36 @@
 
 ;;; Code:
 
-(provide 'cc-cpp)
+
+(use-package
+  google-c-style
+  :hook (c-mode-common . google-set-c-style)
+  (c-mode-common . google-make-newline-indent))
+
 (use-package
   ggtags
-  :hook ((c-mode c++-mode asm-mode) . ggtags-mode)
+  :hook (c-mode-common . ggtags-mode)
+  (c-mode-common . smartparens-mode)
   :bind (:map ggtags-mode-map
-	      ("C-c g s" . ggtags-find-other-symbol)
-	      ("C-c g h" . ggtags-view-tag-history)
-	      ("C-c g r" . ggtags-find-reference)
-	      ("C-c g f" . ggtags-find-file)
-	      ("C-c g c" . ggtags-create-tags)
-	      ("C-c g u" . ggtags-update-tags)
-	      ("C-c g p" . pop-tag-mark)))
+              ("C-c g s" . ggtags-find-other-symbol)
+              ("C-c g h" . ggtags-view-tag-history)
+              ("C-c g r" . ggtags-find-reference)
+              ("C-c g c" . ggtags-create-tags)
+              ("C-c g u" . ggtags-update-tags)
+              ("C-c g p" . pop-tag-mark)))
 ;; TODO: ivy-gtags
 
 (defun cc-c++/set-company-backends ()
   (set (make-local-variable 'company-backends)
-       '((company-cmake company-yasnippet)
-	 (company-clang company-yasnippet)
-	 (company-gtags company-yasnippet))))
+       '((company-clang company-yasnippet) company-cmake  company-gtags)))
 
+(use-package
+  cc-mode
+  :custom (indent-tabs-mode nil)
+  (tab-width 4)
+  (gdb-many-windows t)
+  (gdb-show-main t)
+  :hook (c++-mode . cc-c++/set-company-backends))
 
-(add-hook 'c++-mode-hook #'cc-c++/set-company-backends)
-
-
+(provide 'cc-cpp)
 ;;; cc-cpp.el ends here

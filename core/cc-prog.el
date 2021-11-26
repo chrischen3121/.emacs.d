@@ -56,15 +56,15 @@
 (use-package
   elisp-format
   :bind (:map emacs-lisp-mode-map
-	      ("C-c f" . elisp-format-buffer)))
+              ("C-c f" . elisp-format-buffer)))
 
 (use-package
   whitespace
-  :hook (before-save . whitespace-cleanup))
+  :hook (before-save . whitespace-cleanup)
+  :bind (("C-c w" . whitespace-mode)))
 
 (use-package
   company
-
   :delight
   :config (global-company-mode +1)
   (add-to-list 'company-backends 'company-ispell))
@@ -91,13 +91,11 @@
 
 (use-package
   rainbow-mode
-
   :delight
   :hook prog-mode)
 
 (use-package
   rainbow-delimiters
-
   :delight
   :hook (prog-mode . rainbow-delimiters-mode))
 
@@ -106,10 +104,10 @@
   :init (setq ispell-extra-args '("--sug-mode=ultra"))
   :delight
   :bind (:map flyspell-mode-map
-	      ("C-c $" . nil)
-	      ("C-c ! s" . flyspell-buffer))
+              ("C-c $" . nil)
+              ("C-c ! s" . flyspell-buffer))
   :hook ((prog-mode . flyspell-prog-mode)
-	 (test-mode . flyspell-mode)))
+         (test-mode . flyspell-mode)))
 
 (use-package
   flycheck
@@ -122,20 +120,20 @@
 (use-package
   ace-jump-mode
   :bind (("C-c j" . ace-jump-word-mode)
-	 ("C-c l" . ace-jump-line-mode)))
+         ("C-c l" . ace-jump-line-mode)))
 
 (use-package
   yasnippet
   :delight yas-minor-mode
   :hook ((prog-mode . yas-minor-mode-on)
-	 (org-mode . yas-minor-mode-on)
-	 (hippie-expand-try-functions-list . yas-hippie-try-expand))
+         (org-mode . yas-minor-mode-on)
+         (hippie-expand-try-functions-list . yas-hippie-try-expand))
   :bind (:map yas-minor-mode-map
-	      ("C-c &" . nil)
-	      ("C-c y n" . yas-new-snippet)
-	      ("C-c y r" . yas-reload-all)
-	      ("C-c y v" . yas-visit-snippet-file)
-	      ("M-/" . yas-expand))
+              ("C-c &" . nil)
+              ("C-c y n" . yas-new-snippet)
+              ("C-c y r" . yas-reload-all)
+              ("C-c y v" . yas-visit-snippet-file)
+              ("M-/" . yas-expand))
   :config (which-key-add-key-based-replacements "C-c y" "yas"))
 
 (use-package
@@ -147,14 +145,15 @@
 (use-package
   hideshow
   :hook (prog-mode . hs-minor-mode)
-  :bind (:map hs-minor-mode-map
-	      ("C-c @" . nil)
-	      ("C-c h H" . hs-hide-all)
-	      ("C-c h S" . hs-show-all)
-	      ("C-c h h" . hs-hide-block)
-	      ("C-c h s" . hs-show-block)
-	      ("C-c h l" . hs-hide-level)
-	      ("C-c h t" . hs-toggle-hiding))
+  :bind (("C-c h f" . narrow-to-defun)
+         ("C-c h w" . widen)
+         :map hs-minor-mode-map ("C-c @" . nil)
+         ("C-c h H" . hs-hide-all)
+         ("C-c h S" . hs-show-all)
+         ("C-c h h" . hs-hide-block)
+         ("C-c h s" . hs-show-block)
+         ("C-c h l" . hs-hide-level)
+         ("C-c h t" . hs-toggle-hiding))
   :config (which-key-add-key-based-replacements "C-c h" "hs"))
 
 (use-package
@@ -163,18 +162,18 @@
 
 (use-package
   git-gutter+
-
   :delight
   :config (global-git-gutter+-mode +1))
 
 (use-package
   mwim
   :bind (:map prog-mode-map
-	      ("C-a" . mwim-beginning-of-code-or-line)
-	      ("C-e" . mwim-end-of-code-or-line)))
+              ("C-a" . mwim-beginning-of-code-or-line)
+              ("C-e" . mwim-end-of-code-or-line)))
 
 (use-package
   auto-highlight-symbol
+
   :delight
   :hook (prog-mode . auto-highlight-symbol-mode))
 
