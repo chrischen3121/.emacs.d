@@ -2,7 +2,7 @@
 # name: preamble
 # key: !
 # --
-#+TITLE: ${1:`Title`}
+#+TITLE: ${1:Title}
 #+AUTHOR: ${2:`user-full-name`}
 #+EMAIL: ${3:`user-mail-address`}
 #+OPTIONS: H:${5:3} toc:${6:2} num:${7:2} ^:{}
