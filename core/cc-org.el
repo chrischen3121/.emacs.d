@@ -103,7 +103,12 @@
   :bind (("C-c a" . org-agenda)
          ("C-c l" . org-store-link)
          ("C-c b" . org-switchb)
-         :map org-mode-map ("C-c i" . org-id-get-create)))
+         :map org-mode-map ("C-c i" . org-id-get-create))
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((dot . t)
+     (plantuml . t))))
 
 (use-package
   org-tree-slide
