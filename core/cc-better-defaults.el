@@ -23,10 +23,10 @@
   spacemacs-theme
   :no-require t
   :init (if (daemonp)
-	    (add-hook 'after-make-frame-functions (lambda (frame)
-						    (select-frame frame)
-						    (load-theme 'spacemacs-light t)))
-	  (load-theme 'spacemacs-light t))
+        (add-hook 'after-make-frame-functions (lambda (frame)
+                            (select-frame frame)
+                            (load-theme 'spacemacs-light t)))
+      (load-theme 'spacemacs-light t))
   ;; (load-theme 'spacemacs-dark t)
   )
 
@@ -59,14 +59,14 @@
   ibuffer-projectile
   :after ibuffer
   :config (add-hook 'ibuffer-hook (lambda ()
-				    (ibuffer-projectile-set-filter-groups)
-				    (unless (eq ibuffer-sorting-mode 'alphabetic)
-				      (ibuffer-do-sort-by-alphabetic)))))
+                    (ibuffer-projectile-set-filter-groups)
+                    (unless (eq ibuffer-sorting-mode 'alphabetic)
+                      (ibuffer-do-sort-by-alphabetic)))))
 
 (use-package
   ace-window
   :bind (([remap other-window] . ace-window)
-	 ("C-x w" . ace-swap-window)))
+     ("C-x w" . ace-swap-window)))
 
 
 (use-package
@@ -86,9 +86,8 @@
   :delight
   :custom (undo-tree-visualizer-timestamps t)
   (undo-tree-visualizer-diff t)
-  :config (global-undo-tree-mode +1))
-
-
+  :config (global-undo-tree-mode +1)
+  :bind ("C-c C-/" . undo-tree-redo))
 
 (use-package
   nyan-mode
@@ -98,7 +97,7 @@
   smart-tab
   :delight
   :hook ((prog-mode . smart-tab-mode)
-	 (text-mode . smart-tab-mode)))
+     (text-mode . smart-tab-mode)))
 
 (require 'cc-treemacs)
 
