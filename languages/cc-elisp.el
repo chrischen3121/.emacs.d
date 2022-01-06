@@ -21,7 +21,7 @@
 ;;; Code:
 
 (delight 'emacs-lisp-mode "ELisp"
-	 :major)
+     :major)
 
 (defun cc-elisp/set-company-backends ()
   (set (make-local-variable 'company-backends)
