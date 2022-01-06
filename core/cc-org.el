@@ -55,18 +55,6 @@
               ("C-c d s" . org-download-screenshot)
               ("C-c d y" . org-download-yank)))
 
-
-
-(setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "REVIEW(r)" "|" "DONE(d)"
-                                    "CANCELED(c)")))
-
-(setq org-todo-keyword-faces '(("TODO" . org-warning)
-                               ("NEXT" . "blue")
-                               ("WAITING" . "purple")
-                               ("REVIEW" . "orange")
-                               ("DONE" . "green")
-                               ("CANCELED" .  "red")))
-
 (use-package
   graphviz-dot-mode
   :defer t)

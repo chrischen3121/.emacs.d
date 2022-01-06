@@ -46,6 +46,7 @@
 (require 'cc-ivy)
 (require 'cc-prog)
 (require 'cc-org)
+(require 'cc-agenda)
 (require 'cc-org-roam)
 (require 'cc-org-project)
 (require 'cc-global-bindings)
