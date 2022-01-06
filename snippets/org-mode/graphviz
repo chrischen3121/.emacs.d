@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: graphviz
-# key: <g
+# key: <dot
 # --
 #+begin_src dot :file ${1:../resources/graphviz/${2:filename}.png} :cmdline -Kdot -Tpng :exports results :resultsb silent
 $0
