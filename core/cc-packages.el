@@ -25,8 +25,8 @@
              ("melpa" . "https://elpa.zilongshanren.com/melpa/")
              ("org" . "https://elpa.zilongshanren.com/org/")))
 
-(unless package-archive-contents (package-refresh-contents))
 (package-initialize)
+(unless package-archive-contents (package-refresh-contents))
 
 (provide 'cc-packages)
 
