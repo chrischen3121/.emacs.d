@@ -19,11 +19,15 @@
 ;; see <http://www.gnu.org/licenses/>.
 
 ;;; Code:
-
 (use-package
   json-mode
   :ensure nil
-  :hook (json-mode . smartparens-mode))
+  :custom (indent-tabs-mode nil)
+  (tab-width 2)
+  (standard-indent 2)
+  :hook (json-mode . smartparens-mode)
+  :bind (:map json-mode-map
+              ("C-c f" . json-pretty-print-buffer)))
 
 (provide 'cc-json)
 

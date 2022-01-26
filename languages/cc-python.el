@@ -35,31 +35,31 @@
   (let ((root-path (locate-dominating-file default-directory ".python-version")))
     (message root-path)
     (if root-path (let* ((file-path (expand-file-name ".python-version" root-path))
-			 (version (with-temp-buffer (insert-file-contents-literally file-path)
-						    (buffer-substring-no-properties
-						     (line-beginning-position)
-						     (line-end-position)))))
-		    (if (member version (pyenv-mode-versions))
-			(pyenv-mode-set version)
-		      (message "pyenv: version `%s' is not installed (set by %s)" version
-			       file-path)))
+                         (version (with-temp-buffer (insert-file-contents-literally file-path)
+                                                    (buffer-substring-no-properties
+                                                     (line-beginning-position)
+                                                     (line-end-position)))))
+                    (if (member version (pyenv-mode-versions))
+                        (pyenv-mode-set version)
+                      (message "pyenv: version `%s' is not installed (set by %s)" version
+                               file-path)))
       (pyenv-mode-unset))))
 
 (use-package
   pyenv-mode
   :commands pyenv-mode-versions
   :custom (pyenv-mode-mode-line-format
-	   '(:eval (when (pyenv-mode-version)
-		     (concat " venv:" (pyenv-mode-version) " "))))
+           '(:eval (when (pyenv-mode-version)
+                     (concat " venv:" (pyenv-mode-version) " "))))
   :hook (python-mode . pyenv-mode)
   (projectile-after-switch-project . cc-python/pyenv-mode-set-local-version)
   :config (cc-python/pyenv-mode-set-local-version)
   (which-key-add-key-based-replacements "C-c e" "pyenv")
-  :bind ((:map pyenv-mode-map)
-	 ("C-c C-s" . nil)
-	 ("C-c C-u" . nil)
-	 ("C-c e s" . pyenv-mode-set)
-	 ("C-c e u" . pyenv-mode-unset)))
+  :bind (:map pyenv-mode-map
+              ("C-c C-s" . nil)
+              ("C-c C-u" . nil)
+              ("C-c e s" . pyenv-mode-set)
+              ("C-c e u" . pyenv-mode-unset)))
 
 (use-package
   anaconda-mode
@@ -76,11 +76,12 @@
 
 (use-package
   sphinx-doc
+
   :delight
   :hook (python-mode . sphinx-doc-mode)
   :bind (:map python-mode-map
-	      ("C-c M-d" . nil)
-	      ("C-c C-d" . sphinx-doc)))
+              ("C-c M-d" . nil)
+              ("C-c C-d" . sphinx-doc)))
 
 ;; code formatting
 (use-package
@@ -118,9 +119,9 @@
   (python-mode . cc-python/set-flycheck-checkers)
   (python-mode . cc-python/set-company-backends)
   :bind (:map python-mode-map
-	      ("C-c f" .  cc-python/format-buffer)
-	      ("C-c d" .  anaconda-mode-show-doc)
-	      ("C-c C-t" . nil)))
+              ("C-c f" .  cc-python/format-buffer)
+              ("C-c d" .  anaconda-mode-show-doc)
+              ("C-c C-t" . nil)))
 
 ;; TODO: ein for notebook
 ;; (use-package ein)
