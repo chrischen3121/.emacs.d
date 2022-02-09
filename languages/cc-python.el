@@ -54,7 +54,7 @@
   :hook (python-mode . pyenv-mode)
   (projectile-after-switch-project . cc-python/pyenv-mode-set-local-version)
   :config (cc-python/pyenv-mode-set-local-version)
-  (which-key-add-key-based-replacements "C-c e" "pyenv")
+  (which-key-add-keymap-based-replacements pyenv-mode-map "C-c e" "pyenv")
   :bind (:map pyenv-mode-map
               ("C-c C-s" . nil)
               ("C-c C-u" . nil)
@@ -76,7 +76,6 @@
 
 (use-package
   sphinx-doc
-
   :delight
   :hook (python-mode . sphinx-doc-mode)
   :bind (:map python-mode-map
@@ -115,12 +114,14 @@
   (python-shell-interpreter-args "--simple-prompt -i")
   (indent-tabs-mode nil)
   (tab-width 4)
+  :config (which-key-add-keymap-based-replacements python-mode-map "C-c m" "py-mode tools")
   :hook (python-mode . smartparens-mode)
   (python-mode . cc-python/set-flycheck-checkers)
   (python-mode . cc-python/set-company-backends)
   :bind (:map python-mode-map
               ("C-c f" .  cc-python/format-buffer)
               ("C-c d" .  anaconda-mode-show-doc)
+              ("C-c m d" . pdb)
               ("C-c C-t" . nil)))
 
 ;; TODO: ein for notebook

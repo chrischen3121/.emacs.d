@@ -28,6 +28,7 @@
 (use-package
   anki-editor
   :after org
+  :config (which-key-add-keymap-based-replacements org-mode-map "C-c k" "org-anki")
   :bind (:map org-mode-map
               ("C-c k p" . anki-editor-push-notes)
               ("C-c k i" . anki-editor-insert-note)
@@ -49,7 +50,7 @@
 (use-package
   org-download
   :after org
-  :config (which-key-add-key-based-replacements "C-c d" "org-download")
+  :config (which-key-add-keymap-based-replacements org-mode-map "C-c d" "org-download")
   :custom (org-download-image-dir "~/Pictures/org")
   :bind (:map org-mode-map
               ("C-c d s" . org-download-screenshot)
@@ -92,11 +93,8 @@
          ("C-c l" . org-store-link)
          ("C-c b" . org-switchb)
          :map org-mode-map ("C-c i" . org-id-get-create))
-  :config
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((dot . t)
-     (plantuml . t))))
+  :config (org-babel-do-load-languages 'org-babel-load-languages '((dot . t)
+                                                                   (plantuml . t))))
 
 (use-package
   org-tree-slide
@@ -110,8 +108,6 @@
               ("<f10>" . org-tree-slide-move-next-tree)
               ("<f11>" . org-tree-slide-content)))
 
-;; which-key
-(which-key-add-key-based-replacements "C-c k" "org-anki")
 
 (provide 'cc-org)
 

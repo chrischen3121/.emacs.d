@@ -28,10 +28,11 @@
 
 (defvar core-dir (expand-file-name "core" user-emacs-directory))
 (defvar languages-dir (expand-file-name "languages" user-emacs-directory))
-(defvar custom-dir (expand-file-name "custom" user-emacs-directory))
+(defvar custom-dir (expand-file-name "defcustom" user-emacs-directory))
 (defvar savefile-dir (expand-file-name "savefile" user-emacs-directory))
 (defvar private-dir (expand-file-name "private" user-emacs-directory))
-(customize-set-variable 'custom-file (expand-file-name "custom.el" user-emacs-directory))
+(setq custom-file (expand-file-name "mycustom.el" user-emacs-directory))
+(load custom-file)
 
 (unless (file-exists-p savefile-dir)
   (make-directory savefile-dir))

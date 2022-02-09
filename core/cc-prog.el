@@ -134,7 +134,7 @@
               ("C-c y r" . yas-reload-all)
               ("C-c y v" . yas-visit-snippet-file)
               ("M-/" . yas-expand))
-  :config (which-key-add-key-based-replacements "C-c y" "yas"))
+  :config (which-key-add-keymap-based-replacements yas-minor-mode-map "C-c y" "yas"))
 
 (use-package
   company-yasnippet
@@ -154,7 +154,7 @@
          ("C-c h s" . hs-show-block)
          ("C-c h l" . hs-hide-level)
          ("C-c h t" . hs-toggle-hiding))
-  :config (which-key-add-key-based-replacements "C-c h" "hs"))
+  :config (which-key-add-keymap-based-replacements hs-minor-mode-map "C-c h" "hs"))
 
 (use-package
   linum
