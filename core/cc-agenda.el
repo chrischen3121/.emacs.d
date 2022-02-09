@@ -20,8 +20,14 @@
 
 ;;; Code:
 
-(setq org-agenda-files (directory-files-recursively cc-custom/agenda-home-dir ".org$"))
-(setq org-default-notes-file (expand-file-name "refile.org" cc-custom/agenda-home-dir))
+(defcustom cc-agenda/agenda-home-dir "~/TODOs"
+  "agenda home directory"
+  :type 'string
+  :group 'cc-agenda)
+
+
+(setq org-agenda-files (directory-files-recursively cc-agenda/agenda-home-dir ".org$"))
+(setq org-default-notes-file (expand-file-name "refile.org" cc-agenda/agenda-home-dir))
 (setq org-capture-templates '(("t" "todo" entry (file org-default-notes-file) "* TODO %?\n%U\n%a\n"
                                :clock-in t
                                :clock-resume t)))

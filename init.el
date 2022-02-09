@@ -26,19 +26,17 @@
   (error
    "Requires GNUEmacs 27.2 or newer"))
 
-(defvar core-dir (expand-file-name "core" user-emacs-directory))
-(defvar languages-dir (expand-file-name "languages" user-emacs-directory))
-(defvar custom-dir (expand-file-name "defcustom" user-emacs-directory))
-(defvar savefile-dir (expand-file-name "savefile" user-emacs-directory))
-(defvar private-dir (expand-file-name "private" user-emacs-directory))
 (setq custom-file (expand-file-name "mycustom.el" user-emacs-directory))
 (load custom-file)
 
+(defvar core-dir (expand-file-name "core" user-emacs-directory))
+(defvar languages-dir (expand-file-name "languages" user-emacs-directory))
+(defvar savefile-dir (expand-file-name "savefile" user-emacs-directory))
+(defvar private-dir (expand-file-name "private" user-emacs-directory))
+
+
 (unless (file-exists-p savefile-dir)
   (make-directory savefile-dir))
-
-(add-to-list 'load-path custom-dir)
-(require 'cc-custom)
 
 (message "Loading core modules...")
 (add-to-list 'load-path core-dir)

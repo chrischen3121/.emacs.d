@@ -22,7 +22,7 @@
 
 ;; set python max line length
 
-(defcustom python-max-line-length 100
+(defcustom cc-python/python-max-line-length 100
   "Line length to enforce."
   :type 'integer
   :safe 'integerp
@@ -86,12 +86,12 @@
 (use-package
   blacken
   :commands blacken-buffer
-  :custom (blacken-line-length python-max-line-length))
+  :custom (blacken-line-length cc-python/python-max-line-length))
 
 (use-package
   py-isort
   :commands py-isort-buffer
-  :custom (py-isort-options `(,(format "-l %d" python-max-line-length))))
+  :custom (py-isort-options `(,(format "-l %d" cc-python/python-max-line-length))))
 
 (defun cc-python/format-buffer ()
   (interactive)

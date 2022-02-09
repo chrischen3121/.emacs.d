@@ -19,29 +19,50 @@
 ;; see <http://www.gnu.org/licenses/>.
 
 ;;; Code:
+
+(defcustom cc-org-roam/org-roam-directory "~/roam-notes/permanent"
+  "org roam home directory"
+  :type 'string
+  :group 'cc-org-roam)
+
+(defcustom cc-org-roam/org-roam-dailies-directory "~/roam-notes/fleeting"
+  "org roam dailies directory"
+  :type 'string
+  :group 'cc-org-roam)
+
+(defcustom cc-org-roam/org-roam-db-location "~/roam-notes/org-roam.db"
+  "org roam db directory"
+  :type 'string
+  :group 'cc-org-roam)
+
+(defcustom cc-org-roam/org-roam-graph-viewer "google-chrome"
+  "executable to view org roam graph"
+  :type 'string
+  :group 'cc-org-roam)
+
 (use-package
   org-roam
   :init (setq org-roam-v2-ack t)
   :ensure t
   :delight
-  :custom (org-roam-directory cc-custom/org-roam-directory)
-  (org-roam-db-location cc-custom/org-roam-db-location)
-  (org-roam-graph-viewer cc-custom/org-roam-graph-viewer)
-  (org-roam-dailies-directory cc-custom/org-roam-dailies-directory)
+  :custom (org-roam-directory cc-org-roam/org-roam-directory)
+  (org-roam-db-location cc-org-roam/org-roam-db-location)
+  (org-roam-graph-viewer cc-org-roam/org-roam-graph-viewer)
+  (org-roam-dailies-directory cc-org-roam/org-roam-dailies-directory)
   :config (org-roam-db-autosync-mode)
   (require 'org-roam-protocol)
   ;; (setq org-roam-completion-system 'ivy)
   :bind (("C-c n j" . org-roam-dailies-capture-today)
-	 ("C-c n d" . org-roam-dailies-find-directory)
-	 ("C-c n c" . org-roam-capture)
-	 ("C-c n f" . org-roam-node-find)
-	 ("C-c n g" . org-roam-graph)
-	 ("C-c n i" . org-roam-node-insert)
-	 ("C-c n p" . org-id-get-create)
-	 ("C-c n b" . org-roam-buffer-toggle)
-	 :map org-mode-map ("C-c n a" . org-roam-alias-add)
-	 ("C-c n t" . org-roam-tag-add)
-	 ("C-c n r" . org-roam-ref-add)))
+         ("C-c n d" . org-roam-dailies-find-directory)
+         ("C-c n c" . org-roam-capture)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n p" . org-id-get-create)
+         ("C-c n b" . org-roam-buffer-toggle)
+         :map org-mode-map ("C-c n a" . org-roam-alias-add)
+         ("C-c n t" . org-roam-tag-add)
+         ("C-c n r" . org-roam-ref-add)))
 
 ;; org-roam-ui
 (use-package
@@ -55,7 +76,7 @@
   org-preview-html
   :after org-roam
   :bind (:map org-mode-map
-	      ("C-c n h" . org-preview-html/preview)))
+              ("C-c n h" . org-preview-html/preview)))
 
 (defvar org-roam-ui-dir (expand-file-name "org-roam-ui" private-dir))
 ;; TODO: use blocking clone

@@ -36,15 +36,17 @@
   :custom (anki-editor-create-decks t))
 
 ;; full-text search
-(use-package
-  deft
-  :after org
-  :bind (:map org-mode-map
-              ("C-c n d" . deft))
-  :custom (deft-recursive t)
-  (deft-use-filter-string-for-filename t)
-  (deft-default-extension "org")
-  (deft-directory cc-custom/org-roam-directory))
+;TODO:
+;; (use-package
+;;   deft
+;;   :after org
+;;   :bind (:map org-mode-map
+;;               ("C-c n d" . deft))
+;;   :custom (deft-recursive t)
+;;   (deft-use-filter-string-for-filename t)
+;;   (deft-default-extension "org")
+;;   (deft-directory cc-org-roam/org-roam-directory))
+
 
 ;; download screenshot
 (use-package

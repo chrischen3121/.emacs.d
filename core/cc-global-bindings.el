@@ -25,6 +25,7 @@
 (global-set-key (kbd "C-x p i") #'package-install)
 (global-set-key (kbd "C-x p l") #'list-packages)
 (global-set-key (kbd "C-x p r") #'package-refresh-contents)
+(global-set-key (kbd "C-x c") #'customize)
 (which-key-add-key-based-replacements "C-x p" "packages")
 
 
