@@ -22,7 +22,7 @@
 
 (setq org-agenda-files (directory-files-recursively cc-custom/agenda-home-dir ".org$"))
 (setq org-default-notes-file (expand-file-name "refile.org" cc-custom/agenda-home-dir))
-(setq org-capture-templates '(("t" "todo" entry (file "~/git/org/refile.org") "* TODO %?\n%U\n%a\n"
+(setq org-capture-templates '(("t" "todo" entry (file org-default-notes-file) "* TODO %?\n%U\n%a\n"
                                :clock-in t
                                :clock-resume t)))
 
