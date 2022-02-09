@@ -58,6 +58,7 @@
 (require 'cc-cpp)
 (require 'cc-scheme)
 (require 'cc-json)
+(require 'cc-js)
 
 (message "Happy Hacking!🌅🚣🏝️")
 
