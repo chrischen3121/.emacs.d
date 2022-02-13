@@ -20,6 +20,7 @@
 
 ;;; Code:
 
+;TODO: add irony-mode support
 
 (use-package
   google-c-style
