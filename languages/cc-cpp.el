@@ -20,7 +20,8 @@
 
 ;;; Code:
 
-;TODO: add irony-mode support
+;; TODO: add irony-mode support
+;; TODO: may try lsp-mode
 
 (use-package
   google-c-style
