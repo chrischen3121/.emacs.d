@@ -10,6 +10,9 @@
 # Undo-tree save-files
 *.~undo-tree
 
+# C++ mode
+irony/
+
 # Others
 .cache/
 .last-package-update-day

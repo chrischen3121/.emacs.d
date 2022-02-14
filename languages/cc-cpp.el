@@ -20,13 +20,33 @@
 
 ;;; Code:
 
-;; TODO: add irony-mode support
-;; TODO: may try lsp-mode
-
 (use-package
   google-c-style
   :hook (c-mode-common . google-set-c-style)
   (c-mode-common . google-make-newline-indent))
+
+(use-package
+  irony
+  :hook (c-mode-common . irony-mode)
+  (irony-mode . irony-cdb-autosetup-compile-options)
+  :bind (:map irony-mode-map
+              ("C-c i t" . irony-get-type))
+  :config (which-key-add-keymap-based-replacements irony-mode-map "C-c i" "irony"))
+
+(use-package
+  company-irony
+  :after (:all company
+               irony))
+
+(use-package
+  irony-eldoc
+  :after irony
+  :hook (irony-mode . irony-eldoc))
+
+(use-package
+  flycheck-irony
+  :after irony
+  :hook (flycheck-mode . flycheck-irony-setup))
 
 (use-package
   clang-format
@@ -49,11 +69,11 @@
               ("C-c t c" . ggtags-create-tags)
               ("C-c t u" . ggtags-update-tags)
               ("C-c t p" . pop-tag-mark)))
-;; TODO: ivy-gtags
 
 (defun cc-c++/set-company-backends ()
   (set (make-local-variable 'company-backends)
-       '((company-clang company-yasnippet) company-cmake  company-gtags)))
+       '((company-clang company-yasnippet)
+         (company-irony company-yasnippet) company-cmake  company-gtags)))
 
 (defun cc-c++/compile ()
   (interactive)
