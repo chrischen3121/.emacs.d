@@ -10,6 +10,9 @@
 # Undo-tree save-files
 *.~undo-tree
 
+# eshell
+eshell/
+
 # C++ mode
 irony/
 
