@@ -23,15 +23,17 @@
   spacemacs-theme
   :no-require t
   :init (if (daemonp)
-        (add-hook 'after-make-frame-functions (lambda (frame)
-                            (select-frame frame)
-                            (load-theme 'spacemacs-light t)))
-      (load-theme 'spacemacs-light t))
+            (add-hook 'after-make-frame-functions (lambda (frame)
+                                                    (select-frame frame)
+                                                    (load-theme 'spacemacs-light t)))
+          (load-theme 'spacemacs-light t))
   ;; (load-theme 'spacemacs-dark t)
   )
 
 (use-package
-  all-the-icons)
+  all-the-icons
+  :config (unless (member "all-the-icons" (font-family-list))
+            (all-the-icons-install-fonts t)))
 
 ;; (toggle-frame-fullscreen)
 (toggle-frame-maximized)
@@ -46,7 +48,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (display-battery-mode +1)
 
-(add-to-list 'default-frame-alist '(font . "Source Code Pro-10"))
+(add-to-list 'default-frame-alist '(font . "Source Code Pro-11"))
 (set-fontset-font t 'han "WenQuanYi Micro Hei Mono-11")
 
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
@@ -59,14 +61,14 @@
   ibuffer-projectile
   :after ibuffer
   :config (add-hook 'ibuffer-hook (lambda ()
-                    (ibuffer-projectile-set-filter-groups)
-                    (unless (eq ibuffer-sorting-mode 'alphabetic)
-                      (ibuffer-do-sort-by-alphabetic)))))
+                                    (ibuffer-projectile-set-filter-groups)
+                                    (unless (eq ibuffer-sorting-mode 'alphabetic)
+                                      (ibuffer-do-sort-by-alphabetic)))))
 
 (use-package
   ace-window
   :bind (([remap other-window] . ace-window)
-     ("C-x w" . ace-swap-window)))
+         ("C-x w" . ace-swap-window)))
 
 
 (use-package
@@ -97,7 +99,7 @@
   smart-tab
   :delight
   :hook ((prog-mode . smart-tab-mode)
-     (text-mode . smart-tab-mode)))
+         (text-mode . smart-tab-mode)))
 
 (require 'cc-treemacs)
 
