@@ -72,12 +72,6 @@
   websocket
   :after org-roam)
 
-(use-package
-  org-preview-html
-  :after org-roam
-  :bind (:map org-mode-map
-              ("C-c n h" . org-preview-html/preview)))
-
 (defvar org-roam-ui-dir (expand-file-name "org-roam-ui" private-dir))
 ;; TODO: use blocking clone
 (when (not (file-exists-p org-roam-ui-dir))
@@ -85,6 +79,7 @@
 (add-to-list 'load-path org-roam-ui-dir)
 (load-library "org-roam-ui")
 (global-set-key (kbd "C-c n s") 'org-roam-ui-mode)
+
 (setq org-roam-ui-sync-theme t)
 
 ;; which-key
