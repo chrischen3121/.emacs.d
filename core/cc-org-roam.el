@@ -49,14 +49,23 @@
   (org-roam-db-location cc-org-roam/org-roam-db-location)
   (org-roam-graph-viewer cc-org-roam/org-roam-graph-viewer)
   (org-roam-dailies-directory cc-org-roam/org-roam-dailies-directory)
+  (org-id-link-to-org-use-id t)
+  (org-roam-capture-templates '(("d" "default" plain "%?"
+                                 :immediate-finish t
+                                 :if-new (file+head "${slug}.org" "#+TITLE: ${title}\n")
+                                 :unnarrowed t)
+                                ("t" "temp" plain "%?"
+                                 :immediate-finish t
+                                 :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}\n")
+                                 :unnarrowed t)))
   :config (org-roam-db-autosync-mode)
+  (setq org-id-extra-files (org-roam--list-files org-roam-directory))
   (require 'org-roam-protocol)
   ;; (setq org-roam-completion-system 'ivy)
   :bind (("C-c n j" . org-roam-dailies-capture-today)
          ("C-c n d" . org-roam-dailies-find-directory)
          ("C-c n c" . org-roam-capture)
          ("C-c n f" . org-roam-node-find)
-         ("C-c n g" . org-roam-graph)
          ("C-c n i" . org-roam-node-insert)
          ("C-c n p" . org-id-get-create)
          ("C-c n b" . org-roam-buffer-toggle)
@@ -72,15 +81,21 @@
   websocket
   :after org-roam)
 
+;; (use-package
+;;   org-roam-ui
+;;   :after org-roam
+;;   :custom (org-roam-ui-sync-theme t)
+;;   (org-roam-ui-follow t)
+;;   (org-roam-ui-update-on-save t)
+;;   :bind (("C-c n s" . org-roam-ui-mode)))
+
+;; from git
 (defvar org-roam-ui-dir (expand-file-name "org-roam-ui" private-dir))
-;; TODO: use blocking clone
 (when (not (file-exists-p org-roam-ui-dir))
   (magit-clone-shallow "https://github.com/org-roam/org-roam-ui.git" private-dir '() 1))
 (add-to-list 'load-path org-roam-ui-dir)
 (load-library "org-roam-ui")
 (global-set-key (kbd "C-c n s") 'org-roam-ui-mode)
-
-(setq org-roam-ui-sync-theme t)
 
 ;; which-key
 (which-key-add-key-based-replacements "C-c n" "org-roam")
