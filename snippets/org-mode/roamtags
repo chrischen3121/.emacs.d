@@ -2,4 +2,4 @@
 # name: roamtags
 # key: -t
 # --
-- tags: $0
+- tags :: $0
