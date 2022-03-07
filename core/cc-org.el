@@ -24,6 +24,9 @@
   (set (make-local-variable 'company-backends)
        '(company-capf company-ispell)))
 
+(defun cc-org/disable-indent-mode ()
+  (electric-indent-local-mode -1))
+
 ;; anki
 (use-package
   anki-editor
@@ -36,7 +39,7 @@
   :custom (anki-editor-create-decks t))
 
 ;; full-text search
-;TODO:
+                                        ;TODO:
 ;; (use-package
 ;;   deft
 ;;   :after org
@@ -86,6 +89,7 @@
   :hook (org-mode . flyspell-mode)
   (org-mode . smartparens-mode)
   (org-mode . cc-org/set-company-backends)
+  (org-mode . cc-org/disable-indent-mode)
   :init (require 'org-tempo)
   :custom (org-format-latex-options (plist-put org-format-latex-options
                                                :scale 5.0))
@@ -96,7 +100,8 @@
          ("C-c b" . org-switchb)
          :map org-mode-map ("C-c i" . org-id-get-create))
   :config (org-babel-do-load-languages 'org-babel-load-languages '((dot . t)
-                                                                   (plantuml . t))))
+                                                                   (plantuml . t)))
+  (org-indent-mode -1))
 
 (use-package
   org-tree-slide
