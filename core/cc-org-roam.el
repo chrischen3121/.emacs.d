@@ -56,7 +56,8 @@
                                  :unnarrowed t)
                                 ("t" "temp" plain "%?"
                                  :immediate-finish t
-                                 :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}\n")
+                                 :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                                                    "#+TITLE: ${title}\n")
                                  :unnarrowed t)))
   :config (org-roam-db-autosync-mode)
   (setq org-id-extra-files (org-roam--list-files org-roam-directory))
@@ -69,6 +70,7 @@
          ("C-c n i" . org-roam-node-insert)
          ("C-c n p" . org-id-get-create)
          ("C-c n b" . org-roam-buffer-toggle)
+         ("C-c n s" . org-roam-ui-mode)
          :map org-mode-map ("C-c n a" . org-roam-alias-add)
          ("C-c n t" . org-roam-tag-add)
          ("C-c n r" . org-roam-ref-add)))
@@ -81,21 +83,20 @@
   websocket
   :after org-roam)
 
-;; (use-package
-;;   org-roam-ui
-;;   :after org-roam
-;;   :custom (org-roam-ui-sync-theme t)
-;;   (org-roam-ui-follow t)
-;;   (org-roam-ui-update-on-save t)
-;;   :bind (("C-c n s" . org-roam-ui-mode)))
+(use-package
+  org-roam-ui
+  :after org-roam
+  :custom (org-roam-ui-sync-theme t)
+  (org-roam-ui-follow t)
+  (org-roam-ui-update-on-save t))
 
 ;; from git
-(defvar org-roam-ui-dir (expand-file-name "org-roam-ui" private-dir))
-(when (not (file-exists-p org-roam-ui-dir))
-  (magit-clone-shallow "https://github.com/org-roam/org-roam-ui.git" private-dir '() 1))
-(add-to-list 'load-path org-roam-ui-dir)
-(load-library "org-roam-ui")
-(global-set-key (kbd "C-c n s") 'org-roam-ui-mode)
+;; (defvar org-roam-ui-dir (expand-file-name "org-roam-ui" private-dir))
+;; (when (not (file-exists-p org-roam-ui-dir))
+;;   (magit-clone-shallow "https://github.com/org-roam/org-roam-ui.git" private-dir '() 1))
+;; (add-to-list 'load-path org-roam-ui-dir)
+;; (load-library "org-roam-ui")
+;; (global-set-key (kbd "C-c n s") 'org-roam-ui-mode)
 
 ;; which-key
 (which-key-add-key-based-replacements "C-c n" "org-roam")
