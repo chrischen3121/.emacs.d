@@ -19,16 +19,26 @@
 
 ;;; Code:
 
+;; (use-package
+;;   spacemacs-theme
+;;   :no-require t
+;;   :init (if (daemonp)
+;;             (add-hook 'after-make-frame-functions (lambda (frame)
+;;                                                     (select-frame frame)
+;;                                                     (load-theme 'spacemacs-light t)))
+;;           (load-theme 'spacemacs-light t))
+;;   ;; (load-theme 'spacemacs-dark t)
+;;   )
+
 (use-package
-  spacemacs-theme
+  gruvbox-theme
   :no-require t
   :init (if (daemonp)
             (add-hook 'after-make-frame-functions (lambda (frame)
                                                     (select-frame frame)
-                                                    (load-theme 'spacemacs-light t)))
-          (load-theme 'spacemacs-light t))
-  ;; (load-theme 'spacemacs-dark t)
-  )
+                                                    (load-theme 'gruvbox-light-medium t)))
+          (load-theme 'gruvbox-light-medium t)))
+
 
 (use-package
   all-the-icons
@@ -85,6 +95,7 @@
 
 (use-package
   undo-tree
+
   :delight
   :custom (undo-tree-visualizer-timestamps t)
   (undo-tree-visualizer-diff t)
@@ -97,6 +108,7 @@
 
 (use-package
   smart-tab
+
   :delight
   :hook ((prog-mode . smart-tab-mode)
          (text-mode . smart-tab-mode)))
