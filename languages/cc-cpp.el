@@ -70,10 +70,15 @@
               ("C-c t u" . ggtags-update-tags)
               ("C-c t p" . pop-tag-mark)))
 
+(use-package
+  company-irony-c-headers
+  :after (company irony))
+
 (defun cc-c++/set-company-backends ()
   (set (make-local-variable 'company-backends)
-       '((company-clang company-yasnippet)
-         (company-irony company-yasnippet) company-cmake  company-gtags)))
+       '((company-irony-c-headers company-irony company-yasnippet) company-cmake (company-clang
+                                                                                  company-yasnippet)
+         company-gtags)))
 
 (defun cc-c++/compile ()
   (interactive)
