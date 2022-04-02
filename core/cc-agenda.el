@@ -34,6 +34,7 @@
 
 (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
                           (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)")))
+(setq-default org-priority-default 67)
 
 (setq org-todo-state-tags-triggers '(("CANCELED" ("CANCELED" . t))
                                      ("WAITING" ("WAITING" . t))
