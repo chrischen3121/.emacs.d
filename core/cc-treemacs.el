@@ -65,27 +65,27 @@
   (treemacs-width 35)
   (treemacs-workspace-switch-cleanup nil)
   :config (progn
-	    ;; The default width and height of the icons is 22 pixels. If you are
-	    ;; using a Hi-DPI display, uncomment this to double the icon size.
-	    ;;(treemacs-resize-icons 44)
-	    (setq treemacs-collapse-dirs (if treemacs-python-executable 3 0))
-	    (treemacs-follow-mode t)
-	    (treemacs-filewatch-mode t)
-	    (treemacs-fringe-indicator-mode 'always)
-	    (pcase (cons (not (null (executable-find "git")))
-			 (not (null treemacs-python-executable)))
-	      (`(t . t)
-	       (treemacs-git-mode 'deferred))
-	      (`(t . _)
-	       (treemacs-git-mode 'simple)))
-	    (which-key-add-key-based-replacements "C-x t" "treemacs"))
-  :bind (("M-0" . treemacs-select-window)
-	 ("C-x t 1" . treemacs-delete-other-windows)
-	 ("C-x t t" . treemacs)
-	 ("C-x t a" . treemacs-add-project-to-workspace)
-	 ("C-x t b" . treemacs-bookmark)
-	 ("C-x t f" . treemacs-find-file)
-	 ("C-x t g" . treemacs-find-tag)))
+      ;; The default width and height of the icons is 22 pixels. If you are
+      ;; using a Hi-DPI display, uncomment this to double the icon size.
+      ;;(treemacs-resize-icons 44)
+      (setq treemacs-collapse-dirs (if treemacs-python-executable 3 0))
+      (treemacs-follow-mode t)
+      (treemacs-filewatch-mode t)
+      (treemacs-fringe-indicator-mode 'always)
+      (pcase (cons (not (null (executable-find "git")))
+       (not (null treemacs-python-executable)))
+        (`(t . t)
+         (treemacs-git-mode 'deferred))
+        (`(t . _)
+         (treemacs-git-mode 'simple)))
+      (which-key-add-key-based-replacements "C-c t" "treemacs"))
+  :bind (("C-c t w" . treemacs-select-window)
+   ("C-c t k" . treemacs-delete-other-windows)
+   ("C-c t t" . treemacs)
+   ("C-c t a" . treemacs-add-project-to-workspace)
+   ("C-c t b" . treemacs-bookmark)
+   ("C-c t f" . treemacs-find-file)
+   ("C-c t g" . treemacs-find-tag)))
 
 (use-package
   treemacs-projectile
