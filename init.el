@@ -60,6 +60,7 @@
 (require 'cc-js)
 (require 'cc-sml)
 (require 'cc-html)
+(require 'cc-css)
 
 (message "Happy Hacking!🌅🚣🏝️")
 
