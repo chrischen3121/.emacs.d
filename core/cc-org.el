@@ -22,7 +22,7 @@
 
 (defun cc-org/set-company-backends ()
   (set (make-local-variable 'company-backends)
-       '(company-capf company-ispell)))
+       '(company-ispell company-capf company-dabbrev)))
 
 (defun cc-org/disable-indent-mode ()
   (electric-indent-local-mode -1))
