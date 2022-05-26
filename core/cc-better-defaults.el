@@ -59,7 +59,7 @@
 (display-battery-mode +1)
 
 (add-to-list 'default-frame-alist '(font . "Source Code Pro-11"))
-(set-fontset-font t 'han "WenQuanYi Micro Hei Mono-11")
+(set-fontset-font t 'han "WenQuanYi Micro Hei-11")
 
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
