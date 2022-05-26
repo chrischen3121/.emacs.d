@@ -18,12 +18,52 @@
 ;; For a full copy of the GNU General Public License
 ;; see <http://www.gnu.org/licenses/>.
 
+;; Useful keybindings:
+;; C-c p c: Run compilation command at project root
+;; C-c p a: Switch between .h and .c or .cpp
+
 ;;; Code:
 
 (use-package
   google-c-style
   :hook (c-mode-common . google-set-c-style)
   (c-mode-common . google-make-newline-indent))
+
+
+(use-package
+  sr-speedbar
+  :bind (("C-c t s" . sr-speedbar-toggle)))
+
+(use-package
+  function-args
+  :after cc-mode
+  :config (fa-config-default))
+
+(use-package
+  clang-format
+  :after cc-mode
+  :bind (:map c-mode-base-map
+              ("C-c f" . clang-format-buffer)))
+
+(use-package
+  modern-cpp-font-lock
+  :ensure t)
+
+(use-package
+  ggtags
+  :hook (c-mode-common . ggtags-mode)
+  (c-mode-common . smartparens-mode)
+  :bind (:map ggtags-mode-map
+              ("C-c g d" . ggtags-find-definition)
+              ("C-c g o" . ggtags-find-other-symbol)
+              ("C-c g h" . ggtags-view-tag-history)
+              ("C-c g r" . ggtags-find-reference)
+              ("C-c g c" . ggtags-create-tags)
+              ("C-c g u" . ggtags-update-tags)
+              ("C-c g p" . pop-tag-mark)
+              ("C-c g g" . ggtags-grep)
+              ("C-c g j" . moo-jump-local))
+  :config (which-key-add-keymap-based-replacements c-mode-base-map "C-c g" "ggtags"))
 
 (use-package
   irony
@@ -47,28 +87,6 @@
   flycheck-irony
   :after irony
   :hook (flycheck-mode . flycheck-irony-setup))
-
-(use-package
-  clang-format
-  :after cc-mode
-  :bind (:map c-mode-base-map
-              ("C-c f" . clang-format-buffer)))
-
-(use-package
-  modern-cpp-font-lock
-  :ensure t)
-
-(use-package
-  ggtags
-  :hook (c-mode-common . ggtags-mode)
-  (c-mode-common . smartparens-mode)
-  :bind (:map ggtags-mode-map
-              ("C-c t s" . ggtags-find-other-symbol)
-              ("C-c t h" . ggtags-view-tag-history)
-              ("C-c t r" . ggtags-find-reference)
-              ("C-c t c" . ggtags-create-tags)
-              ("C-c t u" . ggtags-update-tags)
-              ("C-c t p" . pop-tag-mark)))
 
 (use-package
   company-irony-c-headers
