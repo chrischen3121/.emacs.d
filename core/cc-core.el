@@ -21,9 +21,14 @@
 ;;; Code:
 (require 'cl-lib)
 
-(require 'cc-packages)
+(require 'package)
+(setq package-archives '(("gnu"   . "https://elpa.zilongshanren.com/gnu/")
+                         ("melpa" . "https://elpa.zilongshanren.com/melpa/")
+                         ("org" . "https://elpa.zilongshanren.com/org/")))
+(package-initialize)
+(unless package-archive-contents (package-refresh-contents))
 
-;; use-package
+;; install use-package
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
@@ -35,8 +40,8 @@
 (setq use-package-always-ensure t)
 (setq use-package-verbose t)
 
-;; (use-package
-;;   use-package-ensure-system-package)
+(use-package use-package-ensure-system-package
+  :ensure t)
 
 (use-package
   delight

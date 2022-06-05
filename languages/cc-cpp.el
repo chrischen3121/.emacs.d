@@ -52,7 +52,6 @@
 (use-package
   ggtags
   :hook (c-mode-common . ggtags-mode)
-  (c-mode-common . smartparens-mode)
   :bind (:map ggtags-mode-map
               ("C-c g d" . ggtags-find-definition)
               ("C-c g o" . ggtags-find-other-symbol)
@@ -113,7 +112,7 @@
   (tab-width 4)
   (gdb-many-windows t)
   (gdb-show-main t)
-  :hook (c++-mode . cc-c++/set-company-backends)
+  :hook (c-mode-common . cc-c++/set-company-backends)
   :config (which-key-add-keymap-based-replacements c-mode-base-map "C-c m" "cc-mode tools")
   :bind (:map c-mode-base-map
               ("C-c m c" . cc-c++/compile)

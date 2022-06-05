@@ -25,7 +25,6 @@
   :custom (indent-tabs-mode nil)
   (tab-width 2)
   (standard-indent 2)
-  :hook (json-mode . smartparens-mode)
   :bind (:map json-mode-map
               ("C-c f" . json-pretty-print-buffer)))
 

@@ -81,8 +81,9 @@
   :delight auto-revert-mode)
 
 (use-package
-  smartparens-config
-  :ensure smartparens)
+  smartparens
+  :ensure nil
+  :hook (prog-mode . smartparens-mode))
 
 (use-package
   paren

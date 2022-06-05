@@ -76,6 +76,7 @@
 
 (use-package
   sphinx-doc
+
   :delight
   :hook (python-mode . sphinx-doc-mode)
   :bind (:map python-mode-map
@@ -115,8 +116,7 @@
   (indent-tabs-mode nil)
   (tab-width 4)
   :config (which-key-add-keymap-based-replacements python-mode-map "C-c m" "py-mode tools")
-  :hook (python-mode . smartparens-mode)
-  (python-mode . cc-python/set-flycheck-checkers)
+  :hook (python-mode . cc-python/set-flycheck-checkers)
   (python-mode . cc-python/set-company-backends)
   :bind (:map python-mode-map
               ("C-c f" .  cc-python/format-buffer)

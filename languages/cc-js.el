@@ -24,8 +24,7 @@
   :ensure nil
   :custom (indent-tabs-mode nil)
   (tab-width 2)
-  (standard-indent 2)
-  :hook (js-mode . smartparens-mode))
+  (standard-indent 2))
 
 (provide 'cc-js)
 

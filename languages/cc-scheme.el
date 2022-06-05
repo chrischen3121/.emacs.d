@@ -24,11 +24,6 @@
 ;;   (set (make-local-variable 'company-backends)
 ;;        '((company-scheme company-yasnippet))))
 
-(use-package
-  scheme
-  :ensure nil
-  :hook (scheme-mode . smartparens-mode))
-
 (provide 'cc-scheme)
 
 ;;; cc-scheme.el ends here

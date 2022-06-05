@@ -21,8 +21,7 @@
 ;;; Code:
 
 (use-package
-  sml-mode
-  :hook (sml-mode . smartparens-mode))
+  sml-mode)
 
 (provide 'cc-sml)
 

@@ -16,6 +16,11 @@ eshell/
 # C++ mode
 irony/
 
+# lsp-mode
+.lsp-session*
+.dap-breakpoints
+semanticdb/
+
 # Others
 .cache/
 .last-package-update-day

@@ -1,7 +1,7 @@
 ;;; cc-css.el
 
-;; Author: auther
-;; Maintainer: auther
+;; Author: Chris Chen
+;; Maintainer: Chris Chen
 
 ;; This file is not part of GNU Emacs
 
@@ -19,12 +19,6 @@
 ;; see <http://www.gnu.org/licenses/>.
 
 ;;; Code:
-
-
-(use-package
-  css-mode
-  :ensure nil
-  :hook (css-mode . smartparens-mode))
 
 
 (provide 'cc-css)
