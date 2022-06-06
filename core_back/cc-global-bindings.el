@@ -1,4 +1,4 @@
-;;; cc-elisp.el
+;;; cc-global-bindinds.el
 
 ;; Author: Chris Chen
 ;; Maintainer: Chris Chen
@@ -20,23 +20,16 @@
 
 ;;; Code:
 
-(defun cc-elisp/set-company-backends ()
-  (set (make-local-variable 'company-backends)
-       '((company-elisp company-yasnippet))))
+(global-set-key (kbd "S-SPC") #'set-mark-command)
 
-(delight 'emacs-lisp-mode "ELisp"
-         :major)
+(global-set-key (kbd "C-x p i") #'package-install)
+(global-set-key (kbd "C-x p l") #'list-packages)
+(global-set-key (kbd "C-x p r") #'package-refresh-contents)
+(which-key-add-key-based-replacements "C-x p" "packages")
 
-(use-package
-  elisp-mode
-  :ensure nil
-  :hook (emacs-lisp-mode . cc-elisp/set-company-backends))
+(global-set-key (kbd "C-x c c") #'customize)
+(global-set-key (kbd "C-x c g") #'customize-group)
+(which-key-add-key-based-replacements "C-x c" "customize")
 
-(use-package
-  elisp-format
-  :bind (:map emacs-lisp-mode-map
-              ("C-c f" . elisp-format-buffer)))
-
-(provide 'cc-elisp)
-
-;;; cc-elisp.el ends here
+(provide 'cc-global-bindings)
+;;; cc-global-bindinds.el ends here

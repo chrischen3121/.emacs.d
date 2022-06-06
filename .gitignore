@@ -30,6 +30,7 @@ savefile/
 transient/
 projectile-bookmarks.eld
 elpa/
+cnfonts/
 url/
 private/*
 anaconda-mode/

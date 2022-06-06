@@ -1,4 +1,4 @@
-;;; cc-elisp.el
+;;; cc-json.el
 
 ;; Author: Chris Chen
 ;; Maintainer: Chris Chen
@@ -19,24 +19,15 @@
 ;; see <http://www.gnu.org/licenses/>.
 
 ;;; Code:
-
-(defun cc-elisp/set-company-backends ()
-  (set (make-local-variable 'company-backends)
-       '((company-elisp company-yasnippet))))
-
-(delight 'emacs-lisp-mode "ELisp"
-         :major)
-
 (use-package
-  elisp-mode
+  json-mode
   :ensure nil
-  :hook (emacs-lisp-mode . cc-elisp/set-company-backends))
+  :custom (indent-tabs-mode nil)
+  (tab-width 2)
+  (standard-indent 2)
+  :bind (:map json-mode-map
+              ("C-c f" . json-pretty-print-buffer)))
 
-(use-package
-  elisp-format
-  :bind (:map emacs-lisp-mode-map
-              ("C-c f" . elisp-format-buffer)))
+(provide 'cc-json)
 
-(provide 'cc-elisp)
-
-;;; cc-elisp.el ends here
+;;; cc-json.el ends here

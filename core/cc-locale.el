@@ -1,4 +1,4 @@
-;;; cc-elisp.el
+;;; cc-locale.el
 
 ;; Author: Chris Chen
 ;; Maintainer: Chris Chen
@@ -20,23 +20,23 @@
 
 ;;; Code:
 
-(defun cc-elisp/set-company-backends ()
-  (set (make-local-variable 'company-backends)
-       '((company-elisp company-yasnippet))))
+(setq package-archives '(("gnu"   . "https://elpa.zilongshanren.com/gnu/")
+                         ("melpa" . "https://elpa.zilongshanren.com/melpa/")
+                         ("org" . "https://elpa.zilongshanren.com/org/")))
 
-(delight 'emacs-lisp-mode "ELisp"
-         :major)
-
-(use-package
-  elisp-mode
-  :ensure nil
-  :hook (emacs-lisp-mode . cc-elisp/set-company-backends))
+;; Fonts
+(prefer-coding-system 'utf-8)
+;; (set-frame-font "Source Code Pro-11" nil t)
+;; (set-fontset-font t 'han "WenQuanYi Micro Hei-11")
 
 (use-package
-  elisp-format
-  :bind (:map emacs-lisp-mode-map
-              ("C-c f" . elisp-format-buffer)))
+  cnfonts
+  :init (cnfonts-mode 1)
+  :bind (:map cnfonts-mode-map
+              ("C--" . cnfonts-decrease-fontsize)
+              ("C-=" . cnfonts-increase-fontsize)))
+;; Use 'M-x cnfonts-edit-profile' to setup profile
 
-(provide 'cc-elisp)
+(provide 'cc-locale)
 
-;;; cc-elisp.el ends here
+;;; cc-locale.el ends here

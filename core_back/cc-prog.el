@@ -48,15 +48,15 @@
   :config (whole-line-or-region-global-mode +1)
   :delight whole-line-or-region-local-mode)
 
-;; (use-package
-;;   which-func
-;;   :custom (which-func-unknown "n/a")
-;;   :hook (prog-mode . which-function-mode))
+(use-package
+  which-func
+  :custom (which-func-unknown "n/a")
+  :hook (prog-mode . which-function-mode))
 
-;; (use-package
-;;   elisp-format
-;;   :bind (:map emacs-lisp-mode-map
-;;               ("C-c f" . elisp-format-buffer)))
+(use-package
+  elisp-format
+  :bind (:map emacs-lisp-mode-map
+              ("C-c f" . elisp-format-buffer)))
 
 (use-package
   whitespace
@@ -68,6 +68,7 @@
   :delight
   :config (global-company-mode +1)
   (add-to-list 'company-backends 'company-ispell))
+
 
 
 (use-package
@@ -84,20 +85,20 @@
   :ensure nil
   :hook (prog-mode . smartparens-mode))
 
-;; (use-package
-;;   paren
-;;   :defer nil
-;;   :config (show-paren-mode +1))
+(use-package
+  paren
+  :defer nil
+  :config (show-paren-mode +1))
 
-;; (use-package
-;;   rainbow-mode
-;;   :delight
-;;   :hook prog-mode)
+(use-package
+  rainbow-mode
+  :delight
+  :hook prog-mode)
 
-;; (use-package
-;;   rainbow-delimiters
-;;   :delight
-;;   :hook (prog-mode . rainbow-delimiters-mode))
+(use-package
+  rainbow-delimiters
+  :delight
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package
   flyspell

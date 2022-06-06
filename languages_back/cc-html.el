@@ -1,7 +1,6 @@
-;;; cc-elisp.el
+;;; cc-html.el
 
 ;; Author: Chris Chen
-;; Maintainer: Chris Chen
 
 ;; This file is not part of GNU Emacs
 
@@ -20,23 +19,13 @@
 
 ;;; Code:
 
-(defun cc-elisp/set-company-backends ()
-  (set (make-local-variable 'company-backends)
-       '((company-elisp company-yasnippet))))
-
-(delight 'emacs-lisp-mode "ELisp"
-         :major)
-
 (use-package
-  elisp-mode
+  mhtml-mode
   :ensure nil
-  :hook (emacs-lisp-mode . cc-elisp/set-company-backends))
+  :config (which-key-add-key-based-replacements "C-c C-c" "html-components"))
 
-(use-package
-  elisp-format
-  :bind (:map emacs-lisp-mode-map
-              ("C-c f" . elisp-format-buffer)))
 
-(provide 'cc-elisp)
 
-;;; cc-elisp.el ends here
+(provide 'cc-html)
+
+;;; cc-html.el ends here

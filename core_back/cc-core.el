@@ -23,6 +23,10 @@
 
 (require 'package)
 
+(require 'cc-locale)
+(require 'cc-helm)
+(require 'cc-dev)
+
 (package-initialize)
 (unless package-archive-contents (package-refresh-contents))
 
@@ -51,12 +55,6 @@
   (setq auto-package-update-delete-old-versions t)
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
-
-(require 'cc-locale)
-(require 'cc-better-defaults)
-(require 'cc-helm)
-;; (require 'cc-treemacs)
-;; (require 'cc-dev)
 
 (provide 'cc-core)
 

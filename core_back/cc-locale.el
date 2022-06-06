@@ -1,4 +1,4 @@
-;;; cc-elisp.el
+;;; cc-locale.el
 
 ;; Author: Chris Chen
 ;; Maintainer: Chris Chen
@@ -20,23 +20,17 @@
 
 ;;; Code:
 
-(defun cc-elisp/set-company-backends ()
-  (set (make-local-variable 'company-backends)
-       '((company-elisp company-yasnippet))))
+(setq package-archives '(("gnu"   . "https://elpa.zilongshanren.com/gnu/")
+                         ("melpa" . "https://elpa.zilongshanren.com/melpa/")
+                         ("org" . "https://elpa.zilongshanren.com/org/")))
 
-(delight 'emacs-lisp-mode "ELisp"
-         :major)
+;; Fonts
+(prefer-coding-system 'utf-8)
+;; (add-to-list 'default-frame-alist '(font . "Source Code Pro-11"))
+;; (set-fontset-font t 'han "WenQuanYi Micro Hei-11")
 
-(use-package
-  elisp-mode
-  :ensure nil
-  :hook (emacs-lisp-mode . cc-elisp/set-company-backends))
+;; TODO: org table alignment
 
-(use-package
-  elisp-format
-  :bind (:map emacs-lisp-mode-map
-              ("C-c f" . elisp-format-buffer)))
+(provide 'cc-locale)
 
-(provide 'cc-elisp)
-
-;;; cc-elisp.el ends here
+;;; cc-locale.el ends here

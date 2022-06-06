@@ -1,4 +1,4 @@
-;;; cc-elisp.el
+;;; cc-css.el
 
 ;; Author: Chris Chen
 ;; Maintainer: Chris Chen
@@ -20,23 +20,5 @@
 
 ;;; Code:
 
-(defun cc-elisp/set-company-backends ()
-  (set (make-local-variable 'company-backends)
-       '((company-elisp company-yasnippet))))
 
-(delight 'emacs-lisp-mode "ELisp"
-         :major)
-
-(use-package
-  elisp-mode
-  :ensure nil
-  :hook (emacs-lisp-mode . cc-elisp/set-company-backends))
-
-(use-package
-  elisp-format
-  :bind (:map emacs-lisp-mode-map
-              ("C-c f" . elisp-format-buffer)))
-
-(provide 'cc-elisp)
-
-;;; cc-elisp.el ends here
+(provide 'cc-css)
