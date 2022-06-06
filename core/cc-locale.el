@@ -20,10 +20,6 @@
 
 ;;; Code:
 
-(setq package-archives '(("gnu"   . "https://elpa.zilongshanren.com/gnu/")
-                         ("melpa" . "https://elpa.zilongshanren.com/melpa/")
-                         ("org" . "https://elpa.zilongshanren.com/org/")))
-
 ;; Fonts
 (prefer-coding-system 'utf-8)
 ;; (set-frame-font "Source Code Pro-11" nil t)

@@ -23,6 +23,10 @@
 
 (require 'package)
 
+(setq package-archives '(("gnu"   . "https://elpa.zilongshanren.com/gnu/")
+                         ("melpa" . "https://elpa.zilongshanren.com/melpa/")
+                         ("org" . "https://elpa.zilongshanren.com/org/")))
+
 (package-initialize)
 (unless package-archive-contents (package-refresh-contents))
 
@@ -55,7 +59,7 @@
 (require 'cc-locale)
 (require 'cc-better-defaults)
 (require 'cc-helm)
-;; (require 'cc-treemacs)
+(require 'cc-treemacs)
 ;; (require 'cc-dev)
 
 (provide 'cc-core)

@@ -29,6 +29,7 @@
 
 (use-package
   emacs
+
   :delight
   :custom (inhibit-startup-screen t)
   (make-backup-files nil)
@@ -69,22 +70,13 @@
   :config (whole-line-or-region-global-mode +1)
   :delight whole-line-or-region-local-mode)
 
-
-;; (use-package
-;;   ibuffer
-;;   :bind ("C-x C-b" . ibuffer))
-
-;; (use-package
-;;   ibuffer-projectile
-;;   :after ibuffer
-;;   :config (add-hook 'ibuffer-hook (lambda ()
-;;                  (ibuffer-projectile-set-filter-groups)
-;;                  (unless (eq ibuffer-sorting-mode 'alphabetic)
-;;                    (ibuffer-do-sort-by-alphabetic)))))
-
-;; (use-package
-;;   all-the-icons-ibuffer
-;;   :init (all-the-icons-ibuffer-mode +1))
+;; smartparens
+;; use M-x sp-cheat-sheet show all commands
+(use-package
+  smartparens
+  :init (require ' smartparens-config)
+  :hook (org-mode . smartparens-mode)
+  (prog-mode . smartparens-mode))
 
 (use-package
   ace-window
@@ -104,6 +96,7 @@
 
 ;; (use-package
 ;;   undo-tree
+
 ;;   :delight
 ;;   :custom (undo-tree-visualizer-timestamps t)
 ;;   (undo-tree-visualizer-diff t)
@@ -119,12 +112,10 @@
   :hook (before-save . whitespace-cleanup)
   :bind (("C-c w" . whitespace-mode)))
 
-;; (use-package
-;;   smart-tab
-;;   :delight
-;;   :hook ((prog-mode . smart-tab-mode)
-;;          (text-mode . smart-tab-mode)))
-
+(use-package
+  eldoc
+  :defer t
+  :delight)
 
 (provide 'cc-better-defaults)
 
