@@ -19,23 +19,26 @@
 ;; see <http://www.gnu.org/licenses/>.
 
 ;;; Code:
-
 (defun cc-elisp/set-company-backends ()
-  (set (make-local-variable 'company-backends)
-       '((company-elisp company-yasnippet))))
-
-(delight 'emacs-lisp-mode "ELisp"
-         :major)
+  (setq-local company-backends '((company-yasnippet company-dabbrev-code
+                                                    company-capf company-ispell
+                                                    :separate))))
 
 (use-package
   elisp-mode
   :ensure nil
-  :hook (emacs-lisp-mode . cc-elisp/set-company-backends))
+  :hook (emacs-lisp-mode . cc-elisp/set-company-backends)
+  :delight (emacs-lisp-mode "ELisp"
+                            :major)
+  :bind (:map emacs-lisp-mode-map
+              ("C-c C-c" . eval-buffer)))
 
 (use-package
   elisp-format
+  :custom (elisp-format-column 80)
   :bind (:map emacs-lisp-mode-map
               ("C-c f" . elisp-format-buffer)))
+
 
 (provide 'cc-elisp)
 

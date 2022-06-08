@@ -1,4 +1,5 @@
-;;; cc-better-defaults.el
+;;; cc-better-defaults.el --- Enhanced default configuration
+
 ;; Author: Chris Chen
 ;; Maintainer: Chris Chen
 
@@ -17,7 +18,13 @@
 ;; For a full copy of the GNU General Public License
 ;; see <http://www.gnu.org/licenses/>.
 
+;;; Commentary:
+
+;; Enhanced default configuration
+;;
+
 ;;; Code:
+
 (defun cc-core/after-init-func ()
   (progn (toggle-frame-maximized)
          (tool-bar-mode -1)
@@ -29,7 +36,6 @@
 
 (use-package
   emacs
-
   :delight
   :custom (inhibit-startup-screen t)
   (make-backup-files nil)
@@ -54,21 +60,27 @@
   which-key
   :config (which-key-mode 1)
   (which-key-add-key-based-replacements "C-x ESC" "repeat-command")
-  ;; (which-key-add-key-based-replacements "C-c ESC" "n/a")
   (which-key-add-key-based-replacements "C-x p" "project")
   (which-key-add-key-based-replacements "C-x t" "tab")
+  (which-key-add-key-based-replacements "C-x x" "buffer")
   (which-key-add-key-based-replacements "C-x RET" "coding-system")
   (which-key-add-key-based-replacements "C-x 8" "strange-chars")
   (which-key-add-key-based-replacements "C-x @" "event-apply")
   (which-key-add-key-based-replacements "C-x a" "abbrev")
   (which-key-add-key-based-replacements "C-x n" "narrow")
   (which-key-add-key-based-replacements "C-x r" "register")
+  (which-key-add-key-based-replacements "C-c C-d" "dev-tools")
   :delight)
 
 (use-package
   whole-line-or-region
-  :config (whole-line-or-region-global-mode +1)
+  :hook (after-init . whole-line-or-region-global-mode)
   :delight whole-line-or-region-local-mode)
+
+(use-package
+  edebug
+  :commands edebug-mode
+  :config (which-key-add-keymap-based-replacements edebug-mode-map "C-x C-a" "edebug"))
 
 ;; smartparens
 ;; use M-x sp-cheat-sheet show all commands
@@ -94,14 +106,16 @@
   :after all-the-icons
   :hook (dired-mode . all-the-icons-dired-mode))
 
-;; (use-package
-;;   undo-tree
-
-;;   :delight
-;;   :custom (undo-tree-visualizer-timestamps t)
-;;   (undo-tree-visualizer-diff t)
-;;   :config (global-undo-tree-mode +1)
-;;   :bind ("C-c C-/" . undo-tree-redo))
+;; Attention: queue-0.2 sig issue
+(use-package
+  undo-tree
+  :delight
+  :custom (undo-tree-visualizer-timestamps t)
+  (undo-tree-visualizer-diff t)
+  :config (global-undo-tree-mode +1)
+  (which-key-add-key-based-replacements "C-x u" "undo-tree")
+  :bind (("C-/" . undo-tree-undo)
+         ("M-_" . undo-tree-redo)))
 
 (use-package
   nyan-mode
@@ -110,12 +124,47 @@
 (use-package
   whitespace
   :hook (before-save . whitespace-cleanup)
-  :bind (("C-c w" . whitespace-mode)))
+  :bind (("C-c C-d w" . whitespace-mode)))
 
 (use-package
   eldoc
   :defer t
   :delight)
+
+;; flyspell & flycheck
+(use-package
+  flycheck
+  :init (which-key-add-key-based-replacements "C-c !" "flycheck")
+  :commands flycheck-mode
+  :delight
+  :hook ((prog-mode . flycheck-mode)
+         (text-mode . flycheck-mode))
+  :bind (:map flycheck-mode-map
+              ("C-c ! ?" . nil)
+              ("C-c ! h" . nil)
+              ("C-c ! V" . nil)
+              ("C-c ! C-w" . nil)
+              ("C-c ! C" . nil)
+              ("C-c ! x" . nil)
+              ("C-c ! e" . nil)
+              ("C-c ! H" . nil)))
+
+(use-package
+  flyspell
+
+  :delight
+  :bind (:map flyspell-mode-map
+              ("C-c $" . nil)
+              ("C-c ! s" . flyspell-buffer)
+              ("C-c ! i" . flyspell-correct-word-before-point))
+  :hook ((prog-mode . flyspell-prog-mode)
+         (text-mode . flyspell-mode)))
+
+(use-package
+  flycheck-grammarly
+  :custom (flycheck-grammarly-check-time 0.8)
+  :after flycheck
+  :hook (flycheck-mode . flycheck-grammarly-setup))
 
 (provide 'cc-better-defaults)
 

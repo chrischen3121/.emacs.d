@@ -2,10 +2,10 @@
 # name: filecomment
 # key: !
 # --
-;;; ${1:`(file-name-base (buffer-file-name))`}.el
+;;; ${1:`(file-name-base (buffer-file-name))`}.el --- ${2:Summary}
 
-;; Author: ${2:auther}
-;; Maintainer: $2
+;; Author: ${3:`username`}
+;; Maintainer: $3
 
 ;; This file is not part of GNU Emacs
 
@@ -21,6 +21,9 @@
 
 ;; For a full copy of the GNU General Public License
 ;; see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+;;
 
 ;;; Code:
 

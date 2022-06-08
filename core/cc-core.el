@@ -41,7 +41,8 @@
 ;; globally ensure package installation
 (setq use-package-always-ensure t)
 (setq use-package-verbose t)
-(use-package use-package-ensure-system-package
+(use-package
+  use-package-ensure-system-package
   :ensure t)
 
 (use-package
@@ -51,8 +52,7 @@
 ;; keep package updated
 (use-package
   auto-package-update
-  :config
-  (setq auto-package-update-delete-old-versions t)
+  :config (setq auto-package-update-delete-old-versions t)
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
@@ -60,7 +60,7 @@
 (require 'cc-better-defaults)
 (require 'cc-helm)
 (require 'cc-treemacs)
-;; (require 'cc-dev)
+(require 'cc-dev)
 
 (provide 'cc-core)
 

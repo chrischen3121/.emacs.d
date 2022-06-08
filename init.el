@@ -42,8 +42,6 @@
 (message "Loading core modules...")
 (add-to-list 'load-path core-dir)
 (require 'cc-core)
-;; (require 'cc-better-defaults)
-;; (require 'cc-ivy)
 ;; (require 'cc-prog)
 ;; (require 'cc-org)
 ;; (require 'cc-agenda)
@@ -51,9 +49,9 @@
 ;; (require 'cc-org-project)
 ;; (require 'cc-global-bindings)
 
-;; (message "Loading language modules...")
-;; (add-to-list 'load-path languages-dir)
-;; (require 'cc-langs)
+(message "Loading language modules...")
+(add-to-list 'load-path languages-dir)
+(require 'cc-langs)
 ;; (require 'cc-lsp)
 ;; ;; (require 'cc-python)
 ;; ;; (require 'cc-cpp)
@@ -73,7 +71,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(helm-icons helm nyan-mode undo-tree all-the-icons-dired all-the-icons ace-window smartparens whole-line-or-region which-key gruvbox-theme cnfonts auto-package-update delight use-package-ensure-system-package use-package)))
+   '(queue helm-icons helm nyan-mode undo-tree all-the-icons-dired all-the-icons ace-window smartparens whole-line-or-region which-key gruvbox-theme cnfonts auto-package-update delight use-package-ensure-system-package use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

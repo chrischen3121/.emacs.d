@@ -107,7 +107,7 @@
               ("C-c $" . nil)
               ("C-c ! s" . flyspell-buffer))
   :hook ((prog-mode . flyspell-prog-mode)
-         (test-mode . flyspell-mode)))
+         (text-mode . flyspell-mode)))
 
 (use-package
   flycheck
