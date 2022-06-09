@@ -36,6 +36,7 @@
 
 (use-package
   emacs
+
   :delight
   :custom (inhibit-startup-screen t)
   (make-backup-files nil)
@@ -45,7 +46,8 @@
   (split-height-threshold nil)
   (split-width-threshold 160)
   :hook (after-init . cc-core/after-init-func)
-  (after-save . executable-make-buffer-file-executable-if-script-p))
+  (after-save . executable-make-buffer-file-executable-if-script-p)
+  :bind (("S-SPC" . set-mark-command)))
 
 ;; use gruvbox-theme
 (use-package
@@ -53,11 +55,13 @@
   :init (if (daemonp)
             (add-hook 'after-make-frame-functions (lambda (frame)
                                                     (select-frame frame)
-                                                    (load-theme 'gruvbox-light-medium t)))
+                                                    (load-theme
+                                                     'gruvbox-light-medium t)))
           (load-theme 'gruvbox-light-medium t)))
 
 (use-package
   which-key
+  :defer nil
   :config (which-key-mode 1)
   (which-key-add-key-based-replacements "C-x ESC" "repeat-command")
   (which-key-add-key-based-replacements "C-x p" "project")
@@ -80,7 +84,8 @@
 (use-package
   edebug
   :commands edebug-mode
-  :config (which-key-add-keymap-based-replacements edebug-mode-map "C-x C-a" "edebug"))
+  :config (which-key-add-keymap-based-replacements edebug-mode-map "C-x C-a"
+            "edebug"))
 
 ;; smartparens
 ;; use M-x sp-cheat-sheet show all commands
@@ -88,7 +93,13 @@
   smartparens
   :init (require ' smartparens-config)
   :hook (org-mode . smartparens-mode)
-  (prog-mode . smartparens-mode))
+  (prog-mode . smartparens-mode)
+  :delight smartparens-mode)
+
+(use-package
+  autorevert
+  :hook (after-init . global-auto-revert-mode)
+  :delight auto-revert-mode)
 
 (use-package
   ace-window
@@ -109,11 +120,11 @@
 ;; Attention: queue-0.2 sig issue
 (use-package
   undo-tree
+  :init (which-key-add-key-based-replacements "C-x u" "undo-tree")
   :delight
   :custom (undo-tree-visualizer-timestamps t)
   (undo-tree-visualizer-diff t)
   :config (global-undo-tree-mode +1)
-  (which-key-add-key-based-replacements "C-x u" "undo-tree")
   :bind (("C-/" . undo-tree-undo)
          ("M-_" . undo-tree-redo)))
 
@@ -151,7 +162,6 @@
 
 (use-package
   flyspell
-
   :delight
   :bind (:map flyspell-mode-map
               ("C-c $" . nil)

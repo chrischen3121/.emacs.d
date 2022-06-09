@@ -25,6 +25,14 @@
                                                     :separate))))
 
 (use-package
+  helpful
+  :bind (("C-h f" . helpful-callable)
+         ("C-h v" . helpful-variable)
+         ("C-h k" . helpful-key)
+         ("C-h c" . helpful-command)
+         :map emacs-lisp-mode-map ("C-c C-d d" . helpful-at-point)))
+
+(use-package
   elisp-mode
   :ensure nil
   :hook (emacs-lisp-mode . cc-elisp/set-company-backends)

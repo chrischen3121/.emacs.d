@@ -19,9 +19,13 @@ irony/
 # lsp-mode
 .lsp-session*
 .dap-breakpoints
-semanticdb/
+
+# helm
+helm-curl.log
+projects
 
 # Others
+semanticdb/
 .cache/
 .last-package-update-day
 mycustom.el
