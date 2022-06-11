@@ -1,7 +1,7 @@
-;;; cc-global-bindinds.el
+;;; cc-dev-files.el --- modes for dev files
 
-;; Author: Chris Chen
-;; Maintainer: Chris Chen
+;; Author: chrischen
+;; Maintainer: chrischen
 
 ;; This file is not part of GNU Emacs
 
@@ -18,18 +18,43 @@
 ;; For a full copy of the GNU General Public License
 ;; see <http://www.gnu.org/licenses/>.
 
+;;; Commentary:
+;;
+
 ;;; Code:
 
-(global-set-key (kbd "S-SPC") #'set-mark-command)
+(use-package
+  json-mode
+  :defer t)
 
-(global-set-key (kbd "C-x p i") #'package-install)
-(global-set-key (kbd "C-x p l") #'list-packages)
-(global-set-key (kbd "C-x p r") #'package-refresh-contents)
-(which-key-add-key-based-replacements "C-x p" "packages")
+(use-package
+  yaml-mode
+  :defer t)
 
-(global-set-key (kbd "C-x c c") #'customize)
-(global-set-key (kbd "C-x c g") #'customize-group)
-(which-key-add-key-based-replacements "C-x c" "customize")
+(use-package
+  markdown-mode
+  :defer t)
 
-(provide 'cc-global-bindings)
-;;; cc-global-bindinds.el ends here
+(use-package
+  dockerfile-mode
+  :defer t)
+
+(use-package
+  protobuf-mode
+  :defer t)
+
+(use-package
+  graphviz-dot-mode
+  :defer t
+  :ensure-system-package dot)
+
+(use-package
+  plantuml-mode
+  :mode "\\.puml\\'"
+  :interpreter "plantuml"
+  :ensure-system-package plantuml
+  :custom (plantuml-default-exec-mode 'executable))
+
+(provide 'cc-dev-files)
+
+;;; cc-dev-files.el ends here

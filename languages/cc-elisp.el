@@ -24,12 +24,18 @@
                                                     company-capf company-ispell
                                                     :separate))))
 
+(defun cc-elisp/helpful-current-mode ()
+  "replace builtin describe-mode"
+  (interactive)
+  (helpful-command major-mode))
+
 (use-package
   helpful
-  :bind (("C-h f" . helpful-callable)
-         ("C-h v" . helpful-variable)
-         ("C-h k" . helpful-key)
+  :bind (([remap describe-function] . helpful-callable)
+         ([remap describe-variable] . helpful-variable)
+         ([remap describe-key] . helpful-key)
          ("C-h c" . helpful-command)
+         ([remap describe-mode] . cc-elisp/helpful-current-mode)
          :map emacs-lisp-mode-map ("C-c C-d d" . helpful-at-point)))
 
 (use-package

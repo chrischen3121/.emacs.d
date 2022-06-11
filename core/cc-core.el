@@ -61,6 +61,8 @@
 (require 'cc-helm)
 (require 'cc-treemacs)
 (require 'cc-dev)
+(require 'cc-dev-files)
+(require 'cc-org)
 
 (provide 'cc-core)
 

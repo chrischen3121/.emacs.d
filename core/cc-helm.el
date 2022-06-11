@@ -34,6 +34,8 @@
   (helm-net-prefer-curl t)
   (helm-autoresize-max-height 0)
   (helm-autoresize-min-height 25)
+  (helm-buffers-fuzzy-matching t)
+  (helm-recentf-fuzzy-match t)
   :bind-keymap ("C-c h" . helm-command-prefix)
   :bind (([remap execute-extended-command] . helm-M-x)
          ([remap find-file] . helm-find-files)

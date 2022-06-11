@@ -24,12 +24,6 @@
 ;;
 
 ;;; Code:
-
-(use-package
-  magit
-  :custom (magit-clone-set-remote.pushDefault t)
-  :bind ("C-x g" . magit-status))
-
 (use-package
   projectile
   :init (which-key-add-key-based-replacements "C-x p" "projectile")
@@ -59,8 +53,22 @@
          ("C-c p a" . helm-projectile-ag)
          ("C-c p r" . helm-projectile-rg)))
 
+
+(use-package
+  magit
+  :custom (magit-clone-set-remote.pushDefault t)
+  :bind ("C-x g" . magit-status))
+
+;; highlight changes
+(use-package
+  git-gutter+
+
+  :delight
+  :hook (after-init . global-git-gutter+-mode))
+
 (defun cc-dev/set-text-backends ()
-  (setq-local company-backends '((company-dabbrev-code company-ispell))))
+  (setq-local company-backends '((company-dabbrev company-ispell
+                                                  :separate))))
 
 (use-package
   company
@@ -87,7 +95,6 @@
               ("M-/" . yas-expand)))
 
 
-
 (use-package
   hideshow
   :hook (prog-mode . hs-minor-mode)
@@ -107,6 +114,27 @@
 (use-package
   linum
   :hook (prog-mode . linum-mode))
+
+
+;; "Move Where I Mean"
+(use-package
+  mwim
+  :bind (:map prog-mode-map
+              ("C-a" . mwim-beginning-of-code-or-line)
+              ("C-e" . mwim-end-of-code-or-line)))
+
+;; Visualizing Color Codes
+(use-package
+  rainbow-mode
+  :delight
+  :hook prog-mode)
+
+;; Colorize parens
+(use-package
+  rainbow-delimiters
+
+  :delight
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 (provide 'cc-dev)
 

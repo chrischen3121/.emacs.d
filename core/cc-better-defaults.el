@@ -36,7 +36,6 @@
 
 (use-package
   emacs
-
   :delight
   :custom (inhibit-startup-screen t)
   (make-backup-files nil)
@@ -47,7 +46,8 @@
   (split-width-threshold 160)
   :hook (after-init . cc-core/after-init-func)
   (after-save . executable-make-buffer-file-executable-if-script-p)
-  :bind (("S-SPC" . set-mark-command)))
+  :bind (("S-SPC" . set-mark-command)
+         ("C-h w" . woman)))
 
 ;; use gruvbox-theme
 (use-package
@@ -74,6 +74,7 @@
   (which-key-add-key-based-replacements "C-x n" "narrow")
   (which-key-add-key-based-replacements "C-x r" "register")
   (which-key-add-key-based-replacements "C-c C-d" "dev-tools")
+  (which-key-add-key-based-replacements "M-s h" "highlight")
   :delight)
 
 (use-package
@@ -81,11 +82,18 @@
   :hook (after-init . whole-line-or-region-global-mode)
   :delight whole-line-or-region-local-mode)
 
+
 (use-package
   edebug
   :commands edebug-mode
   :config (which-key-add-keymap-based-replacements edebug-mode-map "C-x C-a"
             "edebug"))
+
+;; Builtin highlight
+(use-package
+  hi-lock
+  :config (which-key-add-keymap-based-replacements hi-lock-map "C-x w"
+            "highlight"))
 
 ;; smartparens
 ;; use M-x sp-cheat-sheet show all commands
@@ -96,11 +104,13 @@
   (prog-mode . smartparens-mode)
   :delight smartparens-mode)
 
+;; Notifing changes made by other program
 (use-package
   autorevert
   :hook (after-init . global-auto-revert-mode)
   :delight auto-revert-mode)
 
+;; Easy shortcut to switch windows
 (use-package
   ace-window
   :bind (([remap other-window] . ace-window)
@@ -142,6 +152,10 @@
   :defer t
   :delight)
 
+(use-package
+  hl-todo
+  :hook (after-init . global-hl-todo-mode))
+
 ;; flyspell & flycheck
 (use-package
   flycheck
@@ -162,6 +176,7 @@
 
 (use-package
   flyspell
+
   :delight
   :bind (:map flyspell-mode-map
               ("C-c $" . nil)
@@ -170,12 +185,22 @@
   :hook ((prog-mode . flyspell-prog-mode)
          (text-mode . flyspell-mode)))
 
+
 (use-package
   flycheck-grammarly
-  :custom (flycheck-grammarly-check-time 0.8)
+  :custom (flycheck-grammarly-check-time 0.9)
   :after flycheck
   :hook (flycheck-mode . flycheck-grammarly-setup))
 
+
+;; It can help you to move your cursor to ANY position in emacs
+;; by using only 3 times key press.
+(use-package
+  ace-jump-mode
+  :bind ("C-x j" . ace-jump-mode))
+
+
 (provide 'cc-better-defaults)
+
 
 ;;; cc-better-defaults.el ends here
