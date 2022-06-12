@@ -21,6 +21,16 @@
 ;;; Commentary:
 ;;
 
+;;; Useful Commands:
+;;
+;; C-c C-l -- Insert a link
+;; C-c C-o -- Open link at point
+;; C-x n s, C-x n w -- Narrow buffer
+;; C-c / -- Search in an outline tree and fold others as much as possible
+;; M-S-RET -- Add TODO outlines or add items with a checkbox
+;; C-c -    Cycle bullets (-, +, *, ...)
+;; C-c i -- Create IDs
+;;
 ;;; Code:
 
 
@@ -28,6 +38,13 @@
   (setq-local company-backends '((company-yasnippet company-dabbrev
                                                     company-ispell
                                                     :separate))))
+
+(defun cc-org/add-keymap-based-replacements ()
+  (which-key-add-keymap-based-replacements org-mode-map "C-c f" "org-footnote")
+  (which-key-add-keymap-based-replacements org-mode-map "C-c \"" "org-plot")
+  (which-key-add-keymap-based-replacements org-mode-map "C-c C-v" "org-babel")
+  (which-key-add-keymap-based-replacements org-mode-map "C-c C-x" "org-prefix")
+  (which-key-add-keymap-based-replacements org-mode-map "C-c a" "org-anki"))
 
 (use-package
   org-tempo
@@ -39,27 +56,23 @@
   (add-to-list 'org-structure-template-alist '("elisp" . "src emacs-lisp"))
   (add-to-list 'org-tempo-keywords-alist '("t" . "TODO")))
 
-;; useful commands
-;; C-x n s, C-x n w -- narrow buffer
-;; C-c / -- search in an outline tree and fold others as much as possible
-;; M-S-RET -- add TODO outlines or add items with a checkbox
-;; C-c -    Cycle bullets (-, +, *, ...)
 (use-package
   org
   :init (which-key-add-key-based-replacements "C-c o" "org")
   :hook (org-mode . flyspell-mode)
   (org-mode . cc-org/set-company-backends)
+  (org-mode . cc-org/add-keymap-based-replacements)
   :bind (("C-c o a" . org-agenda)
          ("C-c o l" . org-store-link)
          ("C-c o c" . org-capture)
          ("C-c o b" . org-switchb)
          :map org-mode-map ("C-c i" . org-id-get-create)
          ("C-c f n" . org-footnote-new)
-         ("C-c f a" . org-footnote-action))
-  :config (org-babel-do-load-languages 'org-babel-load-languages '((dot . t)
-                                                                   (plantuml .
-                                                                             t)))
-  ;TODO: ;; (which-key-add-keymap-based-replacements 'org-mode-map "C-c f" "org-footnote")
+         ("C-c f a" . org-footnote-action)
+         ("C-c s" . org-sort))
+  ;; :config ((org-babel-do-load-languages 'org-babel-load-languages '((dot . t)
+  ;;                                                                   (plantuml .
+  ;;                                                                             t))))
   )
 
 
@@ -94,8 +107,6 @@
   anki-editor
   :after org
   :ensure-system-package anki
-  :config (which-key-add-keymap-based-replacements org-mode-map "C-c a"
-            "org-anki")
   :bind (:map org-mode-map
               ("C-c a p" . anki-editor-push-notes)
               ("C-c a i" . anki-editor-insert-note)
@@ -114,53 +125,27 @@
 ;; ;;   (deft-default-extension "org")
 ;; ;;   (deft-directory cc-org-roam/org-roam-directory))
 
-
-;; (use-package
-;;   htmlize
-;;   :defer t)
-
-
 (use-package
-  org-bullets
-  :hook (org-mode . org-bullets-mode))
+  org-superstar
+  :custom (org-superstar-special-todo-items t)
+  :hook (org-mode . org-superstar-mode))
 
-;; (use-package
-;;   org-alert
-;;   :defer t
-;;   :custom (alert-default-style 'libnotify))
 
-;; (require 'ox-md)
-;; (use-package
-;;   org
-;;   :hook (org-mode . flyspell-mode)
-;;   (org-mode . smartparens-mode)
-;;   (org-mode . cc-org/set-company-backends)
-;;   (org-mode . cc-org/disable-indent-mode)
-;;   :init (require 'org-tempo)
-;;   :custom (org-format-latex-options (plist-put org-format-latex-options
-;;                                                :scale 5.0))
-;;   (indent-tabs-mode nil)
-;;   (tab-width 8)
-;;   :bind (("C-c a" . org-agenda)
-;;          ("C-c l" . org-store-link)
-;;          ("C-c b" . org-switchb)
-;;          :map org-mode-map ("C-c i" . org-id-get-create))
-;;   :config (org-babel-do-load-languages 'org-babel-load-languages '((dot . t)
-;;                                                                    (plantuml .
-;;                                                                              t)))
-;;   (org-indent-mode -1))
-
-;; (use-package
-;;   org-tree-slide
-;;   :custom (org-tree-slide-skip-outline-level 3)
-;;   (org-tree-slide-skip-done nil)
-;;   :bind (:map org-mode-map
-;;               ("<f8>" . org-tree-slide-mode)
-;;               ("S-<f8>" . org-tree-slide-skip-done-toggle)
-;;               :map org-tree-slide-mode-map
-;;               ("<f9>" . org-tree-slide-move-previous-tree)
-;;               ("<f10>" . org-tree-slide-move-next-tree)
-;;               ("<f11>" . org-tree-slide-content)))
+;; Presentation Tool
+(use-package
+  org-tree-slide
+  :custom (org-tree-slide-header nil)
+  (org-tree-slide-cursor-init t)
+  (org-tree-slide-skip-outline-level 2)
+  (org-tree-slide-skip-done t)
+  (org-tree-slide-skip-comments t)
+  ;; :hook (org-mode . org-tree-slide-simple-profile)
+  :bind (:map org-mode-map
+              ("<f12>" . org-tree-slide-mode)
+              :map org-tree-slide-mode-map
+              ("<f9>" . org-tree-slide-move-previous-tree)
+              ("<f10>" . org-tree-slide-move-next-tree)
+              ("<f11>" . org-tree-slide-content)))
 
 
 (provide 'cc-org)

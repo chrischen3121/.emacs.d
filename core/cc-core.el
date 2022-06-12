@@ -63,6 +63,7 @@
 (require 'cc-dev)
 (require 'cc-dev-files)
 (require 'cc-org)
+(require 'cc-agenda)
 
 (provide 'cc-core)
 

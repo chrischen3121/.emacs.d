@@ -26,13 +26,13 @@
 ;;; Code:
 
 (defun cc-core/after-init-func ()
-  (progn (toggle-frame-maximized)
-         (tool-bar-mode -1)
-         ;;(menu-bar-mode -1)
-         (delete-selection-mode +1)
-         (toggle-scroll-bar -1)
-         (fset 'yes-or-no-p 'y-or-n-p)
-         (display-battery-mode +1)))
+  (toggle-frame-maximized)
+  (tool-bar-mode -1)
+  ;;(menu-bar-mode -1)
+  (delete-selection-mode +1)
+  (toggle-scroll-bar -1)
+  (fset 'yes-or-no-p 'y-or-n-p)
+  (display-battery-mode +1))
 
 (use-package
   emacs
@@ -188,7 +188,7 @@
 
 (use-package
   flycheck-grammarly
-  :custom (flycheck-grammarly-check-time 0.9)
+  :custom (flycheck-grammarly-check-time 20)
   :after flycheck
   :hook (flycheck-mode . flycheck-grammarly-setup))
 
