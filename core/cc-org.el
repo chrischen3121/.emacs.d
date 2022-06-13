@@ -30,6 +30,15 @@
 ;; M-S-RET -- Add TODO outlines or add items with a checkbox
 ;; C-c -    Cycle bullets (-, +, *, ...)
 ;; C-c i -- Create IDs
+;; ====== Tags ==========
+;; C-c C-q -- Set a tag
+;; M-x org-agenda m/M -- Match tags (only TODO)
+;; ====== Properties ========
+;; C-c C-x p -- Set a property
+;; C-c C-c d -- Remove a property
+;; ====== Timestamps ========
+;; C-c . -- Set a timestamp
+;; S-LEFT/S-Right -- Change by one day
 ;;
 ;;; Code:
 
@@ -40,6 +49,8 @@
                                                     :separate))))
 
 (defun cc-org/add-keymap-based-replacements ()
+  (which-key-add-keymap-based-replacements org-mode-map "C-c g"
+    "org-mode-agenda")
   (which-key-add-keymap-based-replacements org-mode-map "C-c f" "org-footnote")
   (which-key-add-keymap-based-replacements org-mode-map "C-c \"" "org-plot")
   (which-key-add-keymap-based-replacements org-mode-map "C-c C-v" "org-babel")
@@ -59,17 +70,17 @@
 (use-package
   org
   :init (which-key-add-key-based-replacements "C-c o" "org")
-  :hook (org-mode . flyspell-mode)
-  (org-mode . cc-org/set-company-backends)
-  (org-mode . cc-org/add-keymap-based-replacements)
-  :bind (("C-c o a" . org-agenda)
-         ("C-c o l" . org-store-link)
+  :custom (org-log-done 'time)
+  :hook ((org-mode . flyspell-mode)
+         (org-mode . cc-org/set-company-backends)
+         (org-mode . cc-org/add-keymap-based-replacements))
+  :bind (("C-c o l" . org-store-link)
          ("C-c o c" . org-capture)
          ("C-c o b" . org-switchb)
-         :map org-mode-map ("C-c i" . org-id-get-create)
-         ("C-c f n" . org-footnote-new)
-         ("C-c f a" . org-footnote-action)
-         ("C-c s" . org-sort))
+         :map org-mode-map (("C-c i" . org-id-get-create)
+                            ("C-c f n" . org-footnote-new)
+                            ("C-c f a" . org-footnote-action)
+                            ("C-c s" . org-sort)))
   ;; :config ((org-babel-do-load-languages 'org-babel-load-languages '((dot . t)
   ;;                                                                   (plantuml .
   ;;                                                                             t))))
@@ -139,7 +150,6 @@
   (org-tree-slide-skip-outline-level 2)
   (org-tree-slide-skip-done t)
   (org-tree-slide-skip-comments t)
-  ;; :hook (org-mode . org-tree-slide-simple-profile)
   :bind (:map org-mode-map
               ("<f12>" . org-tree-slide-mode)
               :map org-tree-slide-mode-map

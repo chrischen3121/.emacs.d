@@ -26,9 +26,8 @@
   (error
    "Requires GNUEmacs 27.2 or newer"))
 
-;; TODO:
-;; (setq custom-file (expand-file-name "mycustom.el" user-emacs-directory))
-;; (load custom-file)
+(setq custom-file (expand-file-name "mycustom.el" user-emacs-directory))
+(load custom-file)
 
 (defvar core-dir (expand-file-name "core" user-emacs-directory))
 (defvar languages-dir (expand-file-name "languages" user-emacs-directory))
@@ -70,8 +69,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(queue helm-icons helm nyan-mode undo-tree all-the-icons-dired all-the-icons ace-window smartparens whole-line-or-region which-key gruvbox-theme cnfonts auto-package-update delight use-package-ensure-system-package use-package)))
+ '(package-selected-packages '(queue helm-icons helm nyan-mode undo-tree
+                                     all-the-icons-dired all-the-icons
+                                     ace-window smartparens whole-line-or-region
+                                     which-key gruvbox-theme cnfonts
+                                     auto-package-update delight
+                                     use-package-ensure-system-package
+                                     use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

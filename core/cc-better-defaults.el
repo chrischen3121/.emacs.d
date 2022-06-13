@@ -36,16 +36,17 @@
 
 (use-package
   emacs
+
   :delight
-  :custom (inhibit-startup-screen t)
-  (make-backup-files nil)
-  (tab-width 4)
-  (indent-tabs-mode nil)
-  (auto-save-default nil)
-  (split-height-threshold nil)
-  (split-width-threshold 160)
-  :hook (after-init . cc-core/after-init-func)
-  (after-save . executable-make-buffer-file-executable-if-script-p)
+  :custom ((inhibit-startup-screen t)
+           (make-backup-files nil)
+           (tab-width 4)
+           (indent-tabs-mode nil)
+           (auto-save-default nil)
+           (split-height-threshold nil)
+           (split-width-threshold 160))
+  :hook ((after-init . cc-core/after-init-func)
+         (after-save . executable-make-buffer-file-executable-if-script-p))
   :bind (("S-SPC" . set-mark-command)
          ("C-h w" . woman)))
 
@@ -100,8 +101,8 @@
 (use-package
   smartparens
   :init (require ' smartparens-config)
-  :hook (org-mode . smartparens-mode)
-  (prog-mode . smartparens-mode)
+  :hook ((org-mode . smartparens-mode)
+         (prog-mode . smartparens-mode))
   :delight smartparens-mode)
 
 ;; Notifing changes made by other program
@@ -132,8 +133,8 @@
   undo-tree
   :init (which-key-add-key-based-replacements "C-x u" "undo-tree")
   :delight
-  :custom (undo-tree-visualizer-timestamps t)
-  (undo-tree-visualizer-diff t)
+  :custom ((undo-tree-visualizer-timestamps t)
+           (undo-tree-visualizer-diff t))
   :config (global-undo-tree-mode +1)
   :bind (("C-/" . undo-tree-undo)
          ("M-_" . undo-tree-redo)))
@@ -176,7 +177,6 @@
 
 (use-package
   flyspell
-
   :delight
   :bind (:map flyspell-mode-map
               ("C-c $" . nil)

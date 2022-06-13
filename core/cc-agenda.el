@@ -21,6 +21,21 @@
 ;;; Commentary:
 ;;
 
+;;; Useful Commands:
+;; I -- org-agenda-clock-in
+;; O -- org-agenda-clock-out
+;; e -- org-agenda-set-effort
+
+;;; Hints
+;; Subtasks progress: type [/] [%], then C-c C-c
+;; Example:
+;; * Project A [33%]
+;; ** TODO Task1 [1/2]
+;; - [X] sub task1
+;; - [ ] sub task2
+;; ** DONE Task2
+;; ** TODO Task3
+
 ;;; Code:
 
 
@@ -30,67 +45,108 @@
   :group 'cc-agenda)
 
 (defun cc-agenda/setup-keywords ()
-  (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "HOLD(h)"  "|"
+  (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "HOLD(h@)"  "|"
                                       "DONE(d)" "CANCELED(c)")
                             (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|"
                                       "FIXED(f)")))
-  (setq org-todo-keyword-faces '(("TODO" . "red")
+  (setq org-todo-keyword-faces '(("TODO" . "salmon")
                                  ("NEXT" . "light blue")
-                                 ("HOLD" . "orange")
+                                 ("HOLD" . "medium purple")
                                  ("DONE" . "light green")
                                  ("CANCELED" .  "gray")
-                                 ("REPORT" .  "magenta")
-                                 ("BUG" .  "red")
+                                 ("REPORT" .  "medium purple")
+                                 ("BUG" .  "salmon")
                                  ("KNOWNCAUSE" .  "light blue")
                                  ("FIXED" . "light green")))
-  ;; (setq org-todo-state-tags-triggers '(("CANCELED" ("CANCELED" . t))
-  ;;                                      ("WAITING" ("WAITING" . t))
-  ;;                                      ("HOLD" ("WAITING")
-  ;;                                       ("HOLD" . t))
-  ;;                                      ("DONE" ("WAITING")
-  ;;                                       ("CANCELED")
-  ;;                                       ("HOLD"))
-  ;;                                      ("TODO" ("WAITING")
-  ;;                                       ("CANCELED")
-  ;;                                       ("HOLD"))
-  ;;                                      ("NEXT" ("WAITING")
-  ;;                                       ("CANCELED")
-  ;;                                       ("HOLD"))))
-  )
+  (setq org-todo-state-tags-triggers '(("HOLD" ("NEXT")
+                                        ("HOLD" . t))
+                                       ("NEXT" ("HOLD")
+                                        ("NEXT" . t))
+                                       ("DONE" ("HOLD")
+                                        ("NEXT"))
+                                       ("TODO" ("NEXT")
+                                        ("HOLD")))))
 
-;; (use-package
-;;   org-superstar
-;;   :custom (org-superstar-todo-bullet-alist '(("TODO" . ?☐)
-;;                                              ("NEXT" . ?➵)
-;;                                              ("HOLD" . ?☎)
-;;                                              ("CANCELED" . ?✘)
-;;                                              ("DONE" . ?✔)
-;;                                              ("REPORT" . ?✋)
-;;                                              ("BUG" . ?))))
+(use-package
+  org-superstar
+  :custom (org-superstar-todo-bullet-alist '(("TODO" . ?⬜)
+                                             ("CANCELED" . ?✘)
+                                             ("DONE" . ?✔)
+                                             ("NEXT" . ?↦)
+                                             ("HOLD" . ?☎)
+                                             ("REPORT" . ?✋)
+                                             ("BUG" . ?⚠)
+                                             ("KNOWNCAUSE" . ?⭗)
+                                             ("FIXED" . ?✔))))
 
 (use-package
   emacs
   :custom (org-agenda-files (directory-files-recursively
                              cc-agenda/agenda-home-dir ".org$"))
-  (org-default-notes-file (expand-file-name "refile.org"
+  (org-default-notes-file (expand-file-name "captured.org"
                                             cc-agenda/agenda-home-dir))
   (org-export-with-todo-keywords nil)
   :hook (after-init . cc-agenda/setup-keywords))
 
+
+(use-package
+  org-agenda
+  :ensure nil
+  :after org
+  :custom ((org-deadline-warning-days 3)
+           (org-clock-out-remove-zero-time-clocks t)
+           (org-clock-out-when-done t)
+           (org-refile-targets '((nil :level . 1)
+                                 (org-agenda-files :level . 1)))
+           (org-columns-default-format
+            "%40ITEM(Task) %TODO %3PRIORITY %17Effort(Effort){:} %10CLOCKSUM")
+           (org-capture-templates '(("t" "Todo" entry (file+headline
+                                                       org-default-notes-file
+                                                       "Tasks")
+                                     "* TODO %?\n %U\n"))))
+  :bind (("C-c a" . org-agenda)
+         ("C-c c" . org-capture)
+         :map org-mode-map
+         (("C-c g a" . org-archive-subtree-default)
+          ("C-c g i" . org-clock-in)
+          ("C-c g o" . org-clock-out)
+          ("C-c g e" . org-clock-modify-effort-estimate)
+          ("C-c g q" . org-clock-cancel)
+          ("C-c g j" . org-clock-goto))
+         :map org-agenda-mode-map ("C" . org-agenda-columns)))
 
 ;; (setq org-capture-templates '(("t" "todo" entry (file org-default-notes-file)
 ;;                                "* TODO %?\n%U\n%a\n"
 ;;                                :clock-in t
 ;;                                :clock-resume t)))
 
+;; (use-package
+;;   org-agenda
+;;   :ensure nil
+;;   :after org
+;;   :custom
+;;   ;; org-clock
+;;   (org-clock-in-resume t)
+;;   (org-clock-persist t)
+;;   (org-clock-report-include-clocking-task t)
+;;   ;; schedule
+;;   ;; column view
+;;   (org-global-properties '(("Effort_ALL" .
+;;                             "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00
+;; 0:00"))
+;;                          (org-agenda-clockreport-parameter-plist
+;;                           '(:link t
+;;                                   :maxlevel 5
+;;                                   :fileskip0 t
+;;                                   :compact t
+;;                                   :narrow 80))))
+
+
 
 ;; (setq-default org-priority-default 67)
 
 ;; (setq-default org-export-with-todo-keywords nil)
 
-
-;; (setq org-refile-targets '((nil :maxlevel . 2)
-;;                            (org-agenda-files :maxlevel . 2)))
 
 ;; ;; which-key
 ;; (which-key-add-key-based-replacements "C-c g" "agenda")
@@ -103,36 +159,6 @@
 ;; (global-set-key (kbd "C-c g o") 'org-clock-out)
 ;; (global-set-key (kbd "C-c g v") 'visible-mode)
 
-;; (use-package
-;;   org-agenda
-;;   :ensure nil
-;;   :after org
-;;   :custom
-;;   ;; org-clock
-;;   (org-clock-out-remove-zero-time-clocks t)
-;;   (org-clock-in-resume t)
-;;   (org-clock-out-when-done t)
-;;   (org-clock-persist t)
-;;   (org-clock-report-include-clocking-task t)
-;;   ;; schedule
-;;   (org-deadline-warning-days 3)
-;;   ;; column view
-;;   (org-columns-default-format
-;;    "%40ITEM(Task) %TODO %3PRIORITY %17Effort(Effort){:} %10CLOCKSUM")
-;;   (org-global-properties '(("Effort_ALL" .
-;;                             "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00
-;; 0:00"))
-;;                          (org-agenda-clockreport-parameter-plist
-;;                           '(:link t
-;;                                   :maxlevel 5
-;;                                   :fileskip0 t
-;;                                   :compact t
-;;                                   :narrow 80)))
-;;   :bind (:map org-agenda-mode-map
-;;               ("C-c i" . org-agenda-clock-in)
-;;               ("C-c o" . org-agenda-clock-out)
-;;               ("C-c v" . org-agenda-columns)
-;;               ("C-c e" . org-agenda-set-effort)))
 
 (provide 'cc-agenda)
 

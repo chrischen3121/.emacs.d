@@ -30,21 +30,21 @@
               helm-ff-file-name-history-use-recentf t
               helm-echo-input-in-header-line t)
   :defer nil
-  :custom (completion-styles '(flex))
-  (helm-net-prefer-curl t)
-  (helm-autoresize-max-height 0)
-  (helm-autoresize-min-height 25)
-  (helm-buffers-fuzzy-matching t)
-  (helm-recentf-fuzzy-match t)
+  :custom ((completion-styles '(flex))
+           (helm-net-prefer-curl t)
+           (helm-autoresize-max-height 0)
+           (helm-autoresize-min-height 25)
+           (helm-buffers-fuzzy-matching t)
+           (helm-recentf-fuzzy-match t))
   :bind-keymap ("C-c h" . helm-command-prefix)
   :bind (([remap execute-extended-command] . helm-M-x)
          ([remap find-file] . helm-find-files)
          ([remap occur] . helm-occur)
          ([remap list-buffers] . helm-buffers-list)
          ([remap switch-to-buffer] . helm-mini)
-         :map helm-map ("<tab>" . helm-execute-persistent-action)
-         ("C-i" . helm-select-action)
-         ("S-SPC" . helm-toggle-visible-mark-forward))
+         :map helm-map (("<tab>" . helm-execute-persistent-action)
+                        ("C-i" . helm-select-action)
+                        ("S-SPC" . helm-toggle-visible-mark-forward)))
   :hook (after-init . helm-autoresize-mode)
   :config (global-unset-key (kbd "C-x c"))
   (which-key-add-key-based-replacements "C-c h" "helm-commands")
@@ -53,8 +53,8 @@
 (use-package
   helm-icons
   :after all-the-icons
-  :custom (helm-icons-provider 'all-the-icons)
-  (helm-icons-mode->icon nil) ; workaround for "f-filename: Wrong type argument: stringp, dir-closed"
+  :custom ((helm-icons-provider 'all-the-icons)
+           (helm-icons-mode->icon nil)) ; workaround for "f-filename: Wrong type argument: stringp, dir-closed"
   :config (helm-icons-enable))
 
 (provide 'cc-helm)
