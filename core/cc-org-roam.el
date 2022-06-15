@@ -1,7 +1,7 @@
-;;; cc-org-roam.el
+;;; cc-org-roam.el --- Configuration for org-roam
 
-;; Author: Chris Chen
-;; Maintainer: Chris Chen
+;; Author: chrischen
+;; Maintainer: chrischen
 
 ;; This file is not part of GNU Emacs
 
@@ -17,6 +17,9 @@
 
 ;; For a full copy of the GNU General Public License
 ;; see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+;;
 
 ;;; Code:
 
@@ -43,6 +46,7 @@
 (use-package
   org-roam
   :init (setq org-roam-v2-ack t)
+  (which-key-add-key-based-replacements "C-c n" "org-roam")
   :ensure t
   :delight
   :custom (org-roam-directory cc-org-roam/org-roam-directory)
@@ -52,17 +56,18 @@
   (org-id-link-to-org-use-id t)
   (org-roam-capture-templates '(("d" "default" plain "%?"
                                  :immediate-finish t
-                                 :if-new (file+head "${slug}.org" "#+TITLE: ${title}\n")
+                                 :if-new (file+head "${slug}.org"
+                                                    "#+TITLE: ${title}\n")
                                  :unnarrowed t)
                                 ("t" "temp" plain "%?"
                                  :immediate-finish t
-                                 :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
-                                                    "#+TITLE: ${title}\n")
+                                 :if-new (file+head
+                                          "%<%Y%m%d%H%M%S>-${slug}.org"
+                                          "#+TITLE: ${title}\n")
                                  :unnarrowed t)))
   :config (org-roam-db-autosync-mode)
   (setq org-id-extra-files (org-roam--list-files org-roam-directory))
   (require 'org-roam-protocol)
-  ;; (setq org-roam-completion-system 'ivy)
   :bind (("C-c n j" . org-roam-dailies-capture-today)
          ("C-c n d" . org-roam-dailies-find-directory)
          ("C-c n c" . org-roam-capture)
@@ -74,14 +79,6 @@
          :map org-mode-map ("C-c n a" . org-roam-alias-add)
          ("C-c n t" . org-roam-tag-add)
          ("C-c n r" . org-roam-ref-add)))
-
-;; org-roam-ui
-(use-package
-  simple-httpd)
-
-(use-package
-  websocket
-  :after org-roam)
 
 (use-package
   org-roam-ui
@@ -98,8 +95,7 @@
 ;; (load-library "org-roam-ui")
 ;; (global-set-key (kbd "C-c n s") 'org-roam-ui-mode)
 
-;; which-key
-(which-key-add-key-based-replacements "C-c n" "org-roam")
+
 
 (provide 'cc-org-roam)
 

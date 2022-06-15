@@ -59,9 +59,9 @@
 
 
 (defun cc-org/set-company-backends ()
-  (setq-local company-backends '((company-yasnippet company-dabbrev
-                                                    company-ispell
-                                                    :separate))))
+  (setq-local company-backends '((company-capf company-yasnippet company-dabbrev
+                                               company-ispell
+                                               :separate))))
 
 (defun cc-org/add-keymap-based-replacements ()
   (which-key-add-keymap-based-replacements org-mode-map "C-c g"
@@ -92,12 +92,12 @@
   :bind (("C-c o l" . org-store-link)
          ("C-c o c" . org-capture)
          ("C-c o b" . org-switchb)
-         :map org-mode-map (("C-c m i" . org-id-get-create)
-                            ("C-c m f n" . org-footnote-new)
-                            ("C-c m f a" . org-footnote-action)
-                            ("C-c m t s" . org-sort)
-                            ("C-c m l" . org-latex-preview)
-                            ("C-c m s" . org-toggle-inline-images)))
+         :map org-mode-map ("C-c m i" . org-id-get-create)
+         ("C-c m f n" . org-footnote-new)
+         ("C-c m f a" . org-footnote-action)
+         ("C-c m t s" . org-sort)
+         ("C-c m l" . org-latex-preview)
+         ("C-c m s" . org-toggle-inline-images))
   :config (which-key-add-keymap-based-replacements org-mode-map "C-c m t"
             "table")
   (which-key-add-keymap-based-replacements org-mode-map "C-c m f" "footnote")
@@ -114,7 +114,7 @@
 ;;   org
 ;;   :init (which-key-add-key-based-replacements "C-c o" "org")
 ;;   :hook (org-mode . flyspell-mode)
-;;   (org-mode . cc-org/set-company-backends)
+;;   (org-mode . cc-org/set-1company-backends)
 ;;   ;; (org-mode . cc-org/disable-indent-mode)
 ;;   ;; :init (require 'org-tempo)
 ;;   ;; :custom
@@ -165,11 +165,11 @@
 ;; Presentation Tool
 (use-package
   org-tree-slide
-  :custom (org-tree-slide-header nil)
-  (org-tree-slide-cursor-init t)
-  (org-tree-slide-skip-outline-level 2)
-  (org-tree-slide-skip-done t)
-  (org-tree-slide-skip-comments t)
+  :custom ((org-tree-slide-header nil)
+           (org-tree-slide-cursor-init t)
+           (org-tree-slide-skip-outline-level 2)
+           (org-tree-slide-skip-done t)
+           (org-tree-slide-skip-comments t))
   :bind (:map org-mode-map
               ("<f12>" . org-tree-slide-mode)
               :map org-tree-slide-mode-map
@@ -177,6 +177,9 @@
               ("<f10>" . org-tree-slide-move-next-tree)
               ("<f11>" . org-tree-slide-content)))
 
+(require 'cc-agenda)
+(require 'cc-org-publish)
+(require 'cc-org-roam)
 
 (provide 'cc-org)
 

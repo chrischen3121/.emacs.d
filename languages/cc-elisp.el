@@ -19,11 +19,6 @@
 ;; see <http://www.gnu.org/licenses/>.
 
 ;;; Code:
-(defun cc-elisp/set-company-backends ()
-  (setq-local company-backends '((company-yasnippet company-dabbrev-code
-                                                    company-capf company-ispell
-                                                    :separate))))
-
 (defun cc-elisp/helpful-current-mode ()
   "replace builtin describe-mode"
   (interactive)
@@ -41,7 +36,6 @@
 (use-package
   elisp-mode
   :ensure nil
-  :hook (emacs-lisp-mode . cc-elisp/set-company-backends)
   :delight (emacs-lisp-mode "ELisp"
                             :major)
   :bind (:map emacs-lisp-mode-map

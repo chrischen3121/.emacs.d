@@ -92,11 +92,11 @@
 
 (use-package
   emacs
-  :custom (org-agenda-files (directory-files-recursively
-                             cc-agenda/agenda-home-dir ".org$"))
-  (org-default-notes-file (expand-file-name "captured.org"
-                                            cc-agenda/agenda-home-dir))
-  (org-export-with-todo-keywords nil)
+  :custom ((org-agenda-files (directory-files-recursively
+                              cc-agenda/agenda-home-dir ".org$"))
+           (org-default-notes-file (expand-file-name "captured.org"
+                                                     cc-agenda/agenda-home-dir))
+           (org-export-with-todo-keywords nil))
   :hook (after-init . cc-agenda/setup-keywords))
 
 
@@ -133,14 +133,13 @@
                             ("ML" . ?M))))
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
-         :map org-mode-map
-         (("C-c g a" . org-archive-subtree-default)
-          ("C-c a a" . org-agenda)
-          ("C-c g i" . org-clock-in)
-          ("C-c g o" . org-clock-out)
-          ("C-c g e" . org-clock-modify-effort-estimate)
-          ("C-c g q" . org-clock-cancel)
-          ("C-c g j" . org-clock-goto))
+         :map org-mode-map ("C-c g a" . org-archive-subtree-default)
+         ("C-c a a" . org-agenda)
+         ("C-c g i" . org-clock-in)
+         ("C-c g o" . org-clock-out)
+         ("C-c g e" . org-clock-modify-effort-estimate)
+         ("C-c g q" . org-clock-cancel)
+         ("C-c g j" . org-clock-goto)
          :map org-agenda-mode-map ("C" . org-agenda-columns)))
 
 ;; (setq org-capture-templates '(("t" "todo" entry (file org-default-notes-file)

@@ -27,8 +27,8 @@
 (use-package
   projectile
   :init (which-key-add-key-based-replacements "C-x p" "projectile")
-  :custom (projectile-completion-system 'helm)
-  (projectile-enable-caching t)
+  :custom ((projectile-completion-system 'helm)
+           (projectile-enable-caching t))
   :bind-keymap ("C-x p" . projectile-command-map)
   :delight '(:eval (concat " P[" (projectile-project-name) "]"))
   :hook (after-init . projectile-mode)
@@ -62,22 +62,29 @@
 ;; highlight changes
 (use-package
   git-gutter+
-
   :delight
   :hook (after-init . global-git-gutter+-mode))
 
+
+
 (defun cc-dev/set-text-backends ()
   (setq-local company-backends '((company-dabbrev company-ispell
-                                                  :separate))))
+                                                  :separate) company-files)))
+(defun cc-dev/set-prog-backends ()
+  (setq-local company-backends '((company-capf company-dabbrev-code
+                                               company-keywords
+                                               :separate) company-ispell)))
+
 
 (use-package
   company
-  :delight
+  ;; :delight
   :custom (company-transformers '(company-sort-by-backend-importance))
   :hook ((after-init . global-company-mode)
-         (text-mode . cc-dev/set-text-backends))
+         (text-mode . cc-dev/set-text-backends)
+         (prog-mode . cc-dev/set-prog-backends))
   :bind (:map company-mode-map
-              ("C-c C-d c" . company-diag)))
+              ("C-c C-/" . company-other-backend)))
 
 
 (use-package
@@ -92,7 +99,7 @@
               ("C-c C-d y n" . yas-new-snippet)
               ("C-c C-d y r" . yas-reload-all)
               ("C-c C-d y v" . yas-visit-snippet-file)
-              ("M-/" . yas-expand)))
+              ("M-/" . company-yasnippet)))
 
 
 (use-package
@@ -126,13 +133,13 @@
 ;; Visualizing Color Codes
 (use-package
   rainbow-mode
+
   :delight
   :hook prog-mode)
 
 ;; Colorize parens
 (use-package
   rainbow-delimiters
-
   :delight
   :hook (prog-mode . rainbow-delimiters-mode))
 

@@ -1,0 +1,8 @@
+* .emacs.d
+my emacs configuration
+
+* TODOs
+- [ ] org-roam
+- [ ] EWW
+- [ ] deft for roam fulltext-search
+- [ ] org-babel-do-load-languages -- plantuml

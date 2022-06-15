@@ -75,7 +75,6 @@
 (use-package
   org-publish
   :ensure nil
-  :after org
   :hook (org-mode . cc-org-publish/setup-projects))
 
 ;; (defcustom cc-org-publish/org-plantuml-jar-path
