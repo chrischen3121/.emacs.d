@@ -36,7 +36,6 @@
 
 (use-package
   emacs
-
   :delight
   :custom ((inhibit-startup-screen t)
            (make-backup-files nil)
@@ -75,6 +74,7 @@
   (which-key-add-key-based-replacements "C-x n" "narrow")
   (which-key-add-key-based-replacements "C-x r" "register")
   (which-key-add-key-based-replacements "C-c C-d" "dev-tools")
+  (which-key-add-key-based-replacements "C-c m" "mode-commands")
   (which-key-add-key-based-replacements "M-s h" "highlight")
   :delight)
 
@@ -177,6 +177,7 @@
 
 (use-package
   flyspell
+
   :delight
   :bind (:map flyspell-mode-map
               ("C-c $" . nil)

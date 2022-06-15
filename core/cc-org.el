@@ -28,8 +28,9 @@
 ;; C-x n s, C-x n w -- Narrow buffer
 ;; C-c / -- Search in an outline tree and fold others as much as possible
 ;; M-S-RET -- Add TODO outlines or add items with a checkbox
-;; C-c -    Cycle bullets (-, +, *, ...)
-;; C-c i -- Create IDs
+;; C-c - -- Cycle bullets (-, +, *, ...)
+;; C-c m i -- Create IDs
+;; C-c ; -- Toggle the "COMMENT" keyword
 ;; ====== Tags ==========
 ;; C-c C-q -- Set a tag
 ;; M-x org-agenda m/M -- Match tags (only TODO)
@@ -39,6 +40,20 @@
 ;; ====== Timestamps ========
 ;; C-c . -- Set a timestamp
 ;; S-LEFT/S-Right -- Change by one day
+;; ====== Footnotes =========
+;; C-c f prefix
+;; C-c C-c -- jump between definition and reference
+
+;;; Hints
+;;
+;; +strike-through+
+;; =============================
+;; Here is an small example
+;;  : Some example from a text file.
+;; =============================
+;; #+INCLUDE: "~/.emacs" src emacs-lisp
+;;
+
 ;;
 ;;; Code:
 
@@ -77,10 +92,15 @@
   :bind (("C-c o l" . org-store-link)
          ("C-c o c" . org-capture)
          ("C-c o b" . org-switchb)
-         :map org-mode-map (("C-c i" . org-id-get-create)
-                            ("C-c f n" . org-footnote-new)
-                            ("C-c f a" . org-footnote-action)
-                            ("C-c s" . org-sort)))
+         :map org-mode-map (("C-c m i" . org-id-get-create)
+                            ("C-c m f n" . org-footnote-new)
+                            ("C-c m f a" . org-footnote-action)
+                            ("C-c m t s" . org-sort)
+                            ("C-c m l" . org-latex-preview)
+                            ("C-c m s" . org-toggle-inline-images)))
+  :config (which-key-add-keymap-based-replacements org-mode-map "C-c m t"
+            "table")
+  (which-key-add-keymap-based-replacements org-mode-map "C-c m f" "footnote")
   ;; :config ((org-babel-do-load-languages 'org-babel-load-languages '((dot . t)
   ;;                                                                   (plantuml .
   ;;                                                                             t))))

@@ -24,7 +24,10 @@
 ;;; Useful Commands:
 ;; I -- org-agenda-clock-in
 ;; O -- org-agenda-clock-out
+;; X -- org-agenda-clock-cancel
+;; J -- org-agenda-clock-goto
 ;; e -- org-agenda-set-effort
+;; l -- Logbook mode
 
 ;;; Hints
 ;; Subtasks progress: type [/] [%], then C-c C-c
@@ -65,7 +68,15 @@
                                        ("DONE" ("HOLD")
                                         ("NEXT"))
                                        ("TODO" ("NEXT")
-                                        ("HOLD")))))
+                                        ("HOLD"))))
+  (setq org-agenda-custom-commands '(("H" todo "HOLD")
+                                     ("N" todo "NEXT")
+                                     ("D" todo "DONE")
+                                     ("R" todo "REPORT")
+                                     ("G" todo "BUG")
+                                     ("F" todo "FIXED")
+                                     ("c" tags-todo "Child")
+                                     ("w" tags "Work"))))
 
 (use-package
   org-superstar
@@ -103,11 +114,28 @@
            (org-capture-templates '(("t" "Todo" entry (file+headline
                                                        org-default-notes-file
                                                        "Tasks")
-                                     "* TODO %?\n %U\n"))))
+                                     "* TODO %?\n %U\n")))
+           (org-tag-alist '(("Work" . ?w)
+                            ("Learning" . ?l)
+                            ("Hobby" . ?h)
+                            ("Housekeeping" . ?k)
+                            ("English" . ?e)
+                            ("Child" . ?c)
+                            ("CS" . ?s)
+                            ("Finance" . ?f)
+                            ("Routine" . ?r)
+                            ("CPP" . ?+)
+                            ("Python" . ?p)
+                            ("Math" . ?m)
+                            ("Frontend" . ?F)
+                            ("Backend" . ?b)
+                            ("Database" . ?d)
+                            ("ML" . ?M))))
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
          :map org-mode-map
          (("C-c g a" . org-archive-subtree-default)
+          ("C-c a a" . org-agenda)
           ("C-c g i" . org-clock-in)
           ("C-c g o" . org-clock-out)
           ("C-c g e" . org-clock-modify-effort-estimate)

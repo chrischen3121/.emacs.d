@@ -22,6 +22,7 @@
 
 ;; Fonts
 (prefer-coding-system 'utf-8)
+(setq calendar-chinese-all-holidays-flag t)
 ;; (set-frame-font "Source Code Pro-11" nil t)
 ;; (set-fontset-font t 'han "WenQuanYi Micro Hei-11")
 

@@ -41,12 +41,6 @@
 (message "Loading core modules...")
 (add-to-list 'load-path core-dir)
 (require 'cc-core)
-;; (require 'cc-prog)
-;; (require 'cc-org)
-;; (require 'cc-agenda)
-;; (require 'cc-org-roam)
-;; (require 'cc-org-project)
-;; (require 'cc-global-bindings)
 
 (message "Loading language modules...")
 (add-to-list 'load-path languages-dir)
