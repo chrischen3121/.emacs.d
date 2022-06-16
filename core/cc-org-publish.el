@@ -59,18 +59,17 @@
                                       ("all" :components ("orgfiles")
                                        :author "Chris Chen"
                                        :email "chrischen3121@gmail.com"))))
-  (let (mathjax-path
-        "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML")
-    (setq org-html-mathjax-options '((path mathjax-path)
-                                     (scale "100")
-                                     (align "left")
-                                     (font "TeX")
-                                     (linebreaks "false")
-                                     (autonumber "AMS")
-                                     (indent "2em")
-                                     (multlinewidth "85%")
-                                     (tagindent ".8em")
-                                     (tagside "left")))))
+  (setq org-html-mathjax-options '((path
+                                    "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML")
+                                   (scale "100")
+                                   (align "left")
+                                   (font "TeX")
+                                   (linebreaks "false")
+                                   (autonumber "AMS")
+                                   (indent "2em")
+                                   (multlinewidth "85%")
+                                   (tagindent ".8em")
+                                   (tagside "left"))))
 
 (use-package
   org-publish

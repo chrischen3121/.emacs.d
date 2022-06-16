@@ -87,14 +87,6 @@
   (org-roam-ui-follow t)
   (org-roam-ui-update-on-save t))
 
-;; from git
-;; (defvar org-roam-ui-dir (expand-file-name "org-roam-ui" private-dir))
-;; (when (not (file-exists-p org-roam-ui-dir))
-;;   (magit-clone-shallow "https://github.com/org-roam/org-roam-ui.git" private-dir '() 1))
-;; (add-to-list 'load-path org-roam-ui-dir)
-;; (load-library "org-roam-ui")
-;; (global-set-key (kbd "C-c n s") 'org-roam-ui-mode)
-
 
 
 (provide 'cc-org-roam)
