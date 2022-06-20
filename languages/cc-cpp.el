@@ -26,9 +26,8 @@
 
 (use-package
   google-c-style
-  :hook (c-mode-common . google-set-c-style)
-  (c-mode-common . google-make-newline-indent))
-
+  :hook ((c-mode-common . google-set-c-style)
+         (c-mode-common . google-make-newline-indent)))
 
 (use-package
   sr-speedbar
@@ -62,7 +61,8 @@
               ("C-c g p" . pop-tag-mark)
               ("C-c g g" . ggtags-grep)
               ("C-c g j" . moo-jump-local))
-  :config (which-key-add-keymap-based-replacements c-mode-base-map "C-c g" "ggtags"))
+  :config (which-key-add-keymap-based-replacements c-mode-base-map "C-c g"
+            "ggtags"))
 
 (use-package
   irony
@@ -70,7 +70,8 @@
   (irony-mode . irony-cdb-autosetup-compile-options)
   :bind (:map irony-mode-map
               ("C-c i t" . irony-get-type))
-  :config (which-key-add-keymap-based-replacements irony-mode-map "C-c i" "irony"))
+  :config (which-key-add-keymap-based-replacements irony-mode-map "C-c i"
+            "irony"))
 
 (use-package
   company-irony
@@ -93,16 +94,16 @@
 
 (defun cc-c++/set-company-backends ()
   (set (make-local-variable 'company-backends)
-       '((company-irony-c-headers company-irony company-yasnippet) company-cmake (company-clang
-                                                                                  company-yasnippet)
-         company-gtags)))
+       '((company-irony-c-headers company-irony company-yasnippet) company-cmake
+         (company-clang company-yasnippet) company-gtags)))
 
 (defun cc-c++/compile ()
   (interactive)
   (unless (file-exists-p "Makefile")
     (set (make-local-variable 'compile-command)
          (let ((file (file-name-nondirectory buffer-file-name)))
-           (format "%s -g -o %s %s" (if  (equal (file-name-extension file) "cpp") "g++" "gcc" )
+           (format "%s -g -o %s %s" (if  (equal (file-name-extension file)
+                                                "cpp") "g++" "gcc" )
                    (file-name-sans-extension file) file)))
     (compile compile-command)))
 
@@ -113,14 +114,16 @@
   (gdb-many-windows t)
   (gdb-show-main t)
   :hook (c-mode-common . cc-c++/set-company-backends)
-  :config (which-key-add-keymap-based-replacements c-mode-base-map "C-c m" "cc-mode tools")
+  :config (which-key-add-keymap-based-replacements c-mode-base-map "C-c m"
+            "cc-mode tools")
   :bind (:map c-mode-base-map
               ("C-c m c" . cc-c++/compile)
               ("C-c m d" . gdb)))
 
 (use-package
   gud
-  :config (which-key-add-keymap-based-replacements gud-mode-map "C-c m" "gud-mode tools")
+  :config (which-key-add-keymap-based-replacements gud-mode-map "C-c m"
+            "gud-mode tools")
   :bind (:map gud-mode-map
               ("C-c m d" . gdb-display-disassembly-buffer)
               ("C-c m D" . gdb-frame-disassembly-buffer)

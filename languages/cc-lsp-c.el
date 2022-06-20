@@ -1,7 +1,7 @@
-;;; cc-global-bindinds.el
+;;; cc-lsp-c.el --- lsp-mode for c configuration
 
-;; Author: Chris Chen
-;; Maintainer: Chris Chen
+;; Author: chrischen
+;; Maintainer: chrischen
 
 ;; This file is not part of GNU Emacs
 
@@ -18,18 +18,21 @@
 ;; For a full copy of the GNU General Public License
 ;; see <http://www.gnu.org/licenses/>.
 
+;;; Commentary:
+;;
+;; Install lldb-vscode first
+;; mkdir -p ~/.vscode/extensions/llvm-org.lldb-vscode-0.1.0/bin
+;; curl https://github.com/llvm/llvm-project/tree/main/lldb/tools/lldb-vscode/package.json --output
+
 ;;; Code:
 
-(global-set-key (kbd "S-SPC") #'set-mark-command)
+(use-package
+  cc-mode
+  :ensure nil
+  :init (add-hook 'dap-mode-hook (lambda ()
+                                   (require 'dap-lldb)))
+  :hook (c-mode . lsp-deferred))
 
-(global-set-key (kbd "C-x p i") #'package-install)
-(global-set-key (kbd "C-x p l") #'list-packages)
-(global-set-key (kbd "C-x p r") #'package-refresh-contents)
-(which-key-add-key-based-replacements "C-x p" "packages")
+(provide 'cc-lsp-c)
 
-(global-set-key (kbd "C-x c c") #'customize)
-(global-set-key (kbd "C-x c g") #'customize-group)
-(which-key-add-key-based-replacements "C-x c" "customize")
-
-(provide 'cc-global-bindings)
-;;; cc-global-bindinds.el ends here
+;;; cc-lsp-c.el ends here

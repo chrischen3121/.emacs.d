@@ -1,7 +1,7 @@
-;;; cc-langs.el
+;;; cc-langs.el --- Programming Languages
 
-;; Author: auther
-;; Maintainer: auther
+;; Author: chrischen
+;; Maintainer: chrischen
 
 ;; This file is not part of GNU Emacs
 
@@ -18,10 +18,15 @@
 ;; For a full copy of the GNU General Public License
 ;; see <http://www.gnu.org/licenses/>.
 
+;;; Commentary:
+;;
+
 ;;; Code:
 
 
 (require 'cc-elisp)
+(require 'cc-lsp)
+
 (provide 'cc-langs)
 
 ;;; cc-langs.el ends here

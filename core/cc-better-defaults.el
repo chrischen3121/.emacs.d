@@ -61,7 +61,7 @@
 
 (use-package
   which-key
-  :defer nil
+  :demand
   :config (which-key-mode 1)
   (which-key-add-key-based-replacements "C-x ESC" "repeat-command")
   (which-key-add-key-based-replacements "C-x p" "project")
@@ -73,9 +73,11 @@
   (which-key-add-key-based-replacements "C-x a" "abbrev")
   (which-key-add-key-based-replacements "C-x n" "narrow")
   (which-key-add-key-based-replacements "C-x r" "register")
-  (which-key-add-key-based-replacements "C-c C-d" "dev-tools")
-  (which-key-add-key-based-replacements "C-c m" "mode-commands")
   (which-key-add-key-based-replacements "M-s h" "highlight")
+  ;; dev
+  (which-key-add-key-based-replacements "C-c d" "dev-tools")
+  (which-key-add-key-based-replacements "C-c m" "mode-commands")
+  (which-key-add-key-based-replacements "C-c g" "goto-commands")
   :delight)
 
 (use-package

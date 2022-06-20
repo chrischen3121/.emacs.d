@@ -64,13 +64,13 @@
                                                :separate))))
 
 (defun cc-org/add-keymap-based-replacements ()
-  (which-key-add-keymap-based-replacements org-mode-map "C-c g"
+  (which-key-add-keymap-based-replacements org-mode-map "C-c a"
     "org-mode-agenda")
   (which-key-add-keymap-based-replacements org-mode-map "C-c f" "org-footnote")
   (which-key-add-keymap-based-replacements org-mode-map "C-c \"" "org-plot")
   (which-key-add-keymap-based-replacements org-mode-map "C-c C-v" "org-babel")
   (which-key-add-keymap-based-replacements org-mode-map "C-c C-x" "org-prefix")
-  (which-key-add-keymap-based-replacements org-mode-map "C-c a" "org-anki"))
+  (which-key-add-keymap-based-replacements org-mode-map "C-c m a" "org-anki"))
 
 (use-package
   org-tempo
@@ -139,9 +139,9 @@
   :after org
   :ensure-system-package anki
   :bind (:map org-mode-map
-              ("C-c a p" . anki-editor-push-notes)
-              ("C-c a i" . anki-editor-insert-note)
-              ("C-c a c" . anki-editor-cloze-dwim))
+              ("C-c m a p" . anki-editor-push-notes)
+              ("C-c m a i" . anki-editor-insert-note)
+              ("C-c m a c" . anki-editor-cloze-dwim))
   :custom (anki-editor-create-decks t))
 
 ;; ;; full-text search

@@ -62,6 +62,7 @@
 ;; highlight changes
 (use-package
   git-gutter+
+
   :delight
   :hook (after-init . global-git-gutter+-mode))
 
@@ -90,15 +91,15 @@
 (use-package
   yasnippet
   :delight yas-minor-mode
-  :config (which-key-add-keymap-based-replacements yas-minor-mode-map
-            "C-c C-d y" "yasnippet")
+  :config (which-key-add-keymap-based-replacements yas-minor-mode-map "C-c d y"
+            "yasnippet")
   :hook ((prog-mode . yas-minor-mode-on)
          (org-mode . yas-minor-mode-on))
   :bind (:map yas-minor-mode-map
               ("C-c &" . nil)
-              ("C-c C-d y n" . yas-new-snippet)
-              ("C-c C-d y r" . yas-reload-all)
-              ("C-c C-d y v" . yas-visit-snippet-file)
+              ("C-c d y n" . yas-new-snippet)
+              ("C-c d y r" . yas-reload-all)
+              ("C-c d y v" . yas-visit-snippet-file)
               ("M-/" . company-yasnippet)))
 
 
@@ -107,11 +108,11 @@
   :hook (prog-mode . hs-minor-mode)
   :bind (:map hs-minor-mode-map
               ("C-c @" . nil)
-              ("C-c C-d h h" . hs-hide-all)
-              ("C-c C-d h <backtab>" . hs-show-all)
-              ("C-c C-d h l" . hs-hide-level)
-              ("C-c C-d <tab>" . hs-toggle-hiding))
-  :config (which-key-add-keymap-based-replacements hs-minor-mode-map "C-c C-d h"
+              ("C-c d h h" . hs-hide-all)
+              ("C-c d h <backtab>" . hs-show-all)
+              ("C-c d h l" . hs-hide-level)
+              ("C-c d <tab>" . hs-toggle-hiding))
+  :config (which-key-add-keymap-based-replacements hs-minor-mode-map "C-c d h"
             "hideshow")
   :delight hs-minor-mode)
 ;; Other useful command
@@ -133,13 +134,13 @@
 ;; Visualizing Color Codes
 (use-package
   rainbow-mode
-
   :delight
   :hook prog-mode)
 
 ;; Colorize parens
 (use-package
   rainbow-delimiters
+
   :delight
   :hook (prog-mode . rainbow-delimiters-mode))
 

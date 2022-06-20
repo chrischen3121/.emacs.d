@@ -29,7 +29,7 @@
               helm-scroll-amount 8 ; scroll 8 lines other window using M-<next>/M-<prior>
               helm-ff-file-name-history-use-recentf t
               helm-echo-input-in-header-line t)
-  :defer nil
+  :demand
   :custom ((completion-styles '(flex))
            (helm-net-prefer-curl t)
            (helm-autoresize-max-height 0)
@@ -49,6 +49,7 @@
   :config (global-unset-key (kbd "C-x c"))
   (which-key-add-key-based-replacements "C-c h" "helm-commands")
   (which-key-add-key-based-replacements "C-c h h" "help"))
+
 
 (use-package
   helm-icons
