@@ -72,8 +72,7 @@
   (setq-local company-backends '((company-dabbrev company-ispell
                                                   :separate) company-files)))
 (defun cc-dev/set-prog-backends ()
-  (setq-local company-backends '((company-capf company-dabbrev-code
-                                               company-keywords
+  (setq-local company-backends '((company-capf company-dabbrev-code company-keywords
                                                :separate) company-ispell)))
 
 
@@ -87,12 +86,18 @@
   :bind (:map company-mode-map
               ("C-c C-/" . company-other-backend)))
 
+;; (use-package
+;;   orderless
+;;   :init (add-hook 'company-mode-hook (lambda ()
+;;                                        (require 'orderless)))
+;;   :custom (completion-styles '(helm basic))
+;;   (completion-category-overrides '((file (styles basic partial-completion)))))
+
 
 (use-package
   yasnippet
   :delight yas-minor-mode
-  :config (which-key-add-keymap-based-replacements yas-minor-mode-map "C-c d y"
-            "yasnippet")
+  :config (which-key-add-keymap-based-replacements yas-minor-mode-map "C-c d y" "yasnippet")
   :hook ((prog-mode . yas-minor-mode-on)
          (org-mode . yas-minor-mode-on))
   :bind (:map yas-minor-mode-map
@@ -112,8 +117,7 @@
               ("C-c d h <backtab>" . hs-show-all)
               ("C-c d h l" . hs-hide-level)
               ("C-c d <tab>" . hs-toggle-hiding))
-  :config (which-key-add-keymap-based-replacements hs-minor-mode-map "C-c d h"
-            "hideshow")
+  :config (which-key-add-keymap-based-replacements hs-minor-mode-map "C-c d h" "hideshow")
   :delight hs-minor-mode)
 ;; Other useful command
 ;; C-x n d  narrow-to-defun

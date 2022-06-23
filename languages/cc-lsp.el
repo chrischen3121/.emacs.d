@@ -63,7 +63,6 @@
 
 (use-package
   helm-lsp
-
   :demand
   :after (helm lsp-mode helm-projectile)
   :commands helm-lsp-workspace-symbol
@@ -75,29 +74,20 @@
 
 (use-package
   dap-mode
+  :init (add-hook 'dap-stopped-hook (lambda (arg)
+                                      (call-interactively #'dap-hydra)))
   :hook (lsp-mode . dap-mode)
   :custom (dap-auto-configure-features '(sessions locals controls tooltip))
   :bind (:map dap-mode-map
               ("C-c l d d" . dap-debug)
               ("<f5>" . dap-debug)
-              ("C-c l d e" . dap-debug-edit-template))
-  :config (which-key-add-keymap-based-replacements dap-mode-map "C-c l d"
-            "debug"))
+              ("C-c l d e" . dap-debug-edit-template)
+              ("C-c m g" . dap-debug))
+  :config (which-key-add-keymap-based-replacements dap-mode-map "C-c l d" "debug"))
 
-;; debugger
-;; (use-package
-;;   dap-mode
-;;   :after lsp-mode
-;;   :config (require 'dap-cpptools))
-
-;;TODO:
-;; (use-package
-;;   dap-cpptools
-;;   :after dap-mode)
-;; (use-package dap-cpptools) to load the dap adapter for your language
 
 (require 'cc-lsp-c)
-;; (require 'cc-lsp-cpp)
+(require 'cc-lsp-cpp)
 
 (provide 'cc-lsp)
 

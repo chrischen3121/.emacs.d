@@ -26,6 +26,7 @@
 
 (require 'cc-elisp)
 (require 'cc-lsp)
+(require 'cc-simple-modes)
 
 (provide 'cc-langs)
 

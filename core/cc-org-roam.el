@@ -21,24 +21,27 @@
 ;;; Commentary:
 ;;
 
+;;; Hints:
+
 ;;; Code:
 
-(defcustom cc-org-roam/org-roam-directory "~/roam-notes/permanent"
+(defcustom cc-org-roam/org-roam-directory "~/second-brain/pages"
   "org roam home directory"
   :type 'string
   :group 'cc-org-roam)
 
-(defcustom cc-org-roam/org-roam-dailies-directory "~/roam-notes/fleeting"
+
+(defcustom cc-org-roam/org-roam-dailies-directory "~/second-brain/journals"
   "org roam dailies directory"
   :type 'string
   :group 'cc-org-roam)
 
-(defcustom cc-org-roam/org-roam-db-location "~/roam-notes/org-roam.db"
+(defcustom cc-org-roam/org-roam-db-location "~/second-brain/org-roam.db"
   "org roam db directory"
   :type 'string
   :group 'cc-org-roam)
 
-(defcustom cc-org-roam/org-roam-graph-viewer "google-chrome"
+(defcustom cc-org-roam/org-roam-graph-viewer "google-chrome-stable"
   "executable to view org roam graph"
   :type 'string
   :group 'cc-org-roam)
@@ -53,32 +56,39 @@
   (org-roam-db-location cc-org-roam/org-roam-db-location)
   (org-roam-graph-viewer cc-org-roam/org-roam-graph-viewer)
   (org-roam-dailies-directory cc-org-roam/org-roam-dailies-directory)
-  (org-id-link-to-org-use-id t)
+  (org-roam-completion-everywhere t)
   (org-roam-capture-templates '(("d" "default" plain "%?"
                                  :immediate-finish t
-                                 :if-new (file+head "${slug}.org"
-                                                    "#+TITLE: ${title}\n")
+                                 :if-new (file+head "${slug}.org" "#+TITLE: ${title}\n")
                                  :unnarrowed t)
                                 ("t" "temp" plain "%?"
                                  :immediate-finish t
-                                 :if-new (file+head
-                                          "%<%Y%m%d%H%M%S>-${slug}.org"
-                                          "#+TITLE: ${title}\n")
+                                 :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                                                    "#+TITLE: ${title}\n")
                                  :unnarrowed t)))
+  (add-to-list 'display-buffer-alist '("\\*org-roam\\*" (display-buffer-in-side-window)
+                                       (side . right)
+                                       (slot . 0)
+                                       (window-width . 0.33)
+                                       (window-parameters . ((no-other-window . t)
+                                                             (no-delete-other-windows . t)))))
   :config (org-roam-db-autosync-mode)
   (setq org-id-extra-files (org-roam--list-files org-roam-directory))
   (require 'org-roam-protocol)
-  :bind (("C-c n j" . org-roam-dailies-capture-today)
+  :bind (("C-c n j" . org-roam-dailies-goto-today)
          ("C-c n d" . org-roam-dailies-find-directory)
          ("C-c n c" . org-roam-capture)
          ("C-c n f" . org-roam-node-find)
          ("C-c n i" . org-roam-node-insert)
          ("C-c n p" . org-id-get-create)
-         ("C-c n b" . org-roam-buffer-toggle)
+         ("C-c n o" . org-roam-buffer-toggle)
          ("C-c n s" . org-roam-ui-mode)
          :map org-mode-map ("C-c n a" . org-roam-alias-add)
          ("C-c n t" . org-roam-tag-add)
-         ("C-c n r" . org-roam-ref-add)))
+         ("C-c n r" . org-roam-ref-add)
+         ("C-c n n" . org-roam-node-random)
+         ("C-c n g" . org-roam-graph)))
+
 
 (use-package
   org-roam-ui

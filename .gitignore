@@ -27,6 +27,7 @@ projects
 # Others
 semanticdb/
 .cache/
+.extension/
 .last-package-update-day
 mycustom.el
 auto-save-list/

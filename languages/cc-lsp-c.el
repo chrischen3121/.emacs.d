@@ -19,19 +19,30 @@
 ;; see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;
-;; Install lldb-vscode first
-;; mkdir -p ~/.vscode/extensions/llvm-org.lldb-vscode-0.1.0/bin
-;; curl https://github.com/llvm/llvm-project/tree/main/lldb/tools/lldb-vscode/package.json --output
 
 ;;; Code:
+
+(defun cc-lsp-c/compile ()
+  (interactive)
+  (unless (file-exists-p "Makefile")
+    (set (make-local-variable 'compile-command)
+         (let ((file (file-name-nondirectory buffer-file-name)))
+           (format "gcc -Wall -g -o %s %s" (file-name-sans-extension file) file)))
+    (compile compile-command)))
+
 
 (use-package
   cc-mode
   :ensure nil
-  :init (add-hook 'dap-mode-hook (lambda ()
-                                   (require 'dap-lldb)))
-  :hook (c-mode . lsp-deferred))
+  :commands c-mode
+  :hook (c-mode . lsp-deferred)
+  :config (require 'dap-gdb-lldb)
+  (dap-gdb-lldb-setup)
+  :bind (:map c-mode-map
+              ("C-c m c" . cc-lsp-c/compile)
+              ("<f7>" . cc-lsp-c/compile)
+              ("C-c m g" . dap-debug)
+              ("C-c m e" . dap-debug-edit-template)))
 
 (provide 'cc-lsp-c)
 

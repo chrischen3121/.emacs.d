@@ -31,7 +31,7 @@
          ([remap describe-key] . helpful-key)
          ("C-h c" . helpful-command)
          ([remap describe-mode] . cc-elisp/helpful-current-mode)
-         :map emacs-lisp-mode-map ("C-c C-d d" . helpful-at-point)))
+         :map emacs-lisp-mode-map ("C-c m d" . helpful-at-point)))
 
 (use-package
   elisp-mode
@@ -43,7 +43,10 @@
 
 (use-package
   elisp-format
-  :custom (elisp-format-column 80)
+  :config (add-to-list 'elisp-format-newline-keyword-addons-list "let")
+  (add-to-list 'elisp-format-newline-keyword-addons-list "if")
+  :custom (elisp-format-column 100)
+  (elisp-format-indent-comment nil)
   :bind (:map emacs-lisp-mode-map
               ("C-c f" . elisp-format-buffer)))
 

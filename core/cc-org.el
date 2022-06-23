@@ -59,13 +59,11 @@
 
 
 (defun cc-org/set-company-backends ()
-  (setq-local company-backends '((company-capf company-yasnippet company-dabbrev
-                                               company-ispell
+  (setq-local company-backends '((company-capf company-yasnippet company-dabbrev company-ispell
                                                :separate))))
 
 (defun cc-org/add-keymap-based-replacements ()
-  (which-key-add-keymap-based-replacements org-mode-map "C-c a"
-    "org-mode-agenda")
+  (which-key-add-keymap-based-replacements org-mode-map "C-c a" "org-mode-agenda")
   (which-key-add-keymap-based-replacements org-mode-map "C-c f" "org-footnote")
   (which-key-add-keymap-based-replacements org-mode-map "C-c \"" "org-plot")
   (which-key-add-keymap-based-replacements org-mode-map "C-c C-v" "org-babel")
@@ -93,14 +91,17 @@
          ("C-c o c" . org-capture)
          ("C-c o b" . org-switchb)
          :map org-mode-map ("C-c m i" . org-id-get-create)
+         ("C-c m t i" . org-toggle-inline-images)
+         ("C-c m t l" . org-toggle-link-display)
+         ("C-c m t x" . org-latex-preview)
          ("C-c m f n" . org-footnote-new)
          ("C-c m f a" . org-footnote-action)
-         ("C-c m t s" . org-sort)
-         ("C-c m l" . org-latex-preview)
-         ("C-c m s" . org-toggle-inline-images))
-  :config (which-key-add-keymap-based-replacements org-mode-map "C-c m t"
-            "table")
+         ("C-c m o" . org-open-at-point)
+         ("C-c m s" . org-sort)
+         ("C-c m l" . org-latex-preview))
+  :config (which-key-add-keymap-based-replacements org-mode-map "C-c m t" "toggle")
   (which-key-add-keymap-based-replacements org-mode-map "C-c m f" "footnote")
+  ;; TODO:
   ;; :config ((org-babel-do-load-languages 'org-babel-load-languages '((dot . t)
   ;;                                                                   (plantuml .
   ;;                                                                             t))))

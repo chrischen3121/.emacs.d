@@ -1,6 +1,7 @@
-;;; cc-html.el
+;;; cc-simple-modes.el --- Configurations for all simple modes
 
-;; Author: Chris Chen
+;; Author: chrischen
+;; Maintainer: chrischen
 
 ;; This file is not part of GNU Emacs
 
@@ -17,6 +18,9 @@
 ;; For a full copy of the GNU General Public License
 ;; see <http://www.gnu.org/licenses/>.
 
+;;; Commentary:
+;;
+
 ;;; Code:
 
 (use-package
@@ -24,8 +28,23 @@
   :ensure nil
   :config (which-key-add-key-based-replacements "C-c C-c" "html-components"))
 
+(use-package
+  json-mode
+  :ensure nil
+  :custom (indent-tabs-mode nil)
+  (tab-width 2)
+  (standard-indent 2)
+  :bind (:map json-mode-map
+              ("C-c f" . json-pretty-print-buffer)))
 
+(use-package
+  git-modes
+  :defer t)
 
-(provide 'cc-html)
+(use-package
+  clojure-mode
+  :defer t)
 
-;;; cc-html.el ends here
+(provide 'cc-simple-modes)
+
+;;; cc-simple-modes.el ends here

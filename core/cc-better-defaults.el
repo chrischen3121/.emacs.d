@@ -32,7 +32,8 @@
   (delete-selection-mode +1)
   (toggle-scroll-bar -1)
   (fset 'yes-or-no-p 'y-or-n-p)
-  (display-battery-mode +1))
+  (display-battery-mode +1)
+  (define-key minibuffer-local-completion-map " " 'self-insert-command))
 
 (use-package
   emacs
@@ -55,8 +56,7 @@
   :init (if (daemonp)
             (add-hook 'after-make-frame-functions (lambda (frame)
                                                     (select-frame frame)
-                                                    (load-theme
-                                                     'gruvbox-light-medium t)))
+                                                    (load-theme 'gruvbox-light-medium t)))
           (load-theme 'gruvbox-light-medium t)))
 
 (use-package
@@ -89,14 +89,12 @@
 (use-package
   edebug
   :commands edebug-mode
-  :config (which-key-add-keymap-based-replacements edebug-mode-map "C-x C-a"
-            "edebug"))
+  :config (which-key-add-keymap-based-replacements edebug-mode-map "C-x C-a" "edebug"))
 
 ;; Builtin highlight
 (use-package
   hi-lock
-  :config (which-key-add-keymap-based-replacements hi-lock-map "C-x w"
-            "highlight"))
+  :config (which-key-add-keymap-based-replacements hi-lock-map "C-x w" "highlight"))
 
 ;; smartparens
 ;; use M-x sp-cheat-sheet show all commands
@@ -130,16 +128,17 @@
   :after all-the-icons
   :hook (dired-mode . all-the-icons-dired-mode))
 
+;; TODO: too much ~undotree~ files
 ;; Attention: queue-0.2 sig issue
-(use-package
-  undo-tree
-  :init (which-key-add-key-based-replacements "C-x u" "undo-tree")
-  :delight
-  :custom ((undo-tree-visualizer-timestamps t)
-           (undo-tree-visualizer-diff t))
-  :config (global-undo-tree-mode +1)
-  :bind (("C-/" . undo-tree-undo)
-         ("M-_" . undo-tree-redo)))
+;; (use-package
+;;   undo-tree
+;;   :init (which-key-add-key-based-replacements "C-x u" "undo-tree")
+;;   :delight
+;;   :custom ((undo-tree-visualizer-timestamps t)
+;;            (undo-tree-visualizer-diff t))
+;;   :config (global-undo-tree-mode +1)
+;;   :bind (("C-/" . undo-tree-undo)
+;;          ("M-_" . undo-tree-redo)))
 
 (use-package
   nyan-mode
@@ -189,11 +188,12 @@
          (text-mode . flyspell-mode)))
 
 
-(use-package
-  flycheck-grammarly
-  :custom (flycheck-grammarly-check-time 20)
-  :after flycheck
-  :hook (flycheck-mode . flycheck-grammarly-setup))
+;; TODO: should be toggled manually
+;; (use-package
+;;   flycheck-grammarly
+;;   :custom (flycheck-grammarly-check-time 20)
+;;   :after flycheck
+;;   :hook (flycheck-mode . flycheck-grammarly-setup))
 
 
 ;; It can help you to move your cursor to ANY position in emacs
