@@ -81,14 +81,18 @@
          ("C-c n f" . org-roam-node-find)
          ("C-c n i" . org-roam-node-insert)
          ("C-c n p" . org-id-get-create)
-         ("C-c n o" . org-roam-buffer-toggle)
          ("C-c n s" . org-roam-ui-mode)
+         ("C-c n w" . org-roam-migrate-wizard)
          :map org-mode-map ("C-c n a" . org-roam-alias-add)
+         ("C-c n b" . org-roam-buffer-toggle)
          ("C-c n t" . org-roam-tag-add)
          ("C-c n r" . org-roam-ref-add)
          ("C-c n n" . org-roam-node-random)
          ("C-c n g" . org-roam-graph)))
 
+;; TODO:
+;; (org-roam-migrate-wizard)
+;; autoremove org-roam.bak directory
 
 (use-package
   org-roam-ui
