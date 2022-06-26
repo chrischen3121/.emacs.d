@@ -28,26 +28,25 @@
               helm-ff-search-library-in-sexp t ; search for library in `require' and `declare-function' sexp.
               helm-scroll-amount 8 ; scroll 8 lines other window using M-<next>/M-<prior>
               helm-ff-file-name-history-use-recentf t helm-echo-input-in-header-line t)
-
   :delight
+
   :demand
-  :custom
-  ((completion-styles '(flex))
-   (helm-net-prefer-curl t)
-   (helm-autoresize-max-height 0)
-   (helm-autoresize-min-height 25)
-   (helm-buffers-fuzzy-matching t)
-   (helm-recentf-fuzzy-match t)
-   (helm-semantic-fuzzy-match t)
-   (helm-imenu-fuzzy-match t)
-   (helm-locate-fuzzy-match t))
-  :bind-keymap ("C-c h" . helm-command-prefix)
+  :custom ((completion-styles '(flex))
+           (helm-net-prefer-curl t)
+           (helm-autoresize-max-height 0)
+           (helm-autoresize-min-height 25)
+           (helm-buffers-fuzzy-matching t)
+           (helm-recentf-fuzzy-match t)
+           (helm-semantic-fuzzy-match t)
+           (helm-imenu-fuzzy-match t)
+           (helm-locate-fuzzy-match t))
   :bind (([remap execute-extended-command] . helm-M-x)
          ([remap find-file] . helm-find-files)
          ([remap occur] . helm-occur)
          ([remap list-buffers] . helm-buffers-list)
          ([remap switch-to-buffer] . helm-mini)
          ([remap apropos-command] . helm-apropos)
+         ("C-c h" . helm-command-prefix)
          ("C-x P" . helm-list-elisp-packages)
          ("C-c h o" . helm-occur)
          ("C-c h h a" . helm-info)
