@@ -25,7 +25,12 @@
 
 
 (require 'cc-elisp)
+
 (require 'cc-lsp)
+(require 'cc-lsp-c)
+(require 'cc-lsp-cpp)
+(require 'cc-lsp-python)
+
 (require 'cc-simple-modes)
 
 (provide 'cc-langs)

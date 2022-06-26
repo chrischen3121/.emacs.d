@@ -86,9 +86,6 @@
   :config (which-key-add-keymap-based-replacements dap-mode-map "C-c l d" "debug"))
 
 
-(require 'cc-lsp-c)
-(require 'cc-lsp-cpp)
-
 (provide 'cc-lsp)
 
 ;;; cc-lsp.el ends here
