@@ -65,7 +65,14 @@
   (python-shell-interpreter-args "--simple-prompt -i")
   (tab-width 4)
   :bind (:map python-mode-map
-              ([remap lsp-format-buffer] . cc-lsp-python/format-buffer)))
+              ([remap lsp-format-buffer] . cc-lsp-python/format-buffer))
+  :config (which-key-add-keymap-based-replacements python-mode-map "C-c C-t" "skeleton"))
+
+(use-package
+  pipenv
+  :hook (python-mode . pipenv-mode)
+  :config (which-key-add-keymap-based-replacements pipenv-mode-map "C-c C-p" "pipenv")
+  :custom (pipenv-projectile-after-switch-function #'pipenv-projectile-after-switch-extended))
 
 (provide 'cc-lsp-python)
 ;;; cc-lsp-python.el ends here
