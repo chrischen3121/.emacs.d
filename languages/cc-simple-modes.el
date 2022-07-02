@@ -24,6 +24,10 @@
 ;;; Code:
 
 (use-package
+  yaml-mode
+  :hook (yaml-mode . flyspell-mode-off))
+
+(use-package
   mhtml-mode
   :ensure nil
   :config (which-key-add-key-based-replacements "C-c C-c" "html-components"))
@@ -32,8 +36,8 @@
   json-mode
   :ensure nil
   :custom (indent-tabs-mode nil)
-  (tab-width 2)
-  (standard-indent 2)
+  (tab-width 4)
+  (standard-indent 4)
   :bind (:map json-mode-map
               ("C-c f" . json-pretty-print-buffer)))
 

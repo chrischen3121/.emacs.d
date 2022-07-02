@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: roamtags
-# key: -to
+# key: -t
 # --
 * tags :: $0
