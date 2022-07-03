@@ -185,7 +185,7 @@
               ("C-c ! s" . flyspell-buffer)
               ("C-c ! i" . flyspell-correct-word-before-point))
   :hook ((prog-mode . flyspell-prog-mode)
-         (text-mode . flyspell-mode)))
+         (org-mode . flyspell-mode)))
 
 
 ;; TODO: should be toggled manually

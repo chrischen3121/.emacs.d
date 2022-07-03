@@ -24,10 +24,6 @@
 ;;; Code:
 
 (use-package
-  yaml-mode
-  :hook (yaml-mode . flyspell-mode-off))
-
-(use-package
   mhtml-mode
   :ensure nil
   :config (which-key-add-key-based-replacements "C-c C-c" "html-components"))
