@@ -28,9 +28,9 @@
   lsp-mode
   :init (setq lsp-keymap-prefix "C-c l")
   :custom (lsp-modeline-diagnostics-scope :workspace)
+  (lsp-completion-provider :none)
   :hook (lsp-mode  . lsp-enable-which-key-integration)
-  ;; (python-mode . lsp-deferred)
-  ;; (c-mode-common . cc-lsp/set-company-backends)
+  ;; (lsp-mode . cc-dev/set-prog-backends)
   :commands (lsp lsp-deferred)
   :bind (:map lsp-mode-map
               ("C-c f" . lsp-format-buffer)

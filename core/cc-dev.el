@@ -69,11 +69,12 @@
 
 
 (defun cc-dev/set-text-backends ()
-  (setq-local company-backends '((company-dabbrev company-ispell
-                                                  :separate) company-files)))
+  (setq-local company-backends '((company-yasnippet company-dabbrev company-ispell
+                                                    :separate) company-files)))
 (defun cc-dev/set-prog-backends ()
-  (setq-local company-backends '((company-capf company-dabbrev-code company-keywords
-                                               :separate) company-ispell)))
+  (setq-local company-backends '((company-yasnippet company-capf company-dabbrev-code
+                                                    company-keywords
+                                                    :separate) company-ispell)))
 
 
 (use-package
@@ -126,6 +127,16 @@
 (use-package
   linum
   :hook (prog-mode . linum-mode))
+
+(use-package
+  prog-mode
+  :ensure nil
+  :config (which-key-add-keymap-based-replacements prog-mode-map "C-c m t" "term")
+  :bind (:map prog-mode-map
+              ("C-c m t t" . term)
+              ("C-c m t r" . shell-command-on-region)
+              ("C-c m t a" . async-shell-command)
+              ("C-c m r" . shell-command)))
 
 
 ;; "Move Where I Mean"

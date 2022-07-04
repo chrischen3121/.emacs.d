@@ -31,6 +31,11 @@
            (format "g++ -std=c++20 -Wall -g -o %s %s" (file-name-sans-extension file) file)))
     (compile compile-command)))
 
+(defun cc-lsp-cpp/set-company-backends ()
+  (interactive)
+  (setq-local company-backends '((company-yasnippet company-capf company-dabbrev-code
+                                                    company-keywords
+                                                    :separate) company-ispell)))
 
 (use-package
   cc-mode
@@ -43,7 +48,6 @@
               ("<f7>" . cc-lsp-cpp/compile)
               ("C-c m g" . dap-debug)
               ("C-c m e" . dap-debug-edit-template)))
-
 
 (provide 'cc-lsp-cpp)
 
