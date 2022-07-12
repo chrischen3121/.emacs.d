@@ -23,6 +23,8 @@
 
 ;;; Hints:
 
+;; TODO: try mathpix.el and winner-mode
+
 ;;; Code:
 
 (defcustom cc-org-roam/org-roam-directory "~/second-brain/pages"
