@@ -145,17 +145,16 @@
               ("C-c m a c" . anki-editor-cloze-dwim))
   :custom (anki-editor-create-decks t))
 
-;; ;; full-text search
-;;                                         ;TODO:
-;; ;; (use-package
-;; ;;   deft
-;; ;;   :after org
-;; ;;   :bind (:map org-mode-map
-;; ;;               ("C-c n d" . deft))
-;; ;;   :custom (deft-recursive t)
-;; ;;   (deft-use-filter-string-for-filename t)
-;; ;;   (deft-default-extension "org")
-;; ;;   (deft-directory cc-org-roam/org-roam-directory))
+;; full-text search
+(use-package
+  deft
+  :after org
+  :bind (:map org-mode-map
+              ("C-c n t" . deft))
+  :custom (deft-recursive t)
+  (deft-use-filter-string-for-filename t)
+  (deft-default-extension "org")
+  (deft-directory cc-org-roam/org-roam-directory))
 
 (use-package
   org-superstar
@@ -177,6 +176,16 @@
               ("<f9>" . org-tree-slide-move-previous-tree)
               ("<f10>" . org-tree-slide-move-next-tree)
               ("<f11>" . org-tree-slide-content)))
+
+(use-package
+  org-transclusion
+  :after org
+  :bind (:map org-mode-map
+              ("C-c m m i" . org-transclusion-add)
+              ("C-c m m a" . org-transclusion-add-all)
+              ("C-c m m l" . org-transclusion-make-from-link)
+              ("C-c m m t" . org-transclusion-mode))
+  :config (which-key-add-keymap-based-replacements org-mode-map "C-c m m" "org-transclusion"))
 
 (require 'cc-agenda)
 (require 'cc-org-publish)
