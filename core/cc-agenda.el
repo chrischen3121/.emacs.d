@@ -48,10 +48,8 @@
   :group 'cc-agenda)
 
 (defun cc-agenda/setup-keywords ()
-  (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "HOLD(h@)"  "|"
-                                      "DONE(d)" "CANCELED(c)")
-                            (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|"
-                                      "FIXED(f)")))
+  (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "HOLD(h@)"  "|" "DONE(d)" "CANCELED(c)")
+                            (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")))
   (setq org-todo-keyword-faces '(("TODO" . "salmon")
                                  ("NEXT" . "light blue")
                                  ("HOLD" . "medium purple")
@@ -92,10 +90,8 @@
 
 (use-package
   emacs
-  :custom ((org-agenda-files (directory-files-recursively
-                              cc-agenda/agenda-home-dir ".org$"))
-           (org-default-notes-file (expand-file-name "captured.org"
-                                                     cc-agenda/agenda-home-dir))
+  :custom ((org-agenda-files (directory-files-recursively cc-agenda/agenda-home-dir ".org$"))
+           (org-default-notes-file (expand-file-name "captured.org" cc-agenda/agenda-home-dir))
            (org-export-with-todo-keywords nil))
   :hook (after-init . cc-agenda/setup-keywords))
 
@@ -111,9 +107,7 @@
                                  (org-agenda-files :level . 1)))
            (org-columns-default-format
             "%40ITEM(Task) %TODO %3PRIORITY %17Effort(Effort){:} %10CLOCKSUM")
-           (org-capture-templates '(("t" "Todo" entry (file+headline
-                                                       org-default-notes-file
-                                                       "Tasks")
+           (org-capture-templates '(("t" "Todo" entry (file+headline org-default-notes-file "Tasks")
                                      "* TODO %?\n %U\n")))
            (org-tag-alist '(("Work" . ?w)
                             ("Learning" . ?l)
@@ -131,7 +125,9 @@
                             ("Backend" . ?b)
                             ("Database" . ?d)
                             ("ML" . ?M)
+                            ("Project" . ?P)
                             ("Coursera" . ?C)
+                            ("Geekbang" . ?G)
                             ("Udacity" . ?U))))
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
@@ -144,50 +140,28 @@
          ("C-c a j" . org-clock-goto)
          :map org-agenda-mode-map ("C" . org-agenda-columns)))
 
-;; (setq org-capture-templates '(("t" "todo" entry (file org-default-notes-file)
-;;                                "* TODO %?\n%U\n%a\n"
-;;                                :clock-in t
-;;                                :clock-resume t)))
-
-;; (use-package
-;;   org-agenda
-;;   :ensure nil
-;;   :after org
-;;   :custom
-;;   ;; org-clock
-;;   (org-clock-in-resume t)
-;;   (org-clock-persist t)
-;;   (org-clock-report-include-clocking-task t)
-;;   ;; schedule
-;;   ;; column view
-;;   (org-global-properties '(("Effort_ALL" .
-;;                             "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00
-;; 0:00"))
-;;                          (org-agenda-clockreport-parameter-plist
-;;                           '(:link t
-;;                                   :maxlevel 5
-;;                                   :fileskip0 t
-;;                                   :compact t
-;;                                   :narrow 80))))
-
-
-
-;; (setq-default org-priority-default 67)
-
-;; (setq-default org-export-with-todo-keywords nil)
-
-
-;; ;; which-key
-;; (which-key-add-key-based-replacements "C-c g" "agenda")
-
-;; (global-set-key (kbd "C-c c") 'org-capture)
-;; (global-set-key (kbd "C-c g a") 'org-agenda)
-;; (global-set-key (kbd "C-c g c") 'calendar)
-;; (global-set-key (kbd "C-c g g") 'gnus)
-;; (global-set-key (kbd "C-c g i") 'org-clock-in)
-;; (global-set-key (kbd "C-c g o") 'org-clock-out)
-;; (global-set-key (kbd "C-c g v") 'visible-mode)
-
+(use-package
+  org-super-agenda
+  :custom (org-super-agenda-groups
+           '((:name "Next"
+                    :time-grid t
+                    :todo "NEXT")
+             (:name "Important"
+                    :todo "BUG"
+                    :priority "A")
+             (:name "Learning"
+                    :tag ("English" "Learning"))
+             (:name "MOOC"
+                    :tag ("Coursera" "Udacity" "Geekbang"))
+             (:name "Luke"
+                    :tag "Child")
+             (:name "Project"
+                    :tag "Project")
+             (:name "Work"
+                    :tag "Work")
+             (:todo "HOLD")
+             (:priority<= "C")))
+  :hook (org-agenda-mode . org-super-agenda-mode))
 
 (provide 'cc-agenda)
 
