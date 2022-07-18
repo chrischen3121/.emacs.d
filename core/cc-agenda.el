@@ -152,11 +152,11 @@
              (:name "Deadline"
                     :deadline t)
              (:name "Learning"
-                    :tag ("English" "Learning")
-                    :not (:priority "C"))
+                    :and (:tag ("English" "Learning")
+                               :not (:priority "C")))
              (:name "MOOC"
-                    :tag ("Coursera" "Udacity" "Geekbang")
-                    :not (:priority "C"))
+                    :and (:tag ("Coursera" "Udacity" "Geekbang")
+                               :not (:priority "C")))
              (:name "Luke"
                     :tag "Child")
              (:name "Project"
