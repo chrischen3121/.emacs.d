@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: bang
-# key: s
+# key: !
 # --
 #!/usr/bin/env bash
+set -ux -o pipefail
 $0
