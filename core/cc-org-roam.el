@@ -83,7 +83,7 @@
          ("C-c n f" . org-roam-node-find)
          ("C-c n i" . org-roam-node-insert)
          ("C-c n p" . org-id-get-create)
-         ("C-c n s" . org-roam-ui-mode)
+         ("C-c n u" . org-roam-ui-mode)
          ("C-c n w" . org-roam-migrate-wizard)
          :map org-mode-map ("C-c n a" . org-roam-alias-add)
          ("C-c n b" . org-roam-buffer-toggle)
@@ -92,9 +92,16 @@
          ("C-c n n" . org-roam-node-random)
          ("C-c n g" . org-roam-graph)))
 
-;; TODO:
-;; (org-roam-migrate-wizard)
-;; autoremove org-roam.bak directory
+;; full-text search
+(use-package
+  deft
+  :after org
+  :bind (:map org-mode-map
+              ("C-c n s" . deft))
+  :custom (deft-recursive t)
+  (deft-use-filter-string-for-filename t)
+  (deft-default-extension "org")
+  (deft-directory cc-org-roam/org-roam-directory))
 
 (use-package
   org-roam-ui
