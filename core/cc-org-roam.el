@@ -96,10 +96,11 @@
 (use-package
   deft
   :after org
-  :bind (:map org-mode-map
-              ("C-c n s" . deft))
+  :bind ("C-c n s" . deft)
   :custom (deft-recursive t)
-  (deft-use-filter-string-for-filename t)
+  ;; For creating files
+  ;; (deft-use-filename-as-title t)
+  ;; (deft-use-filter-string-for-filename t)
   (deft-default-extension "org")
   (deft-directory cc-org-roam/org-roam-directory))
 
