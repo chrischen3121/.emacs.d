@@ -37,6 +37,7 @@
 
 (use-package
   sphinx-doc
+
   :delight
   :hook (python-mode . sphinx-doc-mode)
   :bind (:map python-mode-map
@@ -69,10 +70,15 @@
   :config (which-key-add-keymap-based-replacements python-mode-map "C-c C-t" "skeleton"))
 
 (use-package
-  pipenv
-  :hook (python-mode . pipenv-mode)
-  :config (which-key-add-keymap-based-replacements pipenv-mode-map "C-c C-p" "pipenv")
-  :custom (pipenv-projectile-after-switch-function #'pipenv-projectile-after-switch-extended))
+  poetry
+  :ensure t
+  :config (poetry-tracking-mode)
+  :custom (poetry-tracking-strategy 'projectile))
+;; (use-package
+;;   pipenv
+;;   :hook (python-mode . pipenv-mode)
+;;   :config (which-key-add-keymap-based-replacements pipenv-mode-map "C-c C-p" "pipenv")
+;;   :custom (pipenv-projectile-after-switch-function #'pipenv-projectile-after-switch-extended))
 
 (provide 'cc-lsp-python)
 ;;; cc-lsp-python.el ends here
