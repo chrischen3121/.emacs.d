@@ -2,8 +2,6 @@
 my emacs configuration
 
 * TODOs
-- [ ] truncate-lines or visual line. See [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Continuation-Lines.html][ref]]
 - [ ] EWW
-- [ ] deft for roam fulltext-search
 - [ ] org-babel-do-load-languages -- plantuml
-- [ ] json-mode pretty print
+- [ ] jsonc-mode pretty print
