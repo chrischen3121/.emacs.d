@@ -115,7 +115,7 @@
   :bind (:map hs-minor-mode-map
               ("C-c @" . nil)
               ("C-c d h h" . hs-hide-all)
-              ("C-c d h <backtab>" . hs-show-all)
+              ("C-c d <backtab>" . hs-show-all)
               ("C-c d h l" . hs-hide-level)
               ("C-c d <tab>" . hs-toggle-hiding))
   :config (which-key-add-keymap-based-replacements hs-minor-mode-map "C-c d h" "hideshow")

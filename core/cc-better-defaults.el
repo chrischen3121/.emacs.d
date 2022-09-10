@@ -42,7 +42,7 @@
            (make-backup-files nil)
            (tab-width 4)
            (indent-tabs-mode nil)
-           (truncate-lines t)
+           (truncate-lines nil)
            (auto-save-default nil)
            (split-height-threshold nil)
            (split-width-threshold 160))

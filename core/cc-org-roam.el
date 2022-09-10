@@ -93,6 +93,8 @@
          ("C-c n g" . org-roam-graph)))
 
 ;; full-text search
+;; C-c C-g refresh the file browser
+;; C-c C-c to clear the filter string
 (use-package
   deft
   :after org

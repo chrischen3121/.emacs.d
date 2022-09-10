@@ -31,6 +31,8 @@
 (require 'cc-lsp-cpp)
 (require 'cc-lsp-python)
 
+(require 'cc-js)
+
 (require 'cc-simple-modes)
 
 (provide 'cc-langs)

@@ -31,9 +31,10 @@
 (use-package
   json-mode
   :ensure nil
-  :custom (indent-tabs-mode nil)
-  (tab-width 4)
-  (standard-indent 4)
+  :mode ("\\.json\\'" . jsonc-mode)
+  :custom ((standard-indent 2)
+           (tab-width 2)
+           (js-indent-level 2))
   :bind (:map json-mode-map
               ("C-c f" . json-pretty-print-buffer)))
 

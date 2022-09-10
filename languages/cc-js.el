@@ -19,12 +19,14 @@
 ;; see <http://www.gnu.org/licenses/>.
 
 ;;; Code:
-(use-package
-  js-mode
-  :ensure nil
-  :custom (indent-tabs-mode nil)
-  (tab-width 2)
-  (standard-indent 2))
+;; (use-package
+;;   js-mode
+;;   :ensure nil
+;;   :defer t
+;;   :custom ((standard-indent 4)
+;;            (tab-width 4)
+;;            (js-indent-level 4)))
+
 
 (provide 'cc-js)
 

@@ -31,6 +31,7 @@
 
 (use-package
   lsp-pyright
+  :custom (lsp-pyright-venv-path "~/.cache/pypoetry/virtualenvs")
   :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
                          (lsp-deferred))))
