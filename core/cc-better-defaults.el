@@ -26,9 +26,8 @@
 ;;; Code:
 
 (defun cc-core/after-init-func ()
-  (toggle-frame-maximized)
   (tool-bar-mode -1)
-  ;;(menu-bar-mode -1)
+  ;; (menu-bar-mode -1)
   (delete-selection-mode +1)
   (toggle-scroll-bar -1)
   (fset 'yes-or-no-p 'y-or-n-p)

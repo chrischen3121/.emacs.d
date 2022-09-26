@@ -31,14 +31,14 @@
 
 (use-package
   lsp-pyright
-  :custom (lsp-pyright-venv-path "~/.cache/pypoetry/virtualenvs")
+  :custom ((lsp-pyright-venv-path (concat (getenv "HOME") "/.cache/pypoetry/virtualenvs"))
+           (lsp-pyright-typechecking-mode "basic"))
   :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
                          (lsp-deferred))))
 
 (use-package
   sphinx-doc
-
   :delight
   :hook (python-mode . sphinx-doc-mode)
   :bind (:map python-mode-map
@@ -73,13 +73,8 @@
 (use-package
   poetry
   :ensure t
-  :config (poetry-tracking-mode)
-  :custom (poetry-tracking-strategy 'projectile))
-;; (use-package
-;;   pipenv
-;;   :hook (python-mode . pipenv-mode)
-;;   :config (which-key-add-keymap-based-replacements pipenv-mode-map "C-c C-p" "pipenv")
-;;   :custom (pipenv-projectile-after-switch-function #'pipenv-projectile-after-switch-extended))
+  :bind (:map python-mode-map
+              ("C-c m p" . poetry)))
 
 (provide 'cc-lsp-python)
 ;;; cc-lsp-python.el ends here
