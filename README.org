@@ -4,4 +4,3 @@ my emacs configuration
 * TODOs
 - [ ] EWW
 - [ ] org-babel-do-load-languages -- plantuml
-- [ ] jsonc-mode pretty print
