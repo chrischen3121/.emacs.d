@@ -20,7 +20,9 @@
 
 ;;; Commentary:
 ;;
-
+;; TODO: clang-refactor
+;; TODO: clang-rename
+;; TODO: clang-tidy
 ;;; Code:
 
 (defun cc-lsp-cpp/compile ()
@@ -41,6 +43,7 @@
   cc-mode
   :ensure nil
   :commands c++-mode
+  ;; TODO: :custom (lsp-clients-clangd-args '("--header-insertion-decorators=0" "--clang-tidy"))
   :hook (c++-mode . lsp-deferred)
   :config (require 'dap-gdb-lldb)
   :bind (:map c++-mode-map
