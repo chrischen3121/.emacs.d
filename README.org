@@ -2,5 +2,11 @@
 my emacs configuration
 
 * TODOs
+- [ ] Tweak the company sorting
+- [ ] Try python-lsp-server
+- [ ] C++ refactoring
+- [ ] Python refactoring
 - [ ] EWW
-- [ ] org-babel-do-load-languages -- plantuml
+
+* DONEs
+- [X] org-babel-do-load-languages -- plantuml

@@ -62,7 +62,6 @@
 ;; highlight changes
 (use-package
   git-gutter+
-
   :delight
   :hook (after-init . global-git-gutter+-mode))
 
@@ -81,6 +80,7 @@
   company
   ;; :delight
   :custom (company-transformers '(company-sort-by-backend-importance))
+  (company-minimum-prefix-length 1)
   :hook ((after-init . global-company-mode)
          (text-mode . cc-dev/set-text-backends)
          (prog-mode . cc-dev/set-prog-backends))
@@ -148,13 +148,13 @@
 ;; Visualizing Color Codes
 (use-package
   rainbow-mode
+
   :delight
   :hook prog-mode)
 
 ;; Colorize parens
 (use-package
   rainbow-delimiters
-
   :delight
   :hook (prog-mode . rainbow-delimiters-mode))
 
