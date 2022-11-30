@@ -35,17 +35,23 @@
   (display-battery-mode +1)
   (define-key minibuffer-local-completion-map " " 'self-insert-command))
 
+;; Change default window dividers
+(setq window-divider-default-places t window-divider-default-bottom-width 1
+      window-divider-default-right-width 1)
+(window-divider-mode)
+
 (use-package
   emacs
+
   :delight
   :custom ((inhibit-startup-screen t)
            (make-backup-files nil)
            (tab-width 4)
            (indent-tabs-mode nil)
            (truncate-lines nil)
-           (auto-save-default nil)
-           (split-height-threshold nil)
-           (split-width-threshold 160))
+           (auto-save-default nil))
+           ;;(split-height-threshold nil)
+           ;;(split-width-threshold 160))
   :hook ((after-init . cc-core/after-init-func)
          (after-save . executable-make-buffer-file-executable-if-script-p))
   :bind (("S-SPC" . set-mark-command)
@@ -60,8 +66,27 @@
                                                     (load-theme 'gruvbox-light-medium t)))
           (load-theme 'gruvbox-light-medium t)))
 
+;; helpful
+(defun cc-elisp/helpful-current-mode ()
+  "replace builtin describe-mode"
+  (interactive)
+  (helpful-command major-mode))
+
+(use-package
+  helpful
+  :custom (helm-describe-function-function 'helpful-function)
+  (helm-describe-variable-function 'helpful-variable)
+  :bind (([remap describe-function] . helpful-callable)
+         ([remap describe-variable] . helpful-variable)
+         ([remap describe-key] . helpful-key)
+         ("C-h c" . helpful-command)
+         ([remap describe-mode] . cc-elisp/helpful-current-mode)
+         :map emacs-lisp-mode-map ("C-c C-d" . helpful-at-point)))
+
+;; which-key
 (use-package
   which-key
+
   :demand
   :config (which-key-mode 1)
   (which-key-add-key-based-replacements "C-x ESC" "repeat-command")
@@ -148,7 +173,7 @@
 (use-package
   whitespace
   :hook (before-save . whitespace-cleanup)
-  :bind (("C-c C-d w" . whitespace-mode)))
+  :bind (("C-c C-w" . whitespace-mode)))
 
 (use-package
   eldoc
@@ -179,7 +204,6 @@
 
 (use-package
   flyspell
-
   :delight
   :bind (:map flyspell-mode-map
               ("C-c $" . nil)

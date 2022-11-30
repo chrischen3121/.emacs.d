@@ -19,19 +19,7 @@
 ;; see <http://www.gnu.org/licenses/>.
 
 ;;; Code:
-(defun cc-elisp/helpful-current-mode ()
-  "replace builtin describe-mode"
-  (interactive)
-  (helpful-command major-mode))
 
-(use-package
-  helpful
-  :bind (([remap describe-function] . helpful-callable)
-         ([remap describe-variable] . helpful-variable)
-         ([remap describe-key] . helpful-key)
-         ("C-h c" . helpful-command)
-         ([remap describe-mode] . cc-elisp/helpful-current-mode)
-         :map emacs-lisp-mode-map ("C-c m d" . helpful-at-point)))
 
 (use-package
   elisp-mode

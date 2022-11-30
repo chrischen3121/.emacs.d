@@ -20,6 +20,32 @@
 
 ;;; Code:
 
+;; early init
+;; to prevent any garbage collection from happening during load time.
+(defconst 1mb 1048576)
+(defconst 20mb 20971520)
+(defconst 30mb 31457280)
+(defconst 50mb 52428800)
+
+(defun cc-init/defer-garbage-collection ()
+  (setq gc-cons-threshold most-positive-fixnum))
+
+(defun cc-init/restore-garbage-collection ()
+  (run-at-time 1 nil (lambda ()
+                       (setq gc-cons-threshold 30mb))))
+
+(add-hook 'emacs-startup-hook 'cc-init/restore-garbage-collection 100)
+(add-hook 'minibuffer-setup-hook 'cc-init/defer-garbage-collection)
+(add-hook 'minibuffer-exit-hook 'cc-init/restore-garbage-collection)
+
+(setq read-process-output-max 1mb)  ;; lsp-mode's performance suggest
+
+;; Resizing the Emacs frame can be a terribly expensive part of changing the
+;; font. By inhibiting this, we easily halve startup times with fonts that are
+;; larger than the system default.
+(setq frame-inhibit-implied-resize t)
+
+;; load files
 (defvar username (getenv (if (equal system-type 'windows-nt) "USERNAME" "USER")))
 
 (when (version< emacs-version "27.2")
@@ -63,13 +89,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(queue helm-icons helm nyan-mode undo-tree
-                                     all-the-icons-dired all-the-icons
-                                     ace-window smartparens whole-line-or-region
-                                     which-key gruvbox-theme cnfonts
-                                     auto-package-update delight
-                                     use-package-ensure-system-package
-                                     use-package)))
+ '(package-selected-packages '(queue helm-icons helm nyan-mode undo-tree all-the-icons-dired
+                                     all-the-icons ace-window smartparens whole-line-or-region
+                                     which-key gruvbox-theme cnfonts auto-package-update delight
+                                     use-package-ensure-system-package use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
