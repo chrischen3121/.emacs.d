@@ -6,6 +6,7 @@ my emacs configuration
 - [ ] Try python-lsp-server
 - [ ] C++ refactoring
 - [ ] Python refactoring
+- [ ] Set company-minimum-prefix-length to 3 for text-mode
 - [ ] EWW
 
 * DONEs
