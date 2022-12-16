@@ -30,7 +30,6 @@
 
 (use-package
   json-mode
-  :ensure nil
   :mode ("\\.json\\'" . jsonc-mode)
   :custom ((standard-indent 2)
            (tab-width 2)

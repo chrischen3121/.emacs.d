@@ -26,6 +26,9 @@ projects
 
 # Others
 semanticdb/
+.local/
+games/
+eln-cache/
 .cache/
 .extension/
 .last-package-update-day
