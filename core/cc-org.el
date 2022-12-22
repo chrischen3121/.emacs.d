@@ -30,6 +30,7 @@
 ;; M-S-RET -- Add TODO outlines or add items with a checkbox
 ;; C-c - -- Cycle bullets (-, +, *, ...)
 ;; C-c m i -- Create IDs
+;; C-c m p -- org-toggle-inline-images
 ;; C-c ; -- Toggle the "COMMENT" keyword
 ;; ====== Tags ==========
 ;; C-c C-q -- Set a tag
@@ -68,7 +69,9 @@
   (which-key-add-keymap-based-replacements org-mode-map "C-c \"" "org-plot")
   (which-key-add-keymap-based-replacements org-mode-map "C-c C-v" "org-babel")
   (which-key-add-keymap-based-replacements org-mode-map "C-c C-x" "org-prefix")
-  (which-key-add-keymap-based-replacements org-mode-map "C-c m a" "org-anki"))
+  (which-key-add-keymap-based-replacements org-mode-map "C-c m a" "org-anki")
+  (which-key-add-keymap-based-replacements org-mode-map "C-c m m" "org-transclusion")
+)
 
 (use-package
   org-tempo
@@ -91,7 +94,7 @@
          ("C-c o c" . org-capture)
          ("C-c o b" . org-switchb)
          :map org-mode-map ("C-c m i" . org-id-get-create)
-         ("C-c m t i" . org-toggle-inline-images)
+         ("C-c m p" . org-toggle-inline-images)
          ("C-c m t l" . org-toggle-link-display)
          ("C-c m t x" . org-latex-preview)
          ("C-c m f n" . org-footnote-new)
