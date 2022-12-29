@@ -20,31 +20,6 @@
 
 ;;; Code:
 
-;; early init
-;; to prevent any garbage collection from happening during load time.
-(defconst 1mb 1048576)
-(defconst 20mb 20971520)
-(defconst 30mb 31457280)
-(defconst 50mb 52428800)
-
-(defun cc-init/defer-garbage-collection ()
-  (setq gc-cons-threshold most-positive-fixnum))
-
-(defun cc-init/restore-garbage-collection ()
-  (run-at-time 1 nil (lambda ()
-                       (setq gc-cons-threshold 30mb))))
-
-(add-hook 'emacs-startup-hook 'cc-init/restore-garbage-collection 100)
-(add-hook 'minibuffer-setup-hook 'cc-init/defer-garbage-collection)
-(add-hook 'minibuffer-exit-hook 'cc-init/restore-garbage-collection)
-
-(setq read-process-output-max 1mb)  ;; lsp-mode's performance suggest
-
-;; Resizing the Emacs frame can be a terribly expensive part of changing the
-;; font. By inhibiting this, we easily halve startup times with fonts that are
-;; larger than the system default.
-(setq frame-inhibit-implied-resize t)
-
 ;; load files
 (defvar username (getenv (if (equal system-type 'windows-nt) "USERNAME" "USER")))
 

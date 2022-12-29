@@ -60,7 +60,7 @@
 
 
 (defun cc-org/set-company-backends ()
-  (setq-local company-backends '((company-capf company-yasnippet company-dabbrev company-ispell
+  (setq-local company-backends '((company-capf company-yasnippet company-ispell
                                                :separate))))
 
 (defun cc-org/add-keymap-based-replacements ()

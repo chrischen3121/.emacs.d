@@ -62,13 +62,14 @@
 ;; highlight changes
 (use-package
   git-gutter+
+
   :delight
   :hook (after-init . global-git-gutter+-mode))
 
 
-
+;; company-dabbrev
 (defun cc-dev/set-text-backends ()
-  (setq-local company-backends '((company-yasnippet company-dabbrev company-ispell
+  (setq-local company-backends '((company-yasnippet company-ispell
                                                     :separate) company-files)))
 (defun cc-dev/set-prog-backends ()
   (setq-local company-backends '((company-yasnippet company-capf company-dabbrev-code
@@ -148,13 +149,13 @@
 ;; Visualizing Color Codes
 (use-package
   rainbow-mode
-
   :delight
   :hook prog-mode)
 
 ;; Colorize parens
 (use-package
   rainbow-delimiters
+
   :delight
   :hook (prog-mode . rainbow-delimiters-mode))
 

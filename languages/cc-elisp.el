@@ -19,13 +19,12 @@
 ;; see <http://www.gnu.org/licenses/>.
 
 ;;; Code:
-
-
 (use-package
   elisp-mode
   :ensure nil
   :delight (emacs-lisp-mode "ELisp"
                             :major)
+  ;; :hook (emacs-lisp-mode . pretty-mode)
   :bind (:map emacs-lisp-mode-map
               ("C-c C-c" . eval-buffer)))
 
