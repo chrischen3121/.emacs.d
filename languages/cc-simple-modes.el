@@ -38,6 +38,12 @@
               ("C-c f" . json-pretty-print-buffer)))
 
 (use-package
+  make-mode
+  :ensure nil
+  :bind (:map makefile-mode-map
+              ("C-c m c" . compile)))
+
+(use-package
   git-modes
   :defer t)
 
