@@ -26,10 +26,10 @@
 ;;; Code:
 (use-package
   projectile
-  :init (which-key-add-key-based-replacements "C-x p" "projectile")
+  :init (which-key-add-key-based-replacements "C-c p" "projectile")
   :custom ((projectile-completion-system 'helm)
            (projectile-enable-caching t))
-  :bind-keymap ("C-x p" . projectile-command-map)
+  :bind-keymap ("C-c p" . projectile-command-map)
   :delight '(:eval (concat " P[" (projectile-project-name) "]"))
   :hook (after-init . projectile-mode)
   :config (add-to-list 'projectile-globally-ignored-directories "elpa")
@@ -38,20 +38,22 @@
 
 (use-package
   helm-projectile
-  :init (which-key-add-key-based-replacements "C-c p" "helm-proj")
+
+  :init
   :after (helm projectile)
   :hook (projectile-mode . helm-projectile-on)
-  :bind (("C-c p h" . helm-projectile)
-         ("C-c p p" . helm-projectile-switch-project)
-         ("C-c p f" . helm-projectile-find-file)
-         ("C-c p F" . helm-projectile-find-file-in-known-projects)
-         ("C-c p m" . helm-projectile-find-file-dwim)
-         ("C-c p d" . helm-projectile-find-dir)
-         ("C-c p e" . helm-projectile-find-recentf)
-         ("C-c p b" . helm-projectile-switch-to-buffer)
-         ("C-c p g" . helm-projectile-grep)
-         ("C-c p a" . helm-projectile-ag)
-         ("C-c p r" . helm-projectile-rg)))
+  ;; :bind (("C-c p h" . helm-projectile)
+  ;;        ("C-c p p" . helm-projectile-switch-project)
+  ;;        ("C-c p f" . helm-projectile-find-file)
+  ;;        ("C-c p F" . helm-projectile-find-file-in-known-projects)
+  ;;        ("C-c p m" . helm-projectile-find-file-dwim)
+  ;;        ("C-c p d" . helm-projectile-find-dir)
+  ;;        ("C-c p e" . helm-projectile-find-recentf)
+  ;;        ("C-c p b" . helm-projectile-switch-to-buffer)
+  ;;        ("C-c p g" . helm-projectile-grep)
+  ;;        ("C-c p a" . helm-projectile-ag)
+  ;;        ("C-c p r" . helm-projectile-rg))
+  )
 
 
 (use-package
@@ -62,7 +64,6 @@
 ;; highlight changes
 (use-package
   git-gutter+
-
   :delight
   :hook (after-init . global-git-gutter+-mode))
 
@@ -149,13 +150,13 @@
 ;; Visualizing Color Codes
 (use-package
   rainbow-mode
+
   :delight
   :hook prog-mode)
 
 ;; Colorize parens
 (use-package
   rainbow-delimiters
-
   :delight
   :hook (prog-mode . rainbow-delimiters-mode))
 
