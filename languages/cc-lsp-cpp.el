@@ -25,19 +25,16 @@
 ;; TODO: clang-tidy
 ;;; Code:
 
+;;; Hints:
+;; https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/
+
 (defun cc-lsp-cpp/compile ()
   (interactive)
   (unless (file-exists-p "Makefile")
     (set (make-local-variable 'compile-command)
          (let ((file (file-name-nondirectory buffer-file-name)))
-           (format "g++ -std=c++20 -Wall -g -o %s %s" (file-name-sans-extension file) file)))
-    (compile compile-command)))
-
-(defun cc-lsp-cpp/set-company-backends ()
-  (interactive)
-  (setq-local company-backends '((company-yasnippet company-capf company-dabbrev-code
-                                                    company-keywords
-                                                    :separate) company-ispell)))
+           (format "g++ -std=c++20 -Wall -g -o %s %s" (file-name-sans-extension file) file))))
+  (compile compile-command))
 
 (use-package
   cc-mode
@@ -46,6 +43,7 @@
   ;; TODO: :custom (lsp-clients-clangd-args '("--header-insertion-decorators=0" "--clang-tidy"))
   :hook (c++-mode . lsp-deferred)
   :config (require 'dap-gdb-lldb)
+  (require 'dap-cpptools)
   :bind (:map c++-mode-map
               ("C-c m c" . cc-lsp-cpp/compile)
               ("<f7>" . cc-lsp-cpp/compile)

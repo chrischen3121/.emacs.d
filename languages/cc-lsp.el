@@ -24,13 +24,19 @@
 ;;   (define-key lsp-mode-map (kbd "C-c g")
 ;;     (lookup-key lsp-mode-map (kbd "C-c l g"))))
 
+;;; Hints:
+;; C-c g m -- go to helm-imenu
+
+(defun cc-lsp/set-company-backends ()
+  (setq-local company-backends '(( company-capf company-keywords
+                                   :separate) company-dabbrev-code company-ispell)))
 (use-package
   lsp-mode
   :init (setq lsp-keymap-prefix "C-c l")
   :custom (lsp-modeline-diagnostics-scope :workspace)
   (lsp-completion-provider :none)
   :hook (lsp-mode  . lsp-enable-which-key-integration)
-  ;; (lsp-mode . cc-dev/set-prog-backends)
+  (lsp-mode . cc-lsp/set-company-backends)
   :commands (lsp lsp-deferred)
   :bind (:map lsp-mode-map
               ("C-c f" . lsp-format-buffer)
@@ -38,7 +44,8 @@
               ("C-c g t" . lsp-find-type-definition)
               ("C-c g g" . lsp-ui-peek-find-definitions)
               ("C-c g r" . lsp-ui-peek-find-references)
-              ("C-c g i" . lsp-ui-peek-find-implementation)))
+              ("C-c g i" . lsp-ui-peek-find-implementation)
+              ("C-c m r" . lsp-rename)))
 
 (use-package
   lsp-ui
@@ -63,6 +70,7 @@
 
 (use-package
   helm-lsp
+
   :demand
   :after (helm lsp-mode helm-projectile)
   :commands helm-lsp-workspace-symbol

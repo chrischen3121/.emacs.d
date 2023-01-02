@@ -27,8 +27,8 @@
   (unless (file-exists-p "Makefile")
     (set (make-local-variable 'compile-command)
          (let ((file (file-name-nondirectory buffer-file-name)))
-           (format "gcc -Wall -g -o %s %s" (file-name-sans-extension file) file)))
-    (compile compile-command)))
+           (format "gcc -Wall -g -o %s %s" (file-name-sans-extension file) file))))
+  (compile compile-command))
 
 
 (use-package
